@@ -1,4 +1,4 @@
-def map_mass_momentum_to_nodes(mesh):
+def mass_momentum_to_nodes(mesh):
 	for el in mesh.elements:
 		for par in el.particles:
             for i in range(len(el.nodes)):
@@ -6,7 +6,7 @@ def map_mass_momentum_to_nodes(mesh):
                 el.nodes[i].momentum += par.mass * par.shapefn[i] * par.velocity
 
 
-def map_body_force_to_nodes(mesh, gravity):
+def body_force_to_nodes(mesh, gravity):
 	for el in mesh.elements:
 		for par in el.particles:
             for i in range(len(el.nodes)):
