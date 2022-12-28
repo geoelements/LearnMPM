@@ -1,8 +1,9 @@
 import numpy as np
 
-from learn-mpm import element
-from learn-mpm import node
-from learn-mpm import particle
+from learnmpm import element
+from learnmpm import node
+from learnmpm import particle
+from learnmpm import shapefn
 
 class Mesh1D:
     def __init__(self, domain_size, nelements):
@@ -12,14 +13,14 @@ class Mesh1D:
         self.particles = []   # List of particles
         
         self.nelements = nelements    # Number of elements in mesh
-        self.ppelem = 2       # particles per element
 
         # Subsequent elements
         for i in range(nelements):
             # Create element
             el = element.Bar1D()
             el.id = i
-            
+            el.shapefn = shapefn.Linear1D()
+
             # Node 0 
             if i == 0: # First element
                 el.nodes[0] = node.Node1D()
@@ -43,4 +44,28 @@ class Mesh1D:
             
             self.elements.append(el)
         
-        print("Number of nodes: ", len(self.nodes))
+    
+    def generate_particles_mesh(self, ppc, material):
+        # Iterate through each element
+        for el in self.elements:
+            # Compute particle mass
+            pmass = el.size * material.density / ppc
+
+            # Particle location in natural coordinates
+            xis = el.shapefn.gauss_pts(ppc)
+            
+            # Nodal coordinates
+            n0x = el.nodes[0].x
+            n1x = el.nodes[1].x
+            
+            for xi in xis:
+                # Compute the physical coordinates
+                x = (n0x + n1x)/2 + (n1x - n0x)/2  * xi
+                # Create particle
+                ip = particle.Particle1D(pmass, x, xi, material)
+                ip.id = len(self.particles)
+
+                # Add reference to particle, element and mesh
+                particle.element = el
+                el.particles.append(ip)
+                self.particles.append(ip)

@@ -9,17 +9,17 @@ class Bar1D:
     id: int
         Element index.
     
-    nid1: int
-        Node index 1.
-    
-    nid2: int
-        Node index 2.
+    nodes: list
+        List of nodes.
+
+    nnodes: int
+        Number of nodes in the element.
 
     length: float
         Element length.
     
     particles: list
-        List of particles in bar.
+        List of particles in the element.
     """
 
     def __init__(self):
@@ -28,3 +28,4 @@ class Bar1D:
         self.nnodes = 2
         self.size = np.array([0])
         self.particles = []
+        self.shapefn = None
