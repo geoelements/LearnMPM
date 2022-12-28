@@ -13,6 +13,7 @@ class Mesh1D:
         self.particles = []   # List of particles
         
         self.nelements = nelements    # Number of elements in mesh
+        self.dim = 1          # Dimension
 
         # Subsequent elements
         for i in range(nelements):

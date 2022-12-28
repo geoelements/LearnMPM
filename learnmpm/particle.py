@@ -18,3 +18,4 @@ class Particle1D:
         self.stress    = np.array([0])  
         self.dstrain   = np.array([0])
         self.momentum  = np.array([0])
+        self.f_ext     = np.array([0])
