@@ -62,10 +62,13 @@ class Mesh1D:
                 # Compute the physical coordinates
                 x = (n0x + n1x)/2 + (n1x - n0x)/2  * xi
                 # Create particle
-                ip = particle.Particle1D(pmass, x, xi, material)
-                ip.id = len(self.particles)
+                prt = particle.Particle1D(pmass, x, xi, material)
+                prt.id = len(self.particles)
+
+                prt.shapefn = el.shapefn.sf(xi)
+                prt.gradsf = el.shapefn.gradsf(xi)
 
                 # Add reference to particle, element and mesh
                 particle.element = el
-                el.particles.append(ip)
-                self.particles.append(ip)
+                el.particles.append(prt)
+                self.particles.append(prt)
