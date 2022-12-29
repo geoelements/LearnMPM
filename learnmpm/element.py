@@ -29,3 +29,23 @@ class Bar1D:
         self.size = 0.0
         self.particles = []
         self.shapefn = None
+
+    def is_point_in_element(self, x):
+        # get the nodal position
+        xn0 = self.nodes[0].x
+        xn1 = self.nodes[1].x
+        if x >= xn0 and x < xn1:
+            return True
+        else:
+            return False
+
+    def compute_xi(self, x):
+        # get the nodal position
+        xn0 = self.nodes[0].x
+        xn1 = self.nodes[1].x
+        length = abs(xn1 - xn0)
+        if (self.is_point_in_element(self, x)):
+            xi = (x - xn0) * 2./length - 1
+            return True, xi
+        else:
+            return False, 0.

@@ -5,5 +5,5 @@ class LinearElastic:
         self.E = E
         self.density = density
 
-    def update_stress(self, particle, dt):
+    def update_stress(self, particle):
         particle.stress+=particle.dstrain*self.E

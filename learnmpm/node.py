@@ -33,15 +33,6 @@ class Node1D:
             # damping force proportional to unbalanced forces and opposite to the nodal velocity
             self.f_damp = - alpha * abs(unbalanced_force) * vel_direction
 
-    def compute_acceleration_velocity(self, dt):
-        # Total force
-        f_total = self.f_int + self.f_ext + self.f_damp
-        # Accleration 
-        if self.mass > 0:
-            acc = f_total / self.mass
-        # Velocity
-        self.velocity += acc * dt
-
     def reset_values(self):
         self.mass     = 0
         self.velocity = 0
