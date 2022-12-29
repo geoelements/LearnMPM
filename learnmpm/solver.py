@@ -51,6 +51,19 @@ def explicit_solution(mesh, params):
         # update particle position
         update.particle_position(mesh, params.dt)
 
+        if (params.mpm_scheme == 'MUSL'):
+            # recalculate the nodal momentum
+            update.nodal_momentum(mesh)
+            # impose essential boundary conditions (in fixed nodes v=0)
+            mesh.elements[0].nodes[0].velocity=0
+            mesh.elements[0].nodes[0].momentum=0
+        
+        # Modified Update Stress Last or Update Stress Last Scheme
+        if (params.mpm_scheme == 'MUSL' or params.mpm_scheme == 'USL'):
+            compute_stress(mesh, params)
+            
+
+        #TODO: Fix velocity update -> damped solution
         # # calculate nodal acceleration and velocity
         # update.nodal_acceleration_velocity(mesh, params.dt)
 
@@ -66,6 +79,7 @@ def explicit_solution(mesh, params):
          # store data for plot
         params.solution_array[0].append(i*params.dt)
         
+        #TODO: Fix 0 index
         if params.solution_field=='velocity':
             params.solution_array[1].append(mesh.elements[-1].particles[-1].velocity[0])
 
