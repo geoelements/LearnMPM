@@ -14,8 +14,8 @@ class Particle1D:
         self.shapefn = np.array([])
         self.gradsf  = np.array([])
 
-        self.velocity  = np.array([0])
-        self.stress    = np.array([0])  
-        self.dstrain   = np.array([0])
-        self.momentum  = np.array([0])
-        self.f_ext     = np.array([0])
+        self.velocity  = 0.
+        self.stress    = 0.
+        self.dstrain   = 0.
+        self.momentum  = 0.
+        self.f_ext     = 0.

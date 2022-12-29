@@ -14,10 +14,10 @@ class Node1D:
 
     def __init__(self):
         self.id = None
-        self.x = np.array([0])
-        self.mass = np.array([0])
-        self.velocity = np.array([0])
-        self.momentum = np.array([0])
-        self.f_int = np.array([0])
-        self.f_ext = np.array([0])
+        self.x = 0.
+        self.mass = 0.
+        self.velocity = 0.
+        self.momentum = 0.
+        self.f_int = 0.
+        self.f_ext = 0.
 

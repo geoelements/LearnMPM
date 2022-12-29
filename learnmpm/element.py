@@ -26,6 +26,6 @@ class Bar1D:
         self.id = None
         self.nodes = [None, None]
         self.nnodes = 2
-        self.size = np.array([0])
+        self.size = 0.0
         self.particles = []
         self.shapefn = None
