@@ -1,19 +1,24 @@
-def nodal_acceleration_velocity(node, dt):
-    # Total force
-    f_total = node.f_int + node.f_ext + node.f_damp
-    # Accleration 
-    acc =  f_total / node.mass if node.mass > 0 else 0.
-    # Velocity
-    node.velocity += acc * dt
+def nodal_acceleration_velocity(mesh, dt):
+    for node in mesh.nodes:
+        # Total force
+        f_total = node.f_int + node.f_ext + node.f_damp
+        # Accleration 
+        acc =  f_total / node.mass if node.mass > 0 else 0.
+        # Velocity
+        node.velocity += acc * dt
 
 def nodal_velocity(mesh):
     for node in mesh.nodes:
         if(node.mass > 0.):
             node.velocity = node.momentum / node.mass
 
+def reset_nodal_values(mesh):
+    for node in mesh.nodes:
+        node.reset_values()
+        
 def particle_strain_increment(mesh,dt):
     for particle in mesh.particles:
-        particle.compute_strain(particle, dt)
+        particle.compute_strain(dt)
         
 
 def particle_position_velocity(mesh, dt):
@@ -25,7 +30,8 @@ def particle_position_velocity(mesh, dt):
             prtcl.velocity = nodal_velocity
             prtcl.x += prtcl.velocity * dt
 
-def particle_volume_density(prtcl):
+def particle_volume_density(mesh):
+    for prtcl in mesh.particles:
         prtcl.volume *= (1 + prtcl.dstrain)
         prtcl.density = prtcl.density / (1 + prtcl.dstrain)
 
@@ -38,7 +44,7 @@ def locate_particles(mesh):
     # clear particle list in elements
     for element in mesh.elements:
         element.particles = []
-
+   
     for prtcl in mesh.particles:
         # get particle position
         xp = prtcl.x
@@ -54,8 +60,6 @@ def locate_particles(mesh):
                 # update particle shapefns and grads
                 prtcl.shapefn = el.shapefn.sf(xi)
                 prtcl.gradsf = el.shapefn.gradsf(xi)
-                #TODO: print(prtcl.id, prtcl.shapefn)
-                print(prtcl.id, prtcl.xi, xp)
                 # add the particle to the element list
                 el.particles.append(prtcl)
                 # break element loop for testing other particle

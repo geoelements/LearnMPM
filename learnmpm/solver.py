@@ -5,7 +5,6 @@ from learnmpm import interpolate
 def explicit_solution(mesh, params):
     # main simulation loop
     for i in range(params.nsteps):    
-        print("\n\nIteration: ", i)
         # update particles list in each element
         update.locate_particles(mesh)
 
@@ -22,10 +21,10 @@ def explicit_solution(mesh, params):
         update.particle_strain_increment(mesh, params.dt)
         
         # update particle volume and density
-        update.particle_volume_density(mesh, params.dt)
+        update.particle_volume_density(mesh)
 
         # update particle stress
-        update.particle_stress(mesh, params.dt)
+        update.particle_stress(mesh)
             
         # particle internal force to nodes
         interpolate.internal_force_to_nodes(mesh)
@@ -34,13 +33,13 @@ def explicit_solution(mesh, params):
         interpolate.external_force_to_nodes(mesh)
 
         # calculate nodal acceleration and velocity
-        update.nodal_acceleration_velocity(mesh, params)
+        update.nodal_acceleration_velocity(mesh, params.dt)
         
         # impose essential boundary conditions (in fixed nodes set f=m*a=0)
         mesh.elements[0].nodes[0].velocity = 0
 
          # store data for plot
-        params.solution_array[0].append(i)
+        params.solution_array[0].append(i*params.dt)
         
         if params.solution_field=='velocity':
             params.solution_array[1].append(mesh.particles[params.solution_particle].velocity)
@@ -53,4 +52,4 @@ def explicit_solution(mesh, params):
         update.particle_position_velocity(mesh, params.dt)
         
         # reset all nodal values
-        update.reset_nodal_vaues(mesh)
+        update.reset_nodal_values(mesh)

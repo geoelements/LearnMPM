@@ -1,3 +1,8 @@
+
+# include the modules' path to the current path
+import sys
+sys.path.append(".")
+
 from learnmpm import mesh
 from learnmpm import material
 from learnmpm import interpolate
