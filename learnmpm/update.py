@@ -10,9 +10,9 @@ def nodal_acceleration_velocity(mesh, dt):
         # Total force
         f_total = node.f_int + node.f_ext + node.f_damp
         # Accleration 
-        acc =  f_total / node.mass if node.mass > 0 else 0.
+        node.acc =  f_total / node.mass if node.mass > 0 else 0.
         # Velocity
-        node.velocity += acc * dt
+        node.velocity += node.acc * dt
 
 def nodal_velocity(mesh):
     for node in mesh.nodes:

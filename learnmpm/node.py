@@ -13,14 +13,16 @@ class Node1D:
     """
 
     def __init__(self):
-        self.id = None
-        self.x = 0.
-        self.mass = 0.
+        self.id       = None
+        self.x        = 0.
+        self.mass     = 0.
         self.velocity = 0.
+        self.acc      = 0.
         self.momentum = 0.
-        self.f_int = 0.
-        self.f_ext = 0.
-        self.f_damp = 0.
+        self.f_int    = 0.
+        self.f_ext    = 0.
+        self.f_damp   = 0.
+        self.f_total  = 0.
     
     def compute_damping_force(self, alpha):
         # unbalanced nodal force magnitude
@@ -34,10 +36,11 @@ class Node1D:
             self.f_damp = - alpha * abs(unbalanced_force) * vel_direction
 
     def reset_values(self):
-        self.mass     = 0
-        self.velocity = 0
-        self.momentum = 0
-        self.f_int = 0
-        self.f_ext = 0
-        self.f_damp = 0
-
+        self.mass     = 0.
+        self.velocity = 0.
+        self.acc      = 0.
+        self.momentum = 0.
+        self.f_int    = 0.
+        self.f_ext    = 0.
+        self.f_damp   = 0.
+        self.f_total  = 0.
