@@ -44,7 +44,7 @@ class Bar1D:
         xn0 = self.nodes[0].x
         xn1 = self.nodes[1].x
         length = abs(xn1 - xn0)
-        if (self.is_point_in_element(self, x)):
+        if (self.is_point_in_element(x)):
             xi = (x - xn0) * 2./length - 1
             return True, xi
         else:

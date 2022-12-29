@@ -46,7 +46,7 @@ class Mesh1D:
             self.elements.append(el)
         
     
-    def generate_particles_mesh(self, ppc, material):
+    def generate_particles(self, ppc, material):
         # Iterate through each element
         for el in self.elements:
             # Compute particle mass

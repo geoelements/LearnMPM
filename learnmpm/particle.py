@@ -11,8 +11,8 @@ class Particle1D:
         self.material  = material 
         self.density   = material.density 
         self.element   = None
-        self.shapefn   = np.array([])
-        self.gradsf    = np.array([])
+        self.shapefn   = np.empty([2])
+        self.gradsf    = np.empty([2])
 
         self.velocity  = 0.
         self.stress    = 0.

@@ -54,6 +54,8 @@ def locate_particles(mesh):
                 # update particle shapefns and grads
                 prtcl.shapefn = el.shapefn.sf(xi)
                 prtcl.gradsf = el.shapefn.gradsf(xi)
+                #TODO: print(prtcl.id, prtcl.shapefn)
+                print(prtcl.id, prtcl.xi, xp)
                 # add the particle to the element list
                 el.particles.append(prtcl)
                 # break element loop for testing other particle

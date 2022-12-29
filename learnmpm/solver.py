@@ -5,6 +5,7 @@ from learnmpm import interpolate
 def explicit_solution(mesh, params):
     # main simulation loop
     for i in range(params.nsteps):    
+        print("\n\nIteration: ", i)
         # update particles list in each element
         update.locate_particles(mesh)
 
