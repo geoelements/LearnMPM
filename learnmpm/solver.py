@@ -7,16 +7,13 @@ def compute_stress(mesh, params):
 
     # calculate particle strain increment
     update.particle_strain_increment(mesh, params.dt)
-    print(mesh.elements[-1].nodes[0].velocity, mesh.elements[-1].nodes[1].velocity, 
-          mesh.elements[-1].particles[0].dstrain, mesh.elements[-1].particles[0].dn_dx[0], mesh.elements[-1].particles[0].dn_dx[1], 
-          mesh.elements[-1].particles[0].shapefn[0], mesh.elements[-1].particles[0].shapefn[1])
     
     # update particle volume and density
     update.particle_volume_density(mesh)
 
     # update particle stress
     update.particle_stress(mesh)
-
+    
 # Update Stress First Scheme
 def explicit_solution(mesh, params):
     # main simulation loop
@@ -44,6 +41,7 @@ def explicit_solution(mesh, params):
         
         # impose essential boundary conditions (in fixed nodes set f=m*a=0)
         mesh.elements[0].nodes[0].f_total=0
+        # print(mesh.elements[-1].nodes[0].f_int, mesh.elements[-1].nodes[0].f_ext, mesh.elements[-1].nodes[0].f_total)
 
         # integrate the grid nodal momentum equation
         update.momentum_in_nodes(mesh, params.dt)
