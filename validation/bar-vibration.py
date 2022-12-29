@@ -25,12 +25,13 @@ msh = mesh.Mesh1D(domain_size=L, nelements=nelements)
 elastic = material.LinearElastic1D(E=100, density=1)
 
 # put particles in mesh element and set the material
-msh.generate_particles(ppc = 2, material = elastic)
+# msh.generate_particles(ppc = 2, material = elastic)
+msh.put_particles_in_all_mesh_elements(ppelem = 2,material = elastic)
 
 # setup the model
 params = prms.Params()
 params.mpm_scheme = 'USF'
-params.nsteps = 600
+params.nsteps = 10 # 600
 params.dt = 0.1
 params.solution_particle = -1
 params.solution_field = 'velocity'

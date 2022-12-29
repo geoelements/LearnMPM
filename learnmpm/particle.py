@@ -12,7 +12,7 @@ class Particle1D:
         self.density   = material.density 
         self.element   = None
         self.shapefn   = np.empty([2])
-        self.gradsf    = np.empty([2])
+        self.dn_dx    = np.empty([2])
 
         self.velocity  = 0.
         self.stress    = 0.
@@ -24,7 +24,7 @@ class Particle1D:
     def compute_strain(self, dt):
         strain_rate = 0
         for i in range(self.element.nnodes):
-            strain_rate += self.gradsf[i] * self.element.nodes[i].velocity
+            strain_rate += self.dn_dx[i] * self.element.nodes[i].velocity
 
         self.dstrain = strain_rate * dt
         # Update strain

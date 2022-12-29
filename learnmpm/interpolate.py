@@ -15,7 +15,7 @@ def internal_force_to_nodes(mesh):
 	for el in mesh.elements:
 		for par in el.particles:
 			for i in range(len(el.nodes)):
-			     el.nodes[i].f_int -= par.gradsf[i] * par.stress * par.mass / par.density
+			     el.nodes[i].f_int -= par.dn_dx[i] * par.stress * par.mass / par.density
 
 def external_force_to_nodes(mesh):
 	for el in mesh.elements:
