@@ -13,7 +13,7 @@ def test_mesh_particles():
     msh = mesh.Mesh1D(10,1)
     assert len(msh.nodes) == 2
     assert len(msh.elements) == 1
-    le = material.LinearElastic(1e5, 1800)
+    le = material.LinearElastic1D(1e5, 1800)
 
     assert len(msh.particles) == 0
     msh.generate_particles_mesh(2, le)
@@ -21,7 +21,7 @@ def test_mesh_particles():
 
 def test_mesh_interpolate():
     msh = mesh.Mesh1D(10,2)
-    le = material.LinearElastic(1e5, 1800)
+    le = material.LinearElastic1D(1e5, 1800)
     assert len(msh.particles) == 0
     msh.generate_particles_mesh(2, le)
     assert len(msh.particles) == 4

@@ -35,8 +35,8 @@ def locate_particles(mesh):
         # for each element in mesh
         for el in mesh.elements:
             # verify the particle is inside the element
-            status, xi = el.compute_xi(xp)
-            if (status):
+            prcl_in_cell, xi = el.compute_xi(xp)
+            if (prcl_in_cell):
                 # Update particle xi
                 prtcl.xi = xi
                 # update element in particle

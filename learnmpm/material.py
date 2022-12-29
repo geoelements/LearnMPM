@@ -1,6 +1,6 @@
 import numpy as np
 
-class LinearElastic:
+class LinearElastic1D:
     def  __init__(self, E, density):
         self.E = E
         self.density = density
