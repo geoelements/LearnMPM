@@ -21,4 +21,4 @@ def external_force_to_nodes(mesh):
 	for el in mesh.elements:
 		for par in el.particles:
 			for i in range(len(el.nodes)):
-			     el.nodes[i].f_int += par.shapefn[i] * par.f_ext
+			     el.nodes[i].f_ext += par.shapefn[i] * par.f_ext
