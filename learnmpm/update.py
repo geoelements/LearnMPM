@@ -54,11 +54,9 @@ def particle_position(mesh, dt):
 def particle_position_velocity(mesh, dt):
     for el in mesh.elements:
         for prtcl in el.particles:
-            # nodal_velocity = 0
             prtcl.velocity = 0
             for i in range(len(el.nodes)):
                 prtcl.velocity += prtcl.shapefn[i] * el.nodes[i].velocity
-            # prtcl.velocity = nodal_velocity
             prtcl.x += prtcl.velocity * dt
 
 def particle_volume_density(mesh):

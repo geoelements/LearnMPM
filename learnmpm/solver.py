@@ -51,7 +51,7 @@ def explicit_solution(mesh, params):
         # update particle position
         update.particle_position(mesh, params.dt)
 
-        #TODO: Fix velocity update -> damped solution
+        #TODO: Fix velocity update
         # # calculate nodal acceleration and velocity
         # update.nodal_acceleration_velocity(mesh, params.dt)
 
