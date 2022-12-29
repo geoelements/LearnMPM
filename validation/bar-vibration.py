@@ -29,6 +29,7 @@ msh.generate_particles(ppc = 2, material = elastic)
 
 # setup the model
 params = prms.Params()
+params.mpm_scheme = 'USF'
 params.nsteps = 600
 params.dt = 0.1
 params.solution_particle = -1

@@ -1,6 +1,19 @@
 from learnmpm import update
 from learnmpm import interpolate
 
+def compute_stress(mesh, params):
+    # calculate the grid nodal velocity
+    update.nodal_velocity(mesh)
+
+    # calculate particle strain increment
+    update.particle_strain_increment(mesh, params.dt)
+    
+    # update particle volume and density
+    update.particle_volume_density(mesh)
+
+    # update particle stress
+    update.particle_stress(mesh)
+    
 # Update Stress First Scheme
 def explicit_solution(mesh, params):
     # main simulation loop
@@ -14,17 +27,8 @@ def explicit_solution(mesh, params):
         # impose essential boundary conditions (in fixed nodes set mv=0)
         mesh.elements[0].nodes[0].momentum = 0
         
-        # calculate the grid nodal velocity
-        update.nodal_velocity(mesh)
-
-        # calculate particle strain increment
-        update.particle_strain_increment(mesh, params.dt)
-        
-        # update particle volume and density
-        update.particle_volume_density(mesh)
-
-        # update particle stress
-        update.particle_stress(mesh)
+        if params.mpm_scheme == 'USF':
+            compute_stress(mesh, params)
             
         # particle internal force to nodes
         interpolate.internal_force_to_nodes(mesh)
