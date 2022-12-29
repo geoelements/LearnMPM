@@ -50,7 +50,8 @@ class Mesh1D:
         # Iterate through each element
         for el in self.elements:
             # Compute particle mass
-            pmass = el.size * material.density / ppc
+            psize = el.size / ppc
+            pmass = psize * material.density
 
             # Particle location in natural coordinates
             xis = el.shapefn.gauss_pts(ppc)
@@ -65,6 +66,7 @@ class Mesh1D:
                 # Create particle
                 prt = particle.Particle1D(pmass, x, xi, material)
                 prt.id = len(self.particles)
+                prt.volume = psize
 
                 prt.shapefn = el.shapefn.sf(xi)
                 prt.gradsf = el.shapefn.gradsf(xi)
