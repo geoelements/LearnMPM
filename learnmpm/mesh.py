@@ -7,7 +7,6 @@ from learnmpm import shapefn
 
 class Mesh1D:
     def __init__(self, domain_size, nelements):
-        
         self.nodes = []       # List of nodes
         self.elements = []    # List of elements
         self.particles = []   # List of particles
@@ -40,13 +39,12 @@ class Mesh1D:
             # Element length and coordinates
             length = domain_size/nelements
             el.size = np.array([length])
-            el.nodes[0].x = np.array([i * length])
-            el.nodes[1].x = np.array([el.nodes[0].x + length])
-            
+            el.nodes[0].x = i * length
+            el.nodes[1].x = el.nodes[0].x + length
             self.elements.append(el)
         
     
-    def generate_particles_mesh(self, ppc, material):
+    def generate_particles(self, ppc, material):
         # Iterate through each element
         for el in self.elements:
             # Compute particle mass
@@ -61,13 +59,13 @@ class Mesh1D:
             n1x = el.nodes[1].x
             
             for xi in xis:
+
                 # Compute the physical coordinates
                 x = (n0x + n1x)/2 + (n1x - n0x)/2  * xi
                 # Create particle
                 prt = particle.Particle1D(pmass, x, xi, material)
                 prt.id = len(self.particles)
                 prt.volume = psize
-
                 prt.shapefn = el.shapefn.sf(xi)
                 prt.gradsf = el.shapefn.gradsf(xi)
 
@@ -75,3 +73,4 @@ class Mesh1D:
                 particle.element = el
                 el.particles.append(prt)
                 self.particles.append(prt)
+                

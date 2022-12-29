@@ -7,4 +7,4 @@ class Params:
         self.solution_particle = 0
         self.solution_field = "position"
         self.solution_array = [[],[]]
-        self.damping_local_alpha = 0
+        self.damping = 0
