@@ -41,11 +41,10 @@ def explicit_solution(mesh, params):
         
         # impose essential boundary conditions (in fixed nodes set f=m*a=0)
         mesh.elements[0].nodes[0].f_total=0
-        # print(mesh.elements[-1].nodes[0].f_int, mesh.elements[-1].nodes[0].f_ext, mesh.elements[-1].nodes[0].f_total)
-
+        
         # integrate the grid nodal momentum equation
         update.momentum_in_nodes(mesh, params.dt)
-     
+
         # update particle velocity
         update.particle_velocity(mesh, params.dt)
         
@@ -68,8 +67,8 @@ def explicit_solution(mesh, params):
         params.solution_array[0].append(i*params.dt)
         
         if params.solution_field=='velocity':
-            params.solution_array[1].append(mesh.particles[params.solution_particle].velocity)
-        
+            params.solution_array[1].append(mesh.elements[-1].particles[-1].velocity[0])
+
         elif params.solution_field=='position':
-            params.solution_array[1].append(mesh.particles[params.solution_particle].position)
+            params.solution_array[1].append(mesh.particles[params.solution_particle].x[0])
     

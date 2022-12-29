@@ -31,7 +31,7 @@ msh.put_particles_in_all_mesh_elements(ppelem = 2,material = elastic)
 # setup the model
 params = prms.Params()
 params.mpm_scheme = 'USF'
-params.nsteps = 10 # 600
+params.nsteps = 600
 params.dt = 0.1
 params.solution_particle = -1
 params.solution_field = 'velocity'

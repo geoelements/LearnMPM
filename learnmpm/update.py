@@ -42,7 +42,6 @@ def particle_strain_increment(mesh,dt):
 def particle_velocity(mesh, dt):
     for el in mesh.elements:
         for prtcl in el.particles:
-            prtcl.velocity = 0
             for i in range(el.nnodes):
                 prtcl.velocity += el.nodes[i].f_total/el.nodes[i].mass * prtcl.shapefn[i] * dt
        
