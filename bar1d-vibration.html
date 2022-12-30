@@ -305,12 +305,41 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analytical-solution">
+   Analytical solution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d-mpm-code">
+   1D MPM code
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -322,6 +351,24 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analytical-solution">
+   Analytical solution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d-mpm-code">
+   1D MPM code
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -333,9 +380,13 @@ title="Print to PDF"
 <h1>1D Bar Material Point Method<a class="headerlink" href="#d-bar-material-point-method" title="Permalink to this headline">#</a></h1>
 <p>Let us consider the vibration of a single material point as shown below. The bar is represented by a single point initially located at <span class="math notranslate nohighlight">\(x_p = L/2\)</span>, which has an initial velocity <span class="math notranslate nohighlight">\(v_0\)</span>. The material is linear elastic.</p>
 <p><img alt="bar1d" src="_images/bar1d.png" /></p>
-<p>The exact solution for the velocity is: $<span class="math notranslate nohighlight">\(v(t) = v_0 \cos (\omega t), \quad \omega = \frac{1}{L}\sqrt{E/\rho}\)</span><span class="math notranslate nohighlight">\(
-and for the position is: \)</span><span class="math notranslate nohighlight">\(x(t) = x_0 \exp \left[\frac{v_0}{L \omega} \sin (\omega t)\right]\)</span>$</p>
+<p>The exact solution for the velocity is:
+<span class="math notranslate nohighlight">\(v(t) = v_0 \cos (\omega t), \quad \omega = \frac{1}{L}\sqrt{E/\rho}\)</span>
+and for the position is:
+<span class="math notranslate nohighlight">\(x(t) = x_0 \exp \left[\frac{v_0}{L \omega} \sin (\omega t)\right]\)</span></p>
 <p>The density <span class="math notranslate nohighlight">\(\rho\)</span> is constant and equals one. The constitutive equation is <span class="math notranslate nohighlight">\(\dot\sigma = E \dot \varepsilon\)</span>, where <span class="math notranslate nohighlight">\(\dot \varepsilon = dv/dx\)</span> and <span class="math notranslate nohighlight">\(E\)</span> is the Young’s modulus. The grid consists of a single two-noded element. The elastic wave speed is <span class="math notranslate nohighlight">\(c = \sqrt{E/\rho} = 2 \pi\)</span>. The boundary conditions are imposed on the grid, both the nodal velocity and the acceleration at <span class="math notranslate nohighlight">\(x = 0\)</span> (the left node) is zero throughout the simulation.</p>
+<section id="analytical-solution">
+<h2>Analytical solution<a class="headerlink" href="#analytical-solution" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
@@ -358,37 +409,64 @@ def analytical_vibration(E, rho, v0, x_loc, duration, dt, L):
 </div>
 </div>
 </div>
+<p>Let’s now plot the analytical solution of a vibrating bar at <span class="math notranslate nohighlight">\(x = 1\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Initial conditions 
-v0 = 0.1
-x_loc = 1.0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
 
-# Computational grid
-L          = 1                     # domain size
-nodes      = np.array([0, L])      # nodal coordinates
-nnodes     = len(nodes)            # number of nodes
-nelements  = 1                     # number of elements
-nparticles = 1                     # number of particles
-el_length  = L / nelements         # element length
+# Young&#39;s modulus
+E = 4 * (np.pi)**2
+
+# analytical solution
+ta, va, xa = analytical_vibration(E = E, rho = 1, v0 = 0.1, x_loc = 1.0, duration = 10, dt = 0.01, L = 1.0)
+
+plt.plot(ta, va, &#39;r&#39;,linewidth=2,label=&#39;analytical&#39;)
+
+plt.xlabel(&#39;time (s)&#39;)
+plt.ylabel(&#39;velocity (m/s)&#39;)
+plt.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bar1d-vibration_4_0.png" src="_images/bar1d-vibration_4_0.png" />
+</div>
+</div>
+</section>
+<section id="d-mpm-code">
+<h2>1D MPM code<a class="headerlink" href="#d-mpm-code" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Computational grid
+L          = 1                       # domain size
+nodes      = np.array([0, L])        # nodal coordinates
+nnodes     = len(nodes)              # number of nodes
+nelements  = 1                       # number of elements
+nparticles = 1                       # number of particles
+el_length  = L / nelements           # element length
+
+# Initial conditions 
+v0         = 0.1                     # initial velocity
+x_loc      = 1.0                     # location to get analytical solution
 
 # Material points
-x_p      = 0.5 * el_length         # particle position
-mass_p   = 1.                      # particle mass
-vol_p    = el_length / nparticles  # particle volume
-vel_p    = v0                      # particle velocity
-stress_p = 0.                      # particle stress
-mv_p     = mass_p * vel_p          # particle momentum = m * v
+x_p        = 0.5 * el_length         # particle position
+mass_p     = 1.                      # particle mass
+vol_p      = el_length / nparticles  # particle volume
+vel_p      = v0                      # particle velocity
+stress_p   = 0.                      # particle stress
+mv_p       = mass_p * vel_p          # particle momentum = m * v
 
 # Material property
-E        = 4 * (np.pi)**2          # Young&#39;s modulus
-rho      = 1.                      # Density
+E          = 4 * (np.pi)**2          # Young&#39;s modulus
+rho        = 1.                      # Density
 
 # Time
-duration = 10
-dt       = 0.01
-time     = 0
-nsteps   = int(duration/dt)
+duration   = 10
+dt         = 0.01
+time       = 0
+nsteps     = int(duration/dt)
 
 # Store time, velocity and position with time
 time_t, vel_t, x_t = [], [], []
@@ -452,6 +530,9 @@ for _ in range(nsteps):
 </div>
 </div>
 </div>
+<blockquote>
+<div><p>plot results of MPM and analytical solution</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
@@ -469,9 +550,10 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_3_0.png" src="_images/bar1d-vibration_3_0.png" />
+<img alt="_images/bar1d-vibration_8_0.png" src="_images/bar1d-vibration_8_0.png" />
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
