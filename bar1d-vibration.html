@@ -327,20 +327,90 @@ title="Print to PDF"
     </div>
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#analytical-solution">
-   Analytical solution
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   1D Bar Material Point Method
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analytical-solution">
+     Analytical solution
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#d-mpm-code">
    1D MPM code
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">
-     Plot results of MPM and analytical solution
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialization-phase">
+     Initialization phase
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#computational-domain">
+       Computational domain
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#material-properties">
+       Material properties
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#initial-loading-conditions">
+       Initial loading conditions
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#material-points">
+       Material points
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shape-functions">
+       Shape functions
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#shape-function-for-material-point">
+         Shape function for material point
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mpm-algorithm">
+     MPM algorithm
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#map-mass-and-momentum-to-nodes">
+       Map mass and momentum to nodes
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#applying-boundary-condition">
+       Applying boundary condition
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-mpm-code-complete">
+     1D MPM code complete
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">
+       Plot results of MPM and analytical solution
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -363,20 +433,90 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#analytical-solution">
-   Analytical solution
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   1D Bar Material Point Method
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analytical-solution">
+     Analytical solution
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#d-mpm-code">
    1D MPM code
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">
-     Plot results of MPM and analytical solution
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialization-phase">
+     Initialization phase
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#computational-domain">
+       Computational domain
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#material-properties">
+       Material properties
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#initial-loading-conditions">
+       Initial loading conditions
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#material-points">
+       Material points
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shape-functions">
+       Shape functions
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#shape-function-for-material-point">
+         Shape function for material point
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mpm-algorithm">
+     MPM algorithm
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#map-mass-and-momentum-to-nodes">
+       Map mass and momentum to nodes
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#applying-boundary-condition">
+       Applying boundary condition
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-mpm-code-complete">
+     1D MPM code complete
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">
+       Plot results of MPM and analytical solution
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -422,7 +562,7 @@ def analytical_vibration(E, rho, v0, x_loc, duration, dt, L):
 </div>
 </div>
 </div>
-<p>Let’s now plot the analytical solution of a vibrating bar at <span class="math notranslate nohighlight">\(x = 1\)</span></p>
+<p>Let’s now plot the analytical solution of a vibrating bar at the end of the bar <span class="math notranslate nohighlight">\(x = 1\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
@@ -447,8 +587,248 @@ plt.show()
 </div>
 </div>
 </section>
+</section>
 <section id="d-mpm-code">
-<h2>1D MPM code<a class="headerlink" href="#d-mpm-code" title="Permalink to this headline">#</a></h2>
+<h1>1D MPM code<a class="headerlink" href="#d-mpm-code" title="Permalink to this headline">#</a></h1>
+<section id="initialization-phase">
+<h2>Initialization phase<a class="headerlink" href="#initialization-phase" title="Permalink to this headline">#</a></h2>
+<section id="computational-domain">
+<h3>Computational domain<a class="headerlink" href="#computational-domain" title="Permalink to this headline">#</a></h3>
+<p>Let’s now develop a 1D MPM code for bar vibration with a single material point in the middle of the element.</p>
+<p><img alt="1d bar" src="_images/bar1dmpm.png" /></p>
+<p>The domain (bar) has a length of 1 m. We descritize the bar using a single linear element with two nodes. The left node is at 0 and the right node is at the end of the bar at L.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+# Computational grid
+L          = 1                       # domain size
+nodes      = np.array([0, L])        # nodal coordinates
+nnodes     = len(nodes)              # number of nodes
+nelements  = 1                       # number of elements
+nparticles = 1                       # number of particles
+el_length  = L / nelements           # element length
+
+print(&quot;Number of elements: {} nodal coordinates: {}, nnodes: {} nparticles: {}&quot;.
+        format(nelements, nodes, nnodes, nparticles))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of elements: 1 nodal coordinates: [0 1], nnodes: 2 nparticles: 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="material-properties">
+<h3>Material properties<a class="headerlink" href="#material-properties" title="Permalink to this headline">#</a></h3>
+<p>We now define a linear elastic material with <span class="math notranslate nohighlight">\(E = 2 * \pi^2\)</span> and a density <span class="math notranslate nohighlight">\(\rho = 1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Material property
+E          = 4 * (np.pi)**2          # Young&#39;s modulus
+rho        = 1.                      # Density
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="initial-loading-conditions">
+<h3>Initial loading conditions<a class="headerlink" href="#initial-loading-conditions" title="Permalink to this headline">#</a></h3>
+<p>We apply an initial velocity <span class="math notranslate nohighlight">\(v_0 = 0.1\)</span> at the material point.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Initial conditions 
+v0         = 0.1                     # initial velocity
+x_loc      = 0.5                     # location to get analytical solution
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="material-points">
+<h3>Material points<a class="headerlink" href="#material-points" title="Permalink to this headline">#</a></h3>
+<p>In MPM, the material points keep track of the position, mass, velocity, volume, momentum and stress. The material point is at the middle of the element. The volume of the material point is the size of the entire length of the bar. Assuming a density <span class="math notranslate nohighlight">\(\rho = 1\)</span>, the mass of the material point is <span class="math notranslate nohighlight">\(mass_p = \rho * L = 1 * 1 = 1.0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Material points
+x_p        = 0.5 * el_length         # particle position
+mass_p     = 1.                      # particle mass
+vol_p      = el_length / nparticles  # particle volume
+vel_p      = v0                      # particle velocity
+stress_p   = 0.                      # particle stress
+mv_p       = mass_p * vel_p          # particle momentum = m * v
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="shape-functions">
+<h3>Shape functions<a class="headerlink" href="#shape-functions" title="Permalink to this headline">#</a></h3>
+<p>We will use a two-noded single element with linear elements. In order to avoid finding the natural coordinates of material points, we define the shape functions in the global coordinate system. In 1D, the shape functions are defined as:</p>
+<p><span class="math notranslate nohighlight">\(N_i (x) = \begin{cases} 1 - |x - x_I|/l_x &amp; \text{if } | x - x_I| \le l_x \\ 0 &amp; \text{else}  \end{cases}\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(l_x\)</span> denotes the element size.</p>
+<p>The following listings show the general shape functions and gradients for an element.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+
+nodes = np.array([0, L])
+xs = np.arange(0, L+0.1, 0.1)
+y = np.zeros_like(xs)
+
+# shape function
+n1 = [1 - abs(x - nodes[0])/L for x in xs]
+n2 = [1 - abs(x - nodes[1])/L for x in xs]
+
+plt.plot(xs, n1, &#39;r&#39;, linewidth=2, label=&#39;N1&#39;)
+plt.plot(xs, n2, &#39;b&#39;, linewidth=2, label=&#39;N2&#39;)
+plt.plot(xs, y, &#39;-.&#39;, linewidth=2, label=&#39;element&#39;)
+plt.xlabel(&#39;L&#39;)
+plt.ylabel(&#39;N(x)&#39;)
+plt.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bar1d-vibration_14_0.png" src="_images/bar1d-vibration_14_0.png" />
+</div>
+</div>
+<p>The derivative of the shape function is:</p>
+<p><span class="math notranslate nohighlight">\(B (x) = [-1/l_x, 1/l_x]\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+
+nodes = np.array([0, L])
+xs = np.arange(0, L+0.1, 0.1)
+y = np.zeros_like(xs)
+
+# shape function
+b1 = [-1/L for x_p in xs]
+b2 = [1/L for x_p in xs]
+
+plt.plot(xs, b1, &#39;r&#39;, linewidth=2, label=&#39;B1&#39;)
+plt.plot(xs, b2, &#39;b&#39;, linewidth=2, label=&#39;B2&#39;)
+plt.plot(xs, y, &#39;-.&#39;, linewidth=2, label=&#39;element&#39;)
+plt.xlabel(&#39;L&#39;)
+plt.ylabel(&#39;B(x)&#39;)
+plt.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bar1d-vibration_16_0.png" src="_images/bar1d-vibration_16_0.png" />
+</div>
+</div>
+<section id="shape-function-for-material-point">
+<h4>Shape function for material point<a class="headerlink" href="#shape-function-for-material-point" title="Permalink to this headline">#</a></h4>
+<p>We will now define the shape function and its derivatives for the material point located at <span class="math notranslate nohighlight">\(x_p\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># shape function and derivative
+N     = np.array([1 - abs(x_p - nodes[0])/L, 1 - abs(x_p - nodes[1])/L])
+dN    = np.array([-1/L, 1/L])
+
+print(&quot;Shape function for material point at x_p = 0.5, is N: {}&quot;.format(N))
+print(&quot;Gradient of shape function for material point at x_p = 0.5, is B: {}&quot;.format(dN))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape function for material point at x_p = 0.5, is N: [0.5 0.5]
+Gradient of shape function for material point at x_p = 0.5, is B: [-1.  1.]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="mpm-algorithm">
+<h2>MPM algorithm<a class="headerlink" href="#mpm-algorithm" title="Permalink to this headline">#</a></h2>
+<p>We will use the Update Stress Last (USL) algorithm to implement the 1D vibrating bar example.</p>
+<section id="map-mass-and-momentum-to-nodes">
+<h3>Map mass and momentum to nodes<a class="headerlink" href="#map-mass-and-momentum-to-nodes" title="Permalink to this headline">#</a></h3>
+<p>Mapping from particles to nodes. Let’s compute the nodal mass and momentum using the linear shape functions to map  mass and velocity of the material point.</p>
+<p>Compute nodal mass: <span class="math notranslate nohighlight">\(m_i^t = \sum\limits_{p=1}^{n_P} N_i(\textbf{x}_p^t) m_p\)</span></p>
+<p>Compute nodal momentum: <span class="math notranslate nohighlight">\((m \textbf{v})_i^{t} = \sum\limits_{p=1}^{n_P} N_i(\textbf{x}_p^t) m_p \textbf{v}_p^{t}\)</span></p>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(m_p^t\)</span> mass of the material point <span class="math notranslate nohighlight">\(p\)</span> at time <span class="math notranslate nohighlight">\(t\)</span></p>
+<p><span class="math notranslate nohighlight">\(m\textbf{v}_p^t\)</span> momentum of the material point <span class="math notranslate nohighlight">\(p\)</span> at time <span class="math notranslate nohighlight">\(t\)</span></p>
+<p><span class="math notranslate nohighlight">\(n_p\)</span> total number of material points in the body</p>
+<p><span class="math notranslate nohighlight">\(m_i^t\)</span> mass of node <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span></p>
+<p><span class="math notranslate nohighlight">\(m\textbf{v}_i^t\)</span> momentum of node <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span></p>
+<p><span class="math notranslate nohighlight">\(N_i (\textbf{x}_p^t)\)</span> shape function that maps node <span class="math notranslate nohighlight">\(i\)</span> to material point <span class="math notranslate nohighlight">\(p\)</span> and vice versa with independent
+variable of the location of each material point at time <span class="math notranslate nohighlight">\(t\)</span></p>
+<p><span class="math notranslate nohighlight">\(B_i (\textbf{x}_p^t)\)</span> gradient of the shape function that maps node <span class="math notranslate nohighlight">\(i\)</span> to material point <span class="math notranslate nohighlight">\(p\)</span> and vice versa such that <span class="math notranslate nohighlight">\(B = \frac{dN}{d\textbf{x}}\)</span>.</p>
+<hr class="docutils" />
+<p>Here, we map the mass of the particle <code class="docutils literal notranslate"><span class="pre">mass_p</span></code> and its momentum <code class="docutils literal notranslate"><span class="pre">mv_p</span></code> to both the nodes 0 and 1 of the element. The code below is equivalent to doing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mass_node</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">mass_p</span>
+<span class="n">mass_node</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">mass_p</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># map particle mass and momentum to nodes
+mass_n = N * mass_p
+mv_n   = N * mv_p
+</pre></div>
+</div>
+</div>
+</div>
+<p>The mass of the particle 1.0, is split equally between both the nodes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;Mapped mass at the nodes: {}&quot;.format(mass_n))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mapped mass at the nodes: [0.5 0.5]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Similarly, the momentum of the particle, calculated as <span class="math notranslate nohighlight">\(m_p * v_p\)</span> is split evenly between the nodes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;Momentum at nodes: {}&quot;.format(mv_n))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Momentum at nodes: [0.05 0.05]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="applying-boundary-condition">
+<h3>Applying boundary condition<a class="headerlink" href="#applying-boundary-condition" title="Permalink to this headline">#</a></h3>
+<p>Since the left node is fixed, we constrain the velocity at the node <span class="math notranslate nohighlight">\(v_n = 0\)</span> for node 0. As we store momentum, rather than the velocity at the node, we constrain the momentum on the left node to be zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># apply boundary condition: velocity at left node is zero
+mv_n[0] = 0
+
+print(&quot;Momentum at nodes after apply BCs: {}&quot;.format(mv_n))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Momentum at nodes after apply BCs: [0.   0.05]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="d-mpm-code-complete">
+<h2>1D MPM code complete<a class="headerlink" href="#d-mpm-code-complete" title="Permalink to this headline">#</a></h2>
+<p>Putting it all together</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Computational grid
@@ -545,6 +925,7 @@ for _ in range(nsteps):
 </div>
 <section id="plot-results-of-mpm-and-analytical-solution">
 <h3>Plot results of MPM and analytical solution<a class="headerlink" href="#plot-results-of-mpm-and-analytical-solution" title="Permalink to this headline">#</a></h3>
+<p>Compare the MPM results with the analytical solution.</p>
 <blockquote>
 <div><p>Velocity</p>
 </div></blockquote>
@@ -554,7 +935,7 @@ for _ in range(nsteps):
 
 ta, va, xa = analytical_vibration(E, rho, v0, x_loc, duration, dt, L)
 
-plt.plot(ta, va, &#39;r&#39;,linewidth=2,label=&#39;analytical&#39;)
+plt.plot(ta, va, &#39;r&#39;, linewidth=2,label=&#39;analytical&#39;)
 plt.plot(time_t, vel_t, &#39;ob&#39;, markersize = 2, label=&#39;mpm&#39;)
 
 plt.xlabel(&#39;time (s)&#39;)
@@ -565,7 +946,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_8_0.png" src="_images/bar1d-vibration_8_0.png" />
+<img alt="_images/bar1d-vibration_30_0.png" src="_images/bar1d-vibration_30_0.png" />
 </div>
 </div>
 <blockquote>
@@ -584,7 +965,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_10_0.png" src="_images/bar1d-vibration_10_0.png" />
+<img alt="_images/bar1d-vibration_32_0.png" src="_images/bar1d-vibration_32_0.png" />
 </div>
 </div>
 </section>
