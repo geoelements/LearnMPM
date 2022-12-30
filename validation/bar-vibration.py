@@ -2,31 +2,31 @@
 import sys
 sys.path.append("..")
 
-# external modules
-import matplotlib.pyplot as plt # for plot
-import numpy as np # for sin
+import matplotlib.pyplot as plt
+import numpy as np
 
-# local modules
+from analytical import continuum_bar_vibration as cbv
+
 from learnmpm import mesh
 from learnmpm import material
 from learnmpm import params as prms
 from learnmpm import solver
 
 # bar length
-L = 25
+Length = 25
 
 # number of elements
 nelements = 15
 
 # create an 1D mesh
-msh = mesh.Mesh1D(domain_size=L, nelements=nelements)
+msh = mesh.Mesh1D(domain_size=Length, nelements=nelements)
 
 # define a linear material 
 elastic = material.LinearElastic1D(E=100, density=1)
 
-# put particles in mesh element and set the material
-msh.generate_particles(ppc = 2, material = elastic)
-# msh.put_particles_in_all_mesh_elements(ppelem = 2,material = elastic)
+# generate particles in mesh elements and set the material
+msh.generate_particles_uniform(ppc = 2, material = elastic)
+# msh.generate_particles_gauss(ppc = 2,material = elastic)
 
 # setup the model
 params = prms.Params()
@@ -38,12 +38,12 @@ params.solution_field = 'velocity'
 params.damping = 0.0
 
 # verify time step
-dt_critical=msh.elements[0].size/(elastic.E/elastic.density)**0.5
-params.dt = params.dt if params.dt < dt_critical else dt_critical
+dt_critical=msh.elements[0].size/np.sqrt(elastic.E/elastic.density)
+params.dt = params.dt if (params.dt < dt_critical) else dt_critical
 
 # impose initial condition in particles
 vo = 0.1
-b1 = np.pi/2.0/L
+b1 = np.pi/2.0/Length
 for prtcl in msh.particles:
   prtcl.velocity = vo * np.sin(b1 * prtcl.x)
 
@@ -54,8 +54,8 @@ solver.explicit_solution(msh, params)
 plt.plot(params.solution_array[0], params.solution_array[1], 'ob', markersize = 2, label='mpm')
 
 # plot the analytical solution
-from analytical import continuum_bar_vibration as cbv
-[anal_xt,anal_vt, anal_t] = cbv.continuum_bar_vibration_solution(L,elastic.E,elastic.density,params.dt * params.nsteps, params.dt,vo,msh.particles[params.solution_particle].x)
+[anal_xt,anal_vt, anal_t] = cbv.continuum_bar_vibration_solution(Length, elastic.E, elastic.density, 
+                                params.dt * params.nsteps, params.dt, vo, msh.particles[params.solution_particle].x)
 plt.plot(anal_t,anal_vt,'r',linewidth=2,label='analytical')
 
 # configure axis, legends and show plot

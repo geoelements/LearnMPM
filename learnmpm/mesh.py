@@ -43,60 +43,53 @@ class Mesh1D:
             el.nodes[1].x = el.nodes[0].x + length
             self.elements.append(el)
         
-    def put_particles_in_all_mesh_elements(self,ppelem,material):
+    def generate_particles_uniform(self, ppc, material):
         """
-        Distributes particles in elements mesh
+        Distributes particles uniformly across all elements in the mesh
         
         Arguments
         ---------
-        ppelem: int
-            number of particles per element
+        ppc: int
+            number of particles per cell
 
         material: material
             a material object
-
         """
-        self.ppelem=ppelem
             
         for el in range(len(self.elements)):
-            
             el = self.elements[el]
-            le = el.size
-         
+            length = el.size
             ncoords = np.array([node.x for node in el.nodes])
-            for _ in range(ppelem):
-                
+            for _ in range(ppc):
                 # particle mass
-                pmass = le * material.density/ppelem
+                pmass = length * material.density/ppc
                 
                 # particle position
                 if(len(el.particles)==0):
-                    xp=el.nodes[0].x + le/(2 * ppelem)
-                    
-                elif(len(el.particles)==(ppelem-1)):
-                    xp=el.nodes[1].x - le/(2 * ppelem)   
-                
+                    xp=el.nodes[0].x + length/(2 * ppc)
+                elif(len(el.particles)==(ppc - 1)):
+                    xp=el.nodes[1].x - length/(2 * ppc)
                 else:
-                    xp=el.nodes[0].x + le/(2 * ppelem) + len(el.particles) * (le/ppelem)
+                    xp=el.nodes[0].x + length/(2 * ppc) + len(el.particles) * (length/ppc)
                 
                 _, xi = el.compute_xi(xp)
                     
                 # create particle
-                ip = particle.Particle1D(pmass,xp, xi, material)
-                ip.id=len(self.particles)
-                ip.shapefn = el.shapefn.sf(xi)
-                ip.dn_dx = el.shapefn.dn_dx(xi, ncoords)
+                prtcl = particle.Particle1D(pmass,xp, xi, material)
+                prtcl.id=len(self.particles)
+                prtcl.shapefn = el.shapefn.sf(xi)
+                prtcl.dn_dx = el.shapefn.dn_dx(xi, ncoords)
                 
                 # set the element in the particle
-                ip.element=el
+                prtcl.element=el
 
-                # append in elements
-                el.particles.append(ip)                
+                # append particle to current element
+                el.particles.append(prtcl)                
                                 
                 # append in mesh
-                self.particles.append(ip)
+                self.particles.append(prtcl)
 
-    def generate_particles(self, ppc, material):
+    def generate_particles_gauss(self, ppc, material):
         # Iterate through each element
         for el in self.elements:
             # Compute particle mass
