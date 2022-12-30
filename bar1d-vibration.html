@@ -381,14 +381,8 @@ title="Print to PDF"
 <p>Try notebook live: <a class="reference external" href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/bar1d-vibration.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>Let us consider the vibration of a single material point as shown below. The bar is represented by a single point initially located at <span class="math notranslate nohighlight">\(x_p = L/2\)</span>, which has an initial velocity <span class="math notranslate nohighlight">\(v_0\)</span>. The material is linear elastic.</p>
 <p><img alt="bar1d" src="_images/bar1d.png" /></p>
-<p>The exact solution for the velocity is:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$v(t) = v_0 \cos (\omega t), \quad \omega = \frac{1}{L}\sqrt{E/\rho}$
-</pre></div>
-</div>
-<p>and for the position is:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$x(t) = x_0 \exp \left[\frac{v_0}{L \omega} \sin (\omega t)\right]$
-</pre></div>
-</div>
+<p>The exact solution for the velocity is: <span class="math notranslate nohighlight">\(v(t) = v_0 \cos (\omega t), \quad \omega = \frac{1}{L}\sqrt{E/\rho}\)</span></p>
+<p>and for the position is: <span class="math notranslate nohighlight">\(x(t) = x_0 \exp \left[\frac{v_0}{L \omega} \sin (\omega t)\right]\)</span></p>
 <p>The bar has a constant density <span class="math notranslate nohighlight">\(\rho = 1.0\)</span>. The constitutive equation is <span class="math notranslate nohighlight">\(\dot\sigma = E \dot \varepsilon\)</span>, where <span class="math notranslate nohighlight">\(\dot \varepsilon = dv/dx\)</span> and <span class="math notranslate nohighlight">\(E\)</span> is the Young’s modulus. The grid consists of a single two-noded element. The elastic wave speed is <span class="math notranslate nohighlight">\(c = \sqrt{E/\rho} = 2 \pi\)</span>. The boundary conditions are imposed on the grid, both the nodal velocity and the acceleration at <span class="math notranslate nohighlight">\(x = 0\)</span> (the left node) is zero throughout the simulation.</p>
 <section id="analytical-solution">
 <h2>Analytical solution<a class="headerlink" href="#analytical-solution" title="Permalink to this headline">#</a></h2>
