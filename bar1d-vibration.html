@@ -345,6 +345,11 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mpm-usl-scheme">
+     MPM USL Scheme
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#initialization-phase">
      Initialization phase
     </a>
@@ -384,8 +389,8 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mpm-algorithm">
-     MPM algorithm
+    <a class="reference internal nav-link" href="#mpm-solution-phase">
+     MPM solution phase
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -451,6 +456,11 @@ title="Print to PDF"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mpm-usl-scheme">
+     MPM USL Scheme
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#initialization-phase">
      Initialization phase
     </a>
@@ -490,8 +500,8 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mpm-algorithm">
-     MPM algorithm
+    <a class="reference internal nav-link" href="#mpm-solution-phase">
+     MPM solution phase
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -590,6 +600,11 @@ plt.show()
 </section>
 <section id="d-mpm-code">
 <h1>1D MPM code<a class="headerlink" href="#d-mpm-code" title="Permalink to this headline">#</a></h1>
+<section id="mpm-usl-scheme">
+<h2>MPM USL Scheme<a class="headerlink" href="#mpm-usl-scheme" title="Permalink to this headline">#</a></h2>
+<p>We will use the Update Stress Last (USL) algorithm to implement the 1D vibrating bar example. An overview of the USL MPM algorithm is shown below:</p>
+<p><img alt="MPM USL" src="_images/mpm-usl.png" /></p>
+</section>
 <section id="initialization-phase">
 <h2>Initialization phase<a class="headerlink" href="#initialization-phase" title="Permalink to this headline">#</a></h2>
 <section id="computational-domain">
@@ -747,9 +762,8 @@ Gradient of shape function for material point at x_p = 0.5, is B: [-1.  1.]
 </section>
 </section>
 </section>
-<section id="mpm-algorithm">
-<h2>MPM algorithm<a class="headerlink" href="#mpm-algorithm" title="Permalink to this headline">#</a></h2>
-<p>We will use the Update Stress Last (USL) algorithm to implement the 1D vibrating bar example.</p>
+<section id="mpm-solution-phase">
+<h2>MPM solution phase<a class="headerlink" href="#mpm-solution-phase" title="Permalink to this headline">#</a></h2>
 <section id="map-mass-and-momentum-to-nodes">
 <h3>Map mass and momentum to nodes<a class="headerlink" href="#map-mass-and-momentum-to-nodes" title="Permalink to this headline">#</a></h3>
 <p>Mapping from particles to nodes. Let’s compute the nodal mass and momentum using the linear shape functions to map  mass and velocity of the material point.</p>
