@@ -434,6 +434,16 @@ title="Print to PDF"
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compute-internal-forces">
+       Compute internal forces
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calculate-the-total-unbalanced-nodal-forces">
+       Calculate the total unbalanced nodal forces
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#defining-a-critical-time-step">
        Defining a critical time step
       </a>
@@ -559,6 +569,16 @@ title="Print to PDF"
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#compute-external-forces">
        Compute external forces
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compute-internal-forces">
+       Compute internal forces
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calculate-the-total-unbalanced-nodal-forces">
+       Calculate the total unbalanced nodal forces
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
@@ -715,7 +735,7 @@ x_loc      = 0.5                     # location to get analytical solution
 </section>
 <section id="material-points">
 <h3>Material points<a class="headerlink" href="#material-points" title="Permalink to this headline">#</a></h3>
-<p>In MPM, the material points keep track of the position, mass, velocity, volume, momentum and stress. The material point is at the middle of the element. The volume of the material point is the size of the entire length of the bar. Assuming a density <span class="math notranslate nohighlight">\(\rho = 1\)</span>, the mass of the material point is <span class="math notranslate nohighlight">\(mass_p = \rho * L = 1 * 1 = 1.0\)</span>.</p>
+<p>In MPM, the material points keep track of the position, mass, velocity, volume, momentum and stress. The material point is at the middle of the element. The volume of the material point is the size of the entire length of the bar. Assuming a density <span class="math notranslate nohighlight">\(\rho = 1\)</span>, the mass of the material point is <span class="math notranslate nohighlight">\(\rho * L = 1 * 1 = 1.0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Material points
@@ -733,8 +753,8 @@ mv_p       = mass_p * vel_p          # particle momentum = m * v
 <section id="shape-functions">
 <h3>Shape functions<a class="headerlink" href="#shape-functions" title="Permalink to this headline">#</a></h3>
 <p>We will use a two-noded single element with linear elements. In order to avoid finding the natural coordinates of material points, we define the shape functions in the global coordinate system. In 1D, the shape functions are defined as:</p>
-<p><span class="math notranslate nohighlight">\(N_i (x) = \begin{cases} 1 - |x - x_I|/l_x &amp; \text{if } | x - x_I| \le l_x \\ 0 &amp; \text{else}  \end{cases}\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(l_x\)</span> denotes the element size.</p>
+<p><span class="math notranslate nohighlight">\(N_i (x) = \begin{cases} 1 - |x - x_i|/l &amp; \text{if } | x - x_i| \le l \\ 0 &amp; \text{else}  \end{cases}\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(l\)</span> denotes the element size.</p>
 <p>The following listings show the general shape functions and gradients for an element.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -751,7 +771,7 @@ n2 = [1 - abs(x - nodes[1])/L for x in xs]
 plt.plot(xs, n1, &#39;r&#39;, linewidth=2, label=&#39;N1&#39;)
 plt.plot(xs, n2, &#39;b&#39;, linewidth=2, label=&#39;N2&#39;)
 plt.plot(xs, y, &#39;-.&#39;, linewidth=2, label=&#39;element&#39;)
-plt.xlabel(&#39;L&#39;)
+plt.xlabel(&#39;l&#39;)
 plt.ylabel(&#39;N(x)&#39;)
 plt.legend()
 plt.show()
@@ -779,7 +799,7 @@ b2 = [1/L for x_p in xs]
 plt.plot(xs, b1, &#39;r&#39;, linewidth=2, label=&#39;B1&#39;)
 plt.plot(xs, b2, &#39;b&#39;, linewidth=2, label=&#39;B2&#39;)
 plt.plot(xs, y, &#39;-.&#39;, linewidth=2, label=&#39;element&#39;)
-plt.xlabel(&#39;L&#39;)
+plt.xlabel(&#39;l&#39;)
 plt.ylabel(&#39;B(x)&#39;)
 plt.legend()
 plt.show()
@@ -896,7 +916,75 @@ print(&quot;Momentum at nodes after apply BCs: {}&quot;.format(mv_n))
 <h2>Compute nodal forces<a class="headerlink" href="#compute-nodal-forces" title="Permalink to this headline">#</a></h2>
 <section id="compute-external-forces">
 <h3>Compute external forces<a class="headerlink" href="#compute-external-forces" title="Permalink to this headline">#</a></h3>
+<p><span class="math notranslate nohighlight">\( (\textbf{f}_i)^{ext,t} = \textbf{b}_i^{t} + \textbf{t}_i^{t} \)</span></p>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(\textbf{f}_i^{ext,t}\)</span> nodal external force of node <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span></p>
+<p><span class="math notranslate nohighlight">\(\textbf{b}_i^t\)</span> body force of node <span class="math notranslate nohighlight">\(i\)</span></p>
+<p><span class="math notranslate nohighlight">\(\textbf{f}_i^t\)</span> nodal force of node <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span></p>
 <p>In this problem, there is no external force, so we set the external forces at both nodes to be zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># external force at nodes
+f_ext_n = np.array([0, 0])
+
+print(&quot;External forces at the nodes: {}&quot;.format(f_ext_n))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>External forces at the nodes: [0 0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compute-internal-forces">
+<h3>Compute internal forces<a class="headerlink" href="#compute-internal-forces" title="Permalink to this headline">#</a></h3>
+<p>The internal force at the nodes is mapped from the particle stress:</p>
+<p><span class="math notranslate nohighlight">\( (\textbf{f}_i)^{int,t} = \sum\limits_{p=1}^{n_P} V_p^t B_i(\textbf{x}_p^t) \boldsymbol{\sigma}_p^{t} \)</span></p>
+<p>where,</p>
+<p><span class="math notranslate nohighlight">\(\textbf{f}_i^{int,t}\)</span> nodal internal force of node <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span></p>
+<p><span class="math notranslate nohighlight">\(V_p\)</span> volume at material points <span class="math notranslate nohighlight">\(p\)</span></p>
+<p><span class="math notranslate nohighlight">\(B_i (\textbf{x}_p^t)\)</span> gradient of the shape function that maps node <span class="math notranslate nohighlight">\(i\)</span> to material point <span class="math notranslate nohighlight">\(p\)</span> and vice versa such that <span class="math notranslate nohighlight">\(B = \frac{dN}{d\textbf{x}}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\boldsymbol{\sigma}_p^t\)</span> stress of material point <span class="math notranslate nohighlight">\(p\)</span> at time <span class="math notranslate nohighlight">\(t\)</span></p>
+<hr class="docutils" />
+<p>At the start of the time step, <span class="math notranslate nohighlight">\(t = 0\)</span>, the body is unstressed <span class="math notranslate nohighlight">\(\sigma = 0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># compute internal force at nodes
+f_int_n = - dN * vol_p * stress_p 
+
+print(&quot;Internal forces at the nodes: {}&quot;.format(f_ext_n))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Internal forces at the nodes: [0 0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-the-total-unbalanced-nodal-forces">
+<h3>Calculate the total unbalanced nodal forces<a class="headerlink" href="#calculate-the-total-unbalanced-nodal-forces" title="Permalink to this headline">#</a></h3>
+<p>The total unbalanced force at the node: <span class="math notranslate nohighlight">\( \textbf{f}_i^{tot,t} = \textbf{f}_i^{int,t} + \textbf{f}_i^{ext,t}\)</span></p>
+<hr class="docutils" />
+<p>For this problem, the external force is zero, so the total force must equal the internal force.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># total forces at nodes
+f_total_n = f_int_n + f_ext_n
+
+print(&quot;Total forces at the nodes: {}&quot;.format(f_total_n))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total forces at the nodes: [0. 0.]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="defining-a-critical-time-step">
 <h3>Defining a critical time step<a class="headerlink" href="#defining-a-critical-time-step" title="Permalink to this headline">#</a></h3>
@@ -1036,7 +1124,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_34_0.png" src="_images/bar1d-vibration_34_0.png" />
+<img alt="_images/bar1d-vibration_38_0.png" src="_images/bar1d-vibration_38_0.png" />
 </div>
 </div>
 <blockquote>
@@ -1055,7 +1143,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_36_0.png" src="_images/bar1d-vibration_36_0.png" />
+<img alt="_images/bar1d-vibration_40_0.png" src="_images/bar1d-vibration_40_0.png" />
 </div>
 </div>
 </section>
