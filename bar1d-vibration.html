@@ -180,7 +180,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/geoelements/learn-mpm/main?urlpath=tree/docs/bar1d-vibration.ipynb"
+        <a href="https://mybinder.org/v2/gh/geoelements/learn-mpm/main?urlpath=lab/tree/docs/bar1d-vibration.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -193,6 +193,24 @@ title="Launch on Binder"
     <img src="_static/images/logo_binder.svg">
   </span>
 <span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/docs/bar1d-vibration.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
 </a>
 
       </li>
@@ -406,6 +424,23 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-nodal-forces">
+     Compute nodal forces
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compute-external-forces">
+       Compute external forces
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#defining-a-critical-time-step">
+       Defining a critical time step
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#d-mpm-code-complete">
      1D MPM code complete
     </a>
@@ -512,6 +547,23 @@ title="Print to PDF"
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#applying-boundary-condition">
        Applying boundary condition
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-nodal-forces">
+     Compute nodal forces
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compute-external-forces">
+       Compute external forces
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#defining-a-critical-time-step">
+       Defining a critical time step
       </a>
      </li>
     </ul>
@@ -840,6 +892,30 @@ print(&quot;Momentum at nodes after apply BCs: {}&quot;.format(mv_n))
 </div>
 </section>
 </section>
+<section id="compute-nodal-forces">
+<h2>Compute nodal forces<a class="headerlink" href="#compute-nodal-forces" title="Permalink to this headline">#</a></h2>
+<section id="compute-external-forces">
+<h3>Compute external forces<a class="headerlink" href="#compute-external-forces" title="Permalink to this headline">#</a></h3>
+<p>In this problem, there is no external force, so we set the external forces at both nodes to be zero.</p>
+</section>
+<section id="defining-a-critical-time-step">
+<h3>Defining a critical time step<a class="headerlink" href="#defining-a-critical-time-step" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># critical time step
+dt_crit = L /np.sqrt(E/rho)
+print(&quot;Critical time step for an explicit simulation: {}&quot;.format(dt_crit))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Critical time step for an explicit simulation: 0.15915494309189535
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 <section id="d-mpm-code-complete">
 <h2>1D MPM code complete<a class="headerlink" href="#d-mpm-code-complete" title="Permalink to this headline">#</a></h2>
 <p>Putting it all together</p>
@@ -890,13 +966,13 @@ for _ in range(nsteps):
     # apply boundary condition: velocity at left node is zero
     mv_n[0] = 0
 
-    # compute internal force at node
-    f_int_n = - vol_p * stress_p * dN
+    # external force at nodes
+    f_ext_n = np.array([0, 0])
 
-    # external force at node
-    f_ext_n = 0
+    # compute internal force at nodes
+    f_int_n = - dN * vol_p * stress_p 
 
-    # total force at node
+    # total forces at nodes
     f_total_n = f_int_n + f_ext_n
 
     # apply boundary condition: left node has no acceleration (f = m * a, and a = 0)
@@ -960,7 +1036,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_30_0.png" src="_images/bar1d-vibration_30_0.png" />
+<img alt="_images/bar1d-vibration_34_0.png" src="_images/bar1d-vibration_34_0.png" />
 </div>
 </div>
 <blockquote>
@@ -979,7 +1055,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_32_0.png" src="_images/bar1d-vibration_32_0.png" />
+<img alt="_images/bar1d-vibration_36_0.png" src="_images/bar1d-vibration_36_0.png" />
 </div>
 </div>
 </section>
