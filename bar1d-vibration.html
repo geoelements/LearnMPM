@@ -430,8 +430,8 @@ def analytical_vibration(E, rho, v0, x_loc, duration, dt, L):
 # Young&#39;s modulus
 E = 4 * (np.pi)**2
 
-# analytical solution
-ta, va, xa = analytical_vibration(E = E, rho = 1, v0 = 1.0, x_loc = 1.0, duration = 10, dt = 0.01, L = 1.0)
+# analytical solution at the end of the bar
+ta, va, xa = analytical_vibration(E = E, rho = 1, v0 = 0.1, x_loc = 1.0, duration = 10, dt = 0.01, L = 1.0)
 
 plt.plot(ta, va, &#39;r&#39;,linewidth=2,label=&#39;analytical&#39;)
 
@@ -460,8 +460,12 @@ nparticles = 1                       # number of particles
 el_length  = L / nelements           # element length
 
 # Initial conditions 
-v0         = 1.0                     # initial velocity
-x_loc      = 1.0                     # location to get analytical solution
+v0         = 0.1                     # initial velocity
+x_loc      = 0.5                     # location to get analytical solution
+
+# Material property
+E          = 4 * (np.pi)**2          # Young&#39;s modulus
+rho        = 1.                      # Density
 
 # Material points
 x_p        = 0.5 * el_length         # particle position
@@ -470,10 +474,6 @@ vol_p      = el_length / nparticles  # particle volume
 vel_p      = v0                      # particle velocity
 stress_p   = 0.                      # particle stress
 mv_p       = mass_p * vel_p          # particle momentum = m * v
-
-# Material property
-E          = 4 * (np.pi)**2          # Young&#39;s modulus
-rho        = 1.                      # Density
 
 # Time
 duration   = 10
@@ -545,6 +545,9 @@ for _ in range(nsteps):
 </div>
 <section id="plot-results-of-mpm-and-analytical-solution">
 <h3>Plot results of MPM and analytical solution<a class="headerlink" href="#plot-results-of-mpm-and-analytical-solution" title="Permalink to this headline">#</a></h3>
+<blockquote>
+<div><p>Velocity</p>
+</div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
@@ -563,6 +566,22 @@ plt.show()
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/bar1d-vibration_8_0.png" src="_images/bar1d-vibration_8_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(ta, xa, &#39;r&#39;,linewidth=2,label=&#39;analytical&#39;)
+plt.plot(time_t, x_t, &#39;ob&#39;, markersize = 2, label=&#39;mpm&#39;)
+
+plt.xlabel(&#39;time (s)&#39;)
+plt.ylabel(&#39;displacement (m)&#39;)
+plt.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bar1d-vibration_9_0.png" src="_images/bar1d-vibration_9_0.png" />
 </div>
 </div>
 </section>
