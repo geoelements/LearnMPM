@@ -369,7 +369,7 @@ title="Print to PDF"
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#initialization-phase">
-     Initialization phase
+     1. Initialization phase
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -407,8 +407,15 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mpm-solution-phase">
-     MPM solution phase
+    <a class="reference internal nav-link" href="#solution-phase-for-time-step-t-to-t-delta-t">
+     2. Solution phase for time step
+     <span class="math notranslate nohighlight">
+      \(t\)
+     </span>
+     to
+     <span class="math notranslate nohighlight">
+      \(t + \Delta t\)
+     </span>
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -541,7 +548,7 @@ title="Print to PDF"
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#initialization-phase">
-     Initialization phase
+     1. Initialization phase
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -579,8 +586,15 @@ title="Print to PDF"
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mpm-solution-phase">
-     MPM solution phase
+    <a class="reference internal nav-link" href="#solution-phase-for-time-step-t-to-t-delta-t">
+     2. Solution phase for time step
+     <span class="math notranslate nohighlight">
+      \(t\)
+     </span>
+     to
+     <span class="math notranslate nohighlight">
+      \(t + \Delta t\)
+     </span>
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -743,10 +757,33 @@ plt.show()
 <section id="mpm-usl-scheme">
 <h2>MPM USL Scheme<a class="headerlink" href="#mpm-usl-scheme" title="Permalink to this headline">#</a></h2>
 <p>We will use the Update Stress Last (USL) algorithm to implement the 1D vibrating bar example. An overview of the USL MPM algorithm is shown below:</p>
-<p><img alt="MPM USL" src="_images/mpm-usl.png" /></p>
+<ol>
+<li><p>Initialisation phase</p>
+<p>(a) Particle distribution in the undeformed configuration</p>
+<p>(b) Grid set up</p>
+<p>(c) Initialise particle quantities such as mass, stress, strain, etc.</p>
+</li>
+<li><p>Solution phase for time step <span class="math notranslate nohighlight">\(t\)</span> to <span class="math notranslate nohighlight">\(t + \Delta t\)</span></p>
+<p>(a) Mapping from particles to nodes</p>
+<p>i. Compute nodal mass: <span class="math notranslate nohighlight">\(m_i^t = \sum\limits_{p=1}^{n_P} N_i(\textbf{x}_p^t) m_p\)</span></p>
+<p>ii. Compute nodal momentum: <span class="math notranslate nohighlight">\((m \textbf{v})_i^{t} = \sum\limits_{p=1}^{n_P} N_i(\textbf{x}_p^t) m_p \textbf{v}_p^{t}\)</span></p>
+<p>iii. Compute external force: <span class="math notranslate nohighlight">\( (\textbf{f}_i)^{ext,t} = \textbf{b}_i^{t} + \textbf{t}_i^{t} \)</span></p>
+<p>iv. Compute internal force <span class="math notranslate nohighlight">\( (\textbf{f}_i)^{int,t} = \sum\limits_{p=1}^{n_P} V_p^t B_i(\textbf{x}_p^t) \boldsymbol{\sigma}_p^{t} \)</span></p>
+<p>v. Compute nodal force: <span class="math notranslate nohighlight">\( (\textbf{f}_i)^{tot,t} = (\textbf{f}_i)^{ext,t} + (\textbf{f}_i)^{int,t}\)</span></p>
+<p>(b) Update momenta: <span class="math notranslate nohighlight">\((m \textbf{v})_i^{t + \Delta t} = (m \textbf{v})_i^{t} +  \textbf{f}_i^{tot,t} * \Delta t\)</span></p>
+<p>(c) Mapping from nodes to particles</p>
+<p>i. Update material point velocity: <span class="math notranslate nohighlight">\( \textbf{v}_p^{t+\Delta t} = \sum\limits_{i=1}^{n_n} N_i(\textbf{x}_p^t) \textbf{v}_i^{t+\Delta t} \)</span></p>
+<p>ii. Update material point position: <span class="math notranslate nohighlight">\( \textbf{x}_p^{t+\Delta t} = \textbf{x}_p^t + \textbf{v}_p^{t+\Delta t} *  \Delta t\)</span></p>
+<p>iii. Update nodal velocities: <span class="math notranslate nohighlight">\(\textbf{v}_i^{t + \Delta t} = (m \textbf{v})_i^{t + \Delta t} / m_i^{t}\)</span></p>
+<p>iv. Calculate strain rate: <span class="math notranslate nohighlight">\( \boldsymbol{\varepsilon}_p^t = \sum\limits_{p=1}^{n_P} B_i(\textbf{x}_p^t) \textbf{v}_i^t \)</span></p>
+<p>v. Compute incremental stress based on a constitutive model <span class="math notranslate nohighlight">\( \Delta\boldsymbol{\sigma}_p^t= \mathbf{D} : \Delta \boldsymbol{\varepsilon}_p^t \)</span>.</p>
+<p>vi. Compute updated stress at each material point: <span class="math notranslate nohighlight">\( \boldsymbol{\sigma}_p^t = \boldsymbol{\sigma}_p^{t-\Delta t} + \Delta \boldsymbol{\sigma}_p^t \)</span></p>
+</li>
+<li><p>Reset the grid and advance to the next step</p></li>
+</ol>
 </section>
 <section id="initialization-phase">
-<h2>Initialization phase<a class="headerlink" href="#initialization-phase" title="Permalink to this headline">#</a></h2>
+<h2>1. Initialization phase<a class="headerlink" href="#initialization-phase" title="Permalink to this headline">#</a></h2>
 <section id="computational-domain">
 <h3>Computational domain<a class="headerlink" href="#computational-domain" title="Permalink to this headline">#</a></h3>
 <p>Let’s now develop a 1D MPM code for bar vibration with a single material point in the middle of the element.</p>
@@ -847,7 +884,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_14_0.png" src="_images/bar1d-vibration_14_0.png" />
+<img alt="_images/bar1d-vibration_15_0.png" src="_images/bar1d-vibration_15_0.png" />
 </div>
 </div>
 <p>The derivative of the shape function is:</p>
@@ -875,7 +912,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_16_0.png" src="_images/bar1d-vibration_16_0.png" />
+<img alt="_images/bar1d-vibration_17_0.png" src="_images/bar1d-vibration_17_0.png" />
 </div>
 </div>
 <section id="shape-function-for-material-point">
@@ -902,8 +939,8 @@ Gradient of shape function for material point at x_p = 0.5, is B: [-1.  1.]
 </section>
 </section>
 </section>
-<section id="mpm-solution-phase">
-<h2>MPM solution phase<a class="headerlink" href="#mpm-solution-phase" title="Permalink to this headline">#</a></h2>
+<section id="solution-phase-for-time-step-t-to-t-delta-t">
+<h2>2. Solution phase for time step <span class="math notranslate nohighlight">\(t\)</span> to <span class="math notranslate nohighlight">\(t + \Delta t\)</span><a class="headerlink" href="#solution-phase-for-time-step-t-to-t-delta-t" title="Permalink to this headline">#</a></h2>
 <section id="map-mass-and-momentum-to-nodes">
 <h3>Map mass and momentum to nodes<a class="headerlink" href="#map-mass-and-momentum-to-nodes" title="Permalink to this headline">#</a></h3>
 <p>Mapping from particles to nodes. Let’s compute the nodal mass and momentum using the linear shape functions to map  mass and velocity of the material point.</p>
@@ -1154,7 +1191,8 @@ mv_p = mass_p * vel_p
 </section>
 <section id="update-nodal-velocity">
 <h3>Update nodal velocity<a class="headerlink" href="#update-nodal-velocity" title="Permalink to this headline">#</a></h3>
-<p>Update nodal velocities: <span class="math notranslate nohighlight">\((\textbf{v})_i^{t + \Delta t} = \sum\limits_{p=1}^{n_P} N_i(\textbf{x}_p^{t + \Delta t}) m_p \textbf{v}_p^{t + \Delta t} / m_i^{t + \Delta t}\)</span></p>
+<p>The typical equation to update nodal velocity is based on the nodal momentum: <span class="math notranslate nohighlight">\(\textbf{v}_i^{t + \Delta t} = (m \textbf{v})_i^{t + \Delta t} / m_i^{t}\)</span>.</p>
+<p>However, we prefer to remap the particle velocity and mass and use the interpolated nodal mass to compute the nodal velocities: <span class="math notranslate nohighlight">\((\textbf{v})_i^{t + \Delta t} = \sum\limits_{p=1}^{n_P} N_i(\textbf{x}_p^{t}) m_p \textbf{v}_p^{t + \Delta t} / m_i^{t + \Delta t}\)</span></p>
 <p>After updating the nodal velocity, re-constrain the velocity at the fixed node back to zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1171,7 +1209,7 @@ print(&quot;Velocity at the nodes: {}&quot;.format(vel_n))
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Velocity at the nodes: [0.         0.10002715]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Velocity at the nodes: [0.  0.1]
 </pre></div>
 </div>
 </div>
@@ -1327,7 +1365,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_51_0.png" src="_images/bar1d-vibration_51_0.png" />
+<img alt="_images/bar1d-vibration_52_0.png" src="_images/bar1d-vibration_52_0.png" />
 </div>
 </div>
 <blockquote>
@@ -1346,7 +1384,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_53_0.png" src="_images/bar1d-vibration_53_0.png" />
+<img alt="_images/bar1d-vibration_54_0.png" src="_images/bar1d-vibration_54_0.png" />
 </div>
 </div>
 </section>
