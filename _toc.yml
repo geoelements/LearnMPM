@@ -4,5 +4,5 @@
 format: jb-book
 root: intro
 chapters:
-- file: mpm-code
 - file: bar1d-vibration
+- file: mpm-code
