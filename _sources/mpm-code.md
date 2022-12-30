@@ -1,4 +1,4 @@
-# MPM Code
+# MPM1D Code
 
 ![MPM entities](img/mpm.png)
 > MPM entities
