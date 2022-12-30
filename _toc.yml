@@ -5,4 +5,4 @@ format: jb-book
 root: intro
 chapters:
 - file: mpm-code
-- file: notebooks
+- file: bar1d-vibration
