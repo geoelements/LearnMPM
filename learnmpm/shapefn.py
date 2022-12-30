@@ -15,14 +15,10 @@ class Linear1D:
         gradsf = np.array([-0.5, 0.5])
         return gradsf
     
-    def jacobian(self, xi, coords):
-        gsf = np.array([self.gradsf(xi)])
-        jacobian = np.matmul(np.transpose(gsf), np.array([coords]))
-        return jacobian
-
     def dn_dx(self, xi, coords):
         length = abs(coords[0] - coords[1])
-        return np.array([-1/length, 1/length])
+        # dN/dx = dN/dxi * dxi/dx
+        return self.gradsf(xi) * 2. / length
     
     def gauss_pts(self, ngauss):
         if ngauss == 1:
