@@ -336,6 +336,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#d-mpm-code">
    1D MPM code
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">
+     Plot results of MPM and analytical solution
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -365,6 +372,13 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#d-mpm-code">
    1D MPM code
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">
+     Plot results of MPM and analytical solution
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -383,7 +397,7 @@ title="Print to PDF"
 <p><img alt="bar1d" src="_images/bar1d.png" /></p>
 <p>The exact solution for the velocity is: <span class="math notranslate nohighlight">\(v(t) = v_0 \cos (\omega t), \quad \omega = \frac{1}{L}\sqrt{E/\rho}\)</span></p>
 <p>and for the position is: <span class="math notranslate nohighlight">\(x(t) = x_0 \exp \left[\frac{v_0}{L \omega} \sin (\omega t)\right]\)</span></p>
-<p>The bar has a constant density <span class="math notranslate nohighlight">\(\rho = 1.0\)</span>. The constitutive equation is <span class="math notranslate nohighlight">\(\dot\sigma = E \dot \varepsilon\)</span>, where <span class="math notranslate nohighlight">\(\dot \varepsilon = dv/dx\)</span> and <span class="math notranslate nohighlight">\(E\)</span> is the Young’s modulus. The grid consists of a single two-noded element. The elastic wave speed is <span class="math notranslate nohighlight">\(c = \sqrt{E/\rho} = 2 \pi\)</span>. The boundary conditions are imposed on the grid, both the nodal velocity and the acceleration at <span class="math notranslate nohighlight">\(x = 0\)</span> (the left node) is zero throughout the simulation.</p>
+<p>The bar has a constant density <span class="math notranslate nohighlight">\(\rho = 1.0\)</span>. The constitutive equation is <span class="math notranslate nohighlight">\(\dot\sigma = E \dot \varepsilon\)</span>, where <span class="math notranslate nohighlight">\(\dot \varepsilon = dv/dx\)</span> and <span class="math notranslate nohighlight">\(E\)</span> is the Young’s modulus. The mesh consists of a single two-noded element. The elastic wave speed is <span class="math notranslate nohighlight">\(c = \sqrt{E/\rho} = 2 \pi\)</span>. The boundary conditions are imposed on the mesh, both the nodal velocity and the acceleration at <span class="math notranslate nohighlight">\(x = 0\)</span> (the left node) is zero throughout the simulation.</p>
 <section id="analytical-solution">
 <h2>Analytical solution<a class="headerlink" href="#analytical-solution" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
@@ -529,9 +543,8 @@ for _ in range(nsteps):
 </div>
 </div>
 </div>
-<blockquote>
-<div><p>plot results of MPM and analytical solution</p>
-</div></blockquote>
+<section id="plot-results-of-mpm-and-analytical-solution">
+<h3>Plot results of MPM and analytical solution<a class="headerlink" href="#plot-results-of-mpm-and-analytical-solution" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
@@ -552,6 +565,7 @@ plt.show()
 <img alt="_images/bar1d-vibration_8_0.png" src="_images/bar1d-vibration_8_0.png" />
 </div>
 </div>
+</section>
 </section>
 </section>
 
