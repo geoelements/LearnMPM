@@ -1159,7 +1159,10 @@ mv_p = mass_p * vel_p
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># map nodal velocity
-vel_n = mass_p * vel_p * np.divide(N, mass_n)
+# vel_n[0] = N[0] * mass_p * vel_p / mass_n[0]
+# vel_n[1] = N[1] * mass_p * vel_p / mass_n[1]
+vel_n = np.divide(N, mass_n) * mass_p * vel_p
+
 # Apply boundary condition and set left nodal velocity to zero
 vel_n[0] = 0
 
@@ -1168,7 +1171,7 @@ print(&quot;Velocity at the nodes: {}&quot;.format(vel_n))
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Velocity at the nodes: [0.  0.1]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Velocity at the nodes: [0.         0.10002715]
 </pre></div>
 </div>
 </div>
