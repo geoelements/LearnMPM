@@ -418,7 +418,7 @@ def analytical_vibration(E, rho, v0, x_loc, duration, dt, L):
 E = 4 * (np.pi)**2
 
 # analytical solution
-ta, va, xa = analytical_vibration(E = E, rho = 1, v0 = 0.1, x_loc = 1.0, duration = 10, dt = 0.01, L = 1.0)
+ta, va, xa = analytical_vibration(E = E, rho = 1, v0 = 1.0, x_loc = 1.0, duration = 10, dt = 0.01, L = 1.0)
 
 plt.plot(ta, va, &#39;r&#39;,linewidth=2,label=&#39;analytical&#39;)
 
@@ -447,7 +447,7 @@ nparticles = 1                       # number of particles
 el_length  = L / nelements           # element length
 
 # Initial conditions 
-v0         = 0.1                     # initial velocity
+v0         = 1.0                     # initial velocity
 x_loc      = 1.0                     # location to get analytical solution
 
 # Material points
