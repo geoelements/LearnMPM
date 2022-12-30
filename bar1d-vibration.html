@@ -443,9 +443,43 @@ title="Print to PDF"
        Calculate the total unbalanced nodal forces
       </a>
      </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#update-nodal-momentum">
+     Update nodal momentum
+    </a>
+    <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#defining-a-critical-time-step">
-       Defining a critical time step
+      <a class="reference internal nav-link" href="#critical-time-step">
+       Critical time step
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapping-from-nodes-to-particles">
+     Mapping from nodes to particles
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#update-particle-velocities-and-position">
+       Update particle velocities and position
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#update-particle-momentum">
+       Update particle momentum
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#update-nodal-velocity">
+       Update nodal velocity
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compute-strains-and-stresses">
+       Compute strains and stresses
       </a>
      </li>
     </ul>
@@ -581,9 +615,43 @@ title="Print to PDF"
        Calculate the total unbalanced nodal forces
       </a>
      </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#update-nodal-momentum">
+     Update nodal momentum
+    </a>
+    <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#defining-a-critical-time-step">
-       Defining a critical time step
+      <a class="reference internal nav-link" href="#critical-time-step">
+       Critical time step
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mapping-from-nodes-to-particles">
+     Mapping from nodes to particles
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#update-particle-velocities-and-position">
+       Update particle velocities and position
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#update-particle-momentum">
+       Update particle momentum
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#update-nodal-velocity">
+       Update nodal velocity
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compute-strains-and-stresses">
+       Compute strains and stresses
       </a>
      </li>
     </ul>
@@ -985,9 +1053,31 @@ print(&quot;Total forces at the nodes: {}&quot;.format(f_total_n))
 </div>
 </div>
 </div>
+<p>We apply boundary condition on the left node, which is fixed (the velocity and acceleration are zero). Hence, we set the total force <span class="math notranslate nohighlight">\(f = m * a = 0\)</span>, since <span class="math notranslate nohighlight">\(a = 0\)</span> at the node.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># apply boundary condition: left node has no acceleration (f = m * a, and a = 0)
+f_total_n[0] = 0
+
+print(&quot;Total forces at the nodes: {}&quot;.format(f_total_n))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total forces at the nodes: [0. 0.]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="defining-a-critical-time-step">
-<h3>Defining a critical time step<a class="headerlink" href="#defining-a-critical-time-step" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="update-nodal-momentum">
+<h2>Update nodal momentum<a class="headerlink" href="#update-nodal-momentum" title="Permalink to this headline">#</a></h2>
+<p>Nodal momentum: <span class="math notranslate nohighlight">\( (m\textbf{v})_i^{t+\Delta t} = (m\textbf{v})_i^t + \textbf{f}_i^{tot,t} * \Delta t\)</span></p>
+<section id="critical-time-step">
+<h3>Critical time step<a class="headerlink" href="#critical-time-step" title="Permalink to this headline">#</a></h3>
+<p>The time step <span class="math notranslate nohighlight">\(\Delta t\)</span> must be smaller than the critical time step <span class="math notranslate nohighlight">\(\Delta t_{crit}\)</span>. Typically, <span class="math notranslate nohighlight">\(\Delta t = \Delta t_{crit}/10\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\Delta t_{crit} = \frac{L}{\sqrt{E \cdot \rho}}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># critical time step
@@ -1002,6 +1092,117 @@ print(&quot;Critical time step for an explicit simulation: {}&quot;.format(dt_cr
 </div>
 </div>
 </div>
+<p>We use a time step <span class="math notranslate nohighlight">\(\Delta t\)</span> of 0.01.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># update nodal momentum
+dt = 0.01 
+mv_n += f_total_n * dt
+
+print(&quot;Momentum at nodes: {}&quot;.format(mv_n))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Momentum at nodes: [0.   0.05]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="mapping-from-nodes-to-particles">
+<h2>Mapping from nodes to particles<a class="headerlink" href="#mapping-from-nodes-to-particles" title="Permalink to this headline">#</a></h2>
+<section id="update-particle-velocities-and-position">
+<h3>Update particle velocities and position<a class="headerlink" href="#update-particle-velocities-and-position" title="Permalink to this headline">#</a></h3>
+<p>Update the position of the material points based on the nodal velocity.</p>
+<ul class="simple">
+<li><p>Material point velocity:
+<span class="math notranslate nohighlight">\( \textbf{v}_p^{t+\Delta t} = \sum\limits_{i=1}^{n_n} N_i(\textbf{x}_p^t) \textbf{v}_i^{t+\Delta t} \)</span></p></li>
+<li><p>Material point position:
+<span class="math notranslate nohighlight">\( \textbf{x}_p^{t+\Delta t} = \textbf{x}_p^t + \textbf{v}_p^{t+\Delta t} *  \Delta t\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># update particle position and velocity
+for i in range(nnodes):
+    vel_p += dt * N[i] * f_total_n[i] / mass_n[i]
+    x_p += dt * N[i] * mv_n[i] / mass_n[i]
+
+print(&quot;Velocity of particle: {} and position: {}&quot;.format(vel_p, x_p))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Velocity of particle: 0.1 and position: 0.5005
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="update-particle-momentum">
+<h3>Update particle momentum<a class="headerlink" href="#update-particle-momentum" title="Permalink to this headline">#</a></h3>
+<p>Material point momentum: <span class="math notranslate nohighlight">\( (m\textbf{v})_p^{t+\Delta t} = m_p * \textbf{v}_p^{t+\Delta t}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># update particle momentum
+mv_p = mass_p * vel_p
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="update-nodal-velocity">
+<h3>Update nodal velocity<a class="headerlink" href="#update-nodal-velocity" title="Permalink to this headline">#</a></h3>
+<p>Update nodal velocities: <span class="math notranslate nohighlight">\((\textbf{v})_i^{t + \Delta t} = \sum\limits_{p=1}^{n_P} N_i(\textbf{x}_p^{t + \Delta t}) m_p \textbf{v}_p^{t + \Delta t} / m_i^{t + \Delta t}\)</span></p>
+<p>After updating the nodal velocity, re-constrain the velocity at the fixed node back to zero.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># map nodal velocity
+vel_n = mass_p * vel_p * np.divide(N, mass_n)
+# Apply boundary condition and set left nodal velocity to zero
+vel_n[0] = 0
+
+print(&quot;Velocity at the nodes: {}&quot;.format(vel_n))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Velocity at the nodes: [0.  0.1]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compute-strains-and-stresses">
+<h3>Compute strains and stresses<a class="headerlink" href="#compute-strains-and-stresses" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The strain at each material point is computed by mapping the strain rate from the nodes: <span class="math notranslate nohighlight">\( \boldsymbol{\varepsilon}_p^t = \sum\limits_{p=1}^{n_P} B_i(\textbf{x}_p^t) \textbf{v}_i^t \)</span></p></li>
+<li><p>The stress at each material point is updated using <span class="math notranslate nohighlight">\(\Delta\sigma_p^t\)</span> based on the constitutive model:
+<span class="math notranslate nohighlight">\( \boldsymbol{\sigma}_p^t = \boldsymbol{\sigma}_p^{t-\Delta t} + \Delta \boldsymbol{\sigma}_p^t \)</span></p></li>
+<li><p>The incremental stress is calculated as <span class="math notranslate nohighlight">\( \Delta\boldsymbol{\sigma}_p^t= \mathbf{D} : \Delta \boldsymbol{\varepsilon}_p^t \)</span>. In this case, we use a linear elastic model with a Young’s modulus of <span class="math notranslate nohighlight">\(E\)</span>, so the stress increment <span class="math notranslate nohighlight">\( \Delta\boldsymbol{\sigma}_p^t= E \cdot \Delta \boldsymbol{\varepsilon}_p^t \)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># compute strain rate at the particle
+# strain_rate = dN[0] * vel_n[0] + dN[1] * vel_n[1]
+strain_rate_p = np.dot(dN, vel_n) 
+# compute strain increament 
+dstrain_p = strain_rate_p * dt
+# compute stress
+stress_p += E * dstrain_p
+
+print(&quot;Strain rate: {}, dstrain: {} and stress: {} and stress: {}&quot;.format(strain_rate_p, dstrain_p, E * dstrain_p, stress_p))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Strain rate: 0.1, dstrain: 0.001 and stress: 0.039478417604357434 and stress: 0.039478417604357434
+</pre></div>
+</div>
+</div>
+</div>
+<p>This completes all the steps in the MPM USL algorithm. These steps are repeated <code class="docutils literal notranslate"><span class="pre">n</span></code> times as shown in the full code below.</p>
 </section>
 </section>
 <section id="d-mpm-code-complete">
@@ -1083,7 +1284,6 @@ for _ in range(nsteps):
     vel_n[0] = 0
 
     # compute strain rate at the particle
-    # strain_rate = dN[0] * vel_n[0] + dN[1] * vel_n[1]
     strain_rate_p = np.dot(dN, vel_n) 
     # compute strain increament 
     dstrain_p = strain_rate_p * dt
@@ -1124,7 +1324,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_38_0.png" src="_images/bar1d-vibration_38_0.png" />
+<img alt="_images/bar1d-vibration_51_0.png" src="_images/bar1d-vibration_51_0.png" />
 </div>
 </div>
 <blockquote>
@@ -1143,7 +1343,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_40_0.png" src="_images/bar1d-vibration_40_0.png" />
+<img alt="_images/bar1d-vibration_53_0.png" src="_images/bar1d-vibration_53_0.png" />
 </div>
 </div>
 </section>
