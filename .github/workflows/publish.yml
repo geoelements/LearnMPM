@@ -19,9 +19,14 @@ jobs:
       with:
         python-version: 3.8
 
+    - uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-update-conda: true
+        python-version: 3.8
+    
     - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
+      shell: bash -el {0}
+      run: conda install -c conda-forge jupyter-book
 
     # Build the book
     - name: Build the book
