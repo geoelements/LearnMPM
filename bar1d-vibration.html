@@ -813,12 +813,12 @@ x_loc      = 0.5                     # location to get analytical solution
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Material points
-x_p        = 0.5 * el_length         # particle position
-mass_p     = 1.                      # particle mass
-vol_p      = el_length / nparticles  # particle volume
-vel_p      = v0                      # particle velocity
-stress_p   = 0.                      # particle stress
-mv_p       = mass_p * vel_p          # particle momentum = m * v
+x_p        = 0.5 * el_length         # position
+mass_p     = 1.                      # mass
+vol_p      = el_length / nparticles  # volume
+vel_p      = v0                      # velocity
+stress_p   = 0.                      # stress
+mv_p       = mass_p * vel_p          # momentum = m * v
 </pre></div>
 </div>
 </div>
@@ -1221,7 +1221,10 @@ print(&quot;Strain rate: {}, dstrain: {} and stress: {} and stress: {}&quot;.for
 <p>Putting it all together</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Computational grid
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import matplotlib.pyplot as plt
+
+# Computational grid
 L          = 1                       # domain size
 nodes      = np.array([0, L])        # nodal coordinates
 nnodes     = len(nodes)              # number of nodes
@@ -1238,12 +1241,13 @@ E          = 4 * (np.pi)**2          # Young&#39;s modulus
 rho        = 1.                      # Density
 
 # Material points
-x_p        = 0.5 * el_length         # particle position
-mass_p     = 1.                      # particle mass
-vol_p      = el_length / nparticles  # particle volume
-vel_p      = v0                      # particle velocity
-stress_p   = 0.                      # particle stress
-mv_p       = mass_p * vel_p          # particle momentum = m * v
+x_p        = 0.5 * el_length         # position
+mass_p     = 1.                      # mass
+vol_p      = el_length / nparticles  # volume
+vel_p      = v0                      # velocity
+stress_p   = 0.                      # stress
+strain_p   = 0.                      # strain
+mv_p       = mass_p * vel_p          # momentum = m * v
 
 # Time
 duration   = 10
@@ -1252,7 +1256,7 @@ time       = 0
 nsteps     = int(duration/dt)
 
 # Store time, velocity and position with time
-time_t, vel_t, x_t = [], [], []
+time_t, vel_t, x_t, se_t, ke_t, te_t = [], [], [], [], [], []
 
 for _ in range(nsteps):
     # shape function and derivative
@@ -1298,6 +1302,8 @@ for _ in range(nsteps):
     strain_rate_p = np.dot(dN, vel_n) 
     # compute strain increament 
     dstrain_p = strain_rate_p * dt
+    # compute strain
+    strain_p += dstrain_p
     # compute stress
     stress_p += E * dstrain_p
 
@@ -1305,6 +1311,14 @@ for _ in range(nsteps):
     time_t.append(time)
     vel_t.append(vel_p)
     x_t.append(x_p)
+
+    # Energies
+    strain_energy = 0.5 * stress_p * strain_p * vol_p
+    kinetic_energy = 0.5 * vel_p**2 * mass_p**2
+    total_energy = strain_energy + kinetic_energy
+    se_t.append(strain_energy)
+    ke_t.append(kinetic_energy)
+    te_t.append(total_energy)
     
     # update time
     time += dt
@@ -1355,6 +1369,23 @@ plt.show()
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/bar1d-vibration_54_0.png" src="_images/bar1d-vibration_54_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(time_t, se_t, &#39;-&#39;, markersize = 2, label=&#39;strain energy&#39;)
+plt.plot(time_t, ke_t, &#39;r&#39;, markersize = 2, label=&#39;kinetic energy&#39;)
+plt.plot(time_t, te_t, &#39;g&#39;, markersize = 2, label=&#39;total energy&#39;)
+
+plt.xlabel(&#39;time (s)&#39;)
+plt.ylabel(&#39;energy&#39;)
+plt.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bar1d-vibration_55_0.png" src="_images/bar1d-vibration_55_0.png" />
 </div>
 </div>
 </section>
