@@ -417,13 +417,11 @@ title="Print to PDF"
        Applying boundary condition
       </a>
      </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compute-nodal-forces">
-     Compute nodal forces
-    </a>
-    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compute-nodal-forces">
+       Compute nodal forces
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#compute-external-forces">
        Compute external forces
@@ -480,17 +478,17 @@ title="Print to PDF"
      </li>
     </ul>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d-mpm-code-complete">
+   1D MPM code complete
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#d-mpm-code-complete">
-     1D MPM code complete
+    <a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">
+     Plot results of MPM and analytical solution
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">
-       Plot results of MPM and analytical solution
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -584,13 +582,11 @@ title="Print to PDF"
        Applying boundary condition
       </a>
      </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#compute-nodal-forces">
-     Compute nodal forces
-    </a>
-    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compute-nodal-forces">
+       Compute nodal forces
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#compute-external-forces">
        Compute external forces
@@ -647,17 +643,17 @@ title="Print to PDF"
      </li>
     </ul>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d-mpm-code-complete">
+   1D MPM code complete
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#d-mpm-code-complete">
-     1D MPM code complete
+    <a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">
+     Plot results of MPM and analytical solution
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">
-       Plot results of MPM and analytical solution
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -989,9 +985,9 @@ print(&quot;Momentum at nodes after apply BCs: {}&quot;.format(mv_n))
 </div>
 </div>
 </section>
-</section>
 <section id="compute-nodal-forces">
-<h3>Compute nodal forces<a class="headerlink" href="#compute-nodal-forces" title="Permalink to this headline">#</a></h3>
+<h4>Compute nodal forces<a class="headerlink" href="#compute-nodal-forces" title="Permalink to this headline">#</a></h4>
+</section>
 <section id="compute-external-forces">
 <h4>Compute external forces<a class="headerlink" href="#compute-external-forces" title="Permalink to this headline">#</a></h4>
 <p><span class="math notranslate nohighlight">\( (\textbf{f}_i)^{ext,t} = \textbf{b}_i^{t} + \textbf{t}_i^{t} \)</span></p>
@@ -1219,8 +1215,9 @@ print(&quot;Strain rate: {}, dstrain: {} and stress: {} and stress: {}&quot;.for
 <p>This completes all the steps in the MPM USL algorithm. These steps are repeated <code class="docutils literal notranslate"><span class="pre">n</span></code> times as shown in the full code below.</p>
 </section>
 </section>
+</section>
 <section id="d-mpm-code-complete">
-<h3>1D MPM code complete<a class="headerlink" href="#d-mpm-code-complete" title="Permalink to this headline">#</a></h3>
+<h2>1D MPM code complete<a class="headerlink" href="#d-mpm-code-complete" title="Permalink to this headline">#</a></h2>
 <p>Putting it all together</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1316,7 +1313,7 @@ for _ in range(nsteps):
 </div>
 </div>
 <section id="plot-results-of-mpm-and-analytical-solution">
-<h4>Plot results of MPM and analytical solution<a class="headerlink" href="#plot-results-of-mpm-and-analytical-solution" title="Permalink to this headline">#</a></h4>
+<h3>Plot results of MPM and analytical solution<a class="headerlink" href="#plot-results-of-mpm-and-analytical-solution" title="Permalink to this headline">#</a></h3>
 <p>Compare the MPM results with the analytical solution.</p>
 <blockquote>
 <div><p>Velocity</p>
@@ -1360,7 +1357,6 @@ plt.show()
 <img alt="_images/bar1d-vibration_54_0.png" src="_images/bar1d-vibration_54_0.png" />
 </div>
 </div>
-</section>
 </section>
 </section>
 </section>
