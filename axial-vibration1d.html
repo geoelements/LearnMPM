@@ -4,8 +4,9 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search &#8212; Learn MPM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Axial vibration of a 1D bar &#8212; Learn MPM</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -30,7 +31,6 @@
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
@@ -50,19 +50,18 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script src="_static/searchtools.js"></script>
-    <script src="_static/language_data.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" />
-  <script src="searchindex.js" defer></script>
-  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Coding 1D MPM" href="mpm-code.html" />
+    <link rel="prev" title="Solving 1D vibrating bar with Material Point Method" href="bar1d-vibration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
 
     <!-- Google Analytics -->
     
-
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
 <!-- Checkboxes to toggle the left sidebar -->
@@ -103,7 +102,7 @@ const thebe_selector_output = ".output, .cell_output"
       <h1 class="site-logo" id="site-title">Learn MPM</h1>
       
     </a>
-</div><form class="bd-search d-flex align-items-center" action="#" method="get">
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -116,14 +115,14 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="bar1d-vibration.html">
    Solving 1D vibrating bar with Material Point Method
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="axial-vibration1d.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Axial vibration of a 1D bar
   </a>
  </li>
@@ -179,6 +178,53 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/geoelements/learn-mpm/main?urlpath=lab/tree/docs/axial-vibration1d.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/docs/axial-vibration1d.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -218,7 +264,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Fsearch.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Faxial-vibration1d.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -238,6 +284,52 @@ title="Open an issue"
   </div>
 </div>
 
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/axial-vibration1d.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
     </div>
 </div>
 
@@ -249,7 +341,7 @@ title="Open an issue"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1></h1>
+                <h1>Axial vibration of a 1D bar</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -261,36 +353,86 @@ title="Open an issue"
                 
               <div>
                 
-  <h1 id="search-documentation">Search</h1>
-  
-  <noscript>
-  <div class="admonition warning">
-  <p>
-    Please activate JavaScript to enable the search
-    functionality.
-  </p>
-  </div>
-  </noscript>
-  
-  
-  <p>
-    Searching for multiple words only shows matches that contain
-    all words.
-  </p>
-  
-  
-  <form action="" method="get">
-    <input type="text" name="q" aria-labelledby="search-documentation" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-    <input type="submit" value="search" />
-    <span id="search-progress" style="padding-left: 10px"></span>
-  </form>
-  
-  
-  
-  <div id="search-results">
-  
-  </div>
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="axial-vibration-of-a-1d-bar">
+<h1>Axial vibration of a 1D bar<a class="headerlink" href="#axial-vibration-of-a-1d-bar" title="Permalink to this headline">#</a></h1>
+<p>Let’s study the axial vibration of a continuum bar with Young’s modulus E = 100 and the bar length L = 25.
+Exact solutions for mode 1 are:</p>
+<p><span class="math notranslate nohighlight">\(v(x, t) = v_0 \cos(\omega_1 t) \sin(\beta_1 x)\)</span></p>
+<p><span class="math notranslate nohighlight">\(u(x, t) = \frac{v_0}{\omega_1} \sin(\omega_1 t) \sin(\beta_1 x)\)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\omega_1 = \frac{\pi}{2 L}\sqrt{E/\rho}\)</span> and <span class="math notranslate nohighlight">\(\beta_1 = \frac{\pi}{2L}\)</span>. The initial velocity is <span class="math notranslate nohighlight">\(v(x, 0) = v_0 \sin(\beta_1 x)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+
+def axial_vibration_bar1d(L, E, rho, duration, dt, v0, x):
+
+    # Frequency of system mode 1
+    w1 = np.pi / (2 * L) * np.sqrt(E/rho)
+    b1 = np.pi / (2 * L)
+
+    # position and velocity in time
+    tt, vt, xt = [], [], []
+
+    nsteps = int(duration/dt)
+    t = 0
+    for _ in range(nsteps):
+        vt.append(v0 * np.cos(w1 * t) * np.sin(b1 * x))
+        xt.append(v0 / w1 * np.sin(w1 * t) * np.sin(b1 * x))
+        tt.append(t)
+
+        t += dt
+    
+    return tt, vt, xt
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s now plot the analytical solution of a vibrating bar at the end of the bar <span class="math notranslate nohighlight">\(x = 1\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+
+# Properties
+E = 100
+L = 25
+
+# analytical solution at the end of the bar
+ta, va, xa = axial_vibration_bar1d(L = L, E = E, rho = 1, duration = 100, dt = 0.01, v0 = 1.0, x = 1.0)
+
+plt.plot(ta, va, &#39;r&#39;,linewidth=2,label=&#39;analytical&#39;)
+
+plt.xlabel(&#39;time (s)&#39;)
+plt.ylabel(&#39;velocity (m/s)&#39;)
+plt.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/axial-vibration1d_3_0.png" src="_images/axial-vibration1d_3_0.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -299,6 +441,20 @@ title="Open an issue"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="bar1d-vibration.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Solving 1D vibrating bar with Material Point Method</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="mpm-code.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Coding 1D MPM</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
