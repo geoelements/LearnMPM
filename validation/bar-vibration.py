@@ -1,11 +1,11 @@
-# include the modules' path to the current path
+# include the modules path to the current path
 import sys
 sys.path.append("..")
 
 import matplotlib.pyplot as plt
 import numpy as np
 
-from analytical import continuum_bar_vibration as cbv
+from analytical import axial_vibration_bar1d as avb
 
 from learnmpm import mesh
 from learnmpm import material
@@ -54,7 +54,7 @@ solver.explicit_solution(msh, params)
 plt.plot(params.solution_array[0], params.solution_array[1], 'ob', markersize = 2, label='mpm')
 
 # plot the analytical solution
-[anal_xt,anal_vt, anal_t] = cbv.continuum_bar_vibration_solution(Length, elastic.E, elastic.density, 
+[anal_xt,anal_vt, anal_t] = avb.axial_vibration_bar1d(Length, elastic.E, elastic.density, 
                                 params.dt * params.nsteps, params.dt, vo, msh.particles[params.solution_particle].x)
 plt.plot(anal_t,anal_vt,'r',linewidth=2,label='analytical')
 
