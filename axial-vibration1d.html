@@ -446,6 +446,9 @@ plt.show()
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/axial-vibration1d_3_0.png" src="_images/axial-vibration1d_3_0.png" />
+</div>
 </div>
 <section id="mpm-axial-vibration-of-a-1d-bar">
 <h2>MPM axial vibration of a 1D bar<a class="headerlink" href="#mpm-axial-vibration-of-a-1d-bar" title="Permalink to this headline">#</a></h2>
@@ -583,7 +586,7 @@ for step in range(nsteps):
         nv2 = mom_n[nid2]/mass_n[nid2]
 
         # Apply boundary condition
-        if (nid1 == 0): nv1 = 0
+        # if (nid1 == 0): nv1 = 0
 
         # particle gradient velocity
         grad_v = dN1 * nv1 + dN2 * nv2
@@ -604,11 +607,12 @@ for step in range(nsteps):
     t = t + dt
 
 plt.plot(tt, vt)
+plt.plot(ta, va)
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10ffb6910&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11b0e7d30&gt;]
 </pre></div>
 </div>
 <img alt="_images/axial-vibration1d_6_1.png" src="_images/axial-vibration1d_6_1.png" />
