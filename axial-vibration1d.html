@@ -435,7 +435,7 @@ E = 100
 L = 25
 
 # analytical solution at the end of the bar
-ta, va, xa = axial_vibration_bar1d(L = L, E = E, rho = 1, duration = 100, dt = 0.01, v0 = 1.0, x = 1.0)
+ta, va, xa = axial_vibration_bar1d(L = L, E = E, rho = 1, duration = 100, dt = 0.01, v0 = 0.1, x = 12.5)
 
 plt.plot(ta, va, &#39;r&#39;,linewidth=2,label=&#39;analytical&#39;)
 
@@ -462,7 +462,7 @@ plt.show()
 import matplotlib.pyplot as plt
 
 # mass tolerance
-tol = 1e-5
+tol = 1e-12
 
 # Domain
 L = 25
@@ -477,7 +477,7 @@ nelements = 13 # number of elements
 dx = L / nelements # element length
 
 # Create equally spaced nodes
-x_n = np.linspace(0, L, nelements + 1)
+x_n = np.linspace(0, L, nelements+1)
 nnodes = len(x_n)
 
 # Set-up a 2D array of elements with node ids
@@ -486,7 +486,7 @@ for nid in range(nelements):
     elements[nid, :] = np.array([nid, nid+1])
 
 # Id of the particle in the central element
-pmid = int(np.floor((nelements/2)+1))
+pmid = int(np.floor((nelements/2)))
 
 # Loading conditions
 v0 = 0.1             # initial velocity
@@ -501,7 +501,6 @@ nparticles = nelements  # number of particles
 x_p      = np.zeros(nparticles)       # positions
 vol_p    = np.ones(nparticles) * dx   # volume
 mass_p   = vol_p * rho                # mass
-gradf_p  = np.ones(nparticles)        # gradient of deformation
 stress_p = np.zeros(nparticles)       # stress
 vel_p    = np.zeros(nparticles)       # velocity
 vol0_p   = vol_p                      # initial volume
@@ -521,21 +520,17 @@ nsteps = int(duration / dt)
 
 tt, vt, xt = [], [], []
 
-# Intialize nodal properties
-mass_n  = np.zeros(nnodes)  # mass
-mom_n   = np.zeros(nnodes)  # momentum
-f_int_n = np.zeros(nnodes)  # internal force
-
 for step in range(nsteps):
     # reset nodal values
     mass_n  = np.zeros(nnodes)  # mass
     mom_n   = np.zeros(nnodes)  # momentum
-    f_int_n = np.zeros(nnodes)  # internal force
+    fint_n = np.zeros(nnodes)  # internal force
 
     # iterate through each element
     for id in range(nelements):
         # get nodal ids
         nid1, nid2 = elements[id]
+        
         # compute shape functions and derivatives
         N1 = 1 - abs(x_p[id] - x_n[nid1]) / dx
         N2 = 1 - abs(x_p[id] - x_n[nid2]) / dx
@@ -549,16 +544,16 @@ for step in range(nsteps):
         mom_n[nid2]  += N2 * mass_p[id] * vel_p[id]
 
         # compute nodal internal force
-        f_int_n[nid1] -= vol_p[id] * stress_p[id] * dN1
-        f_int_n[nid2] -= vol_p[id] * stress_p[id] * dN2
+        fint_n[nid1] -= vol_p[id] * stress_p[id] * dN1
+        fint_n[nid2] -= vol_p[id] * stress_p[id] * dN2
 
     # apply boundary conditions
-    mom_n[0] = 0   # Nodal velocity v = 0 in m * v at node 0.
-    f_int_n[0] = 0 # Nodal force f = m * a, where a = 0 at node 0.
+    mom_n[0]  = 0  # Nodal velocity v = 0 in m * v at node 0.
+    fint_n[0] = 0  # Nodal force f = m * a, where a = 0 at node 0.
 
     # update nodal momentum
     for nid in range(nnodes):
-        mom_n[nid] += f_int_n[nid] * dt
+        mom_n[nid] += fint_n[nid] * dt
 
     # update particle velocity position and stress
     # iterate through each element
@@ -574,9 +569,9 @@ for step in range(nsteps):
 
         # compute particle velocity
         if (mass_n[nid1]) &gt; tol:
-            vel_p[id] += dt * N1 * f_int_n[nid1] / mass_n[nid1]
+            vel_p[id] += dt * N1 * fint_n[nid1] / mass_n[nid1]
         if (mass_n[nid2]) &gt; tol:
-            vel_p[id] += dt * N2 * f_int_n[nid2] / mass_n[nid2]
+            vel_p[id] += dt * N2 * fint_n[nid2] / mass_n[nid2]
         
         # update particle position based on nodal momentum
         x_p[id] += dt * (N1 * mom_n[nid1]/mass_n[nid1] + N2 * mom_n[nid2]/mass_n[nid2])
@@ -586,16 +581,15 @@ for step in range(nsteps):
         nv2 = mom_n[nid2]/mass_n[nid2]
 
         # Apply boundary condition
+        # Rendundant, since momentum and forces are already set to zero
         # if (nid1 == 0): nv1 = 0
 
-        # particle gradient velocity
+        # rate of strain increment
         grad_v = dN1 * nv1 + dN2 * nv2
-        # particle deformation gradient
-        gradf_p[id] = (1 + grad_v * dt) * gradf_p[id]
-        # particle volume
-        vol_p[id] = gradf_p[id] * vol0_p[id]
         # particle dstrain
         dstrain = grad_v * dt
+        # particle volume
+        vol_p[id] *= (1 + dstrain)
         # update stress using linear elastic model
         stress_p[id] += E * dstrain
 
@@ -606,16 +600,18 @@ for step in range(nsteps):
 
     t = t + dt
 
-plt.plot(tt, vt)
-plt.plot(ta, va)
+plt.plot(ta, va, &#39;r&#39;, linewidth=1,label=&#39;analytical&#39;)
+plt.plot(tt, vt, &#39;ob&#39;, markersize=1, label=&#39;mpm&#39;)
+
+plt.xlabel(&#39;time (s)&#39;)
+plt.ylabel(&#39;velocity (m/s)&#39;)
+plt.legend()
+plt.show()
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x11b0e7d30&gt;]
-</pre></div>
-</div>
-<img alt="_images/axial-vibration1d_6_1.png" src="_images/axial-vibration1d_6_1.png" />
+<img alt="_images/axial-vibration1d_6_0.png" src="_images/axial-vibration1d_6_0.png" />
 </div>
 </div>
 </section>
