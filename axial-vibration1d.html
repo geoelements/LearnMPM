@@ -329,12 +329,36 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mpm-axial-vibration-of-a-1d-bar">
+   MPM axial vibration of a 1D bar
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -346,6 +370,19 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mpm-axial-vibration-of-a-1d-bar">
+   MPM axial vibration of a 1D bar
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -355,6 +392,7 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="axial-vibration-of-a-1d-bar">
 <h1>Axial vibration of a 1D bar<a class="headerlink" href="#axial-vibration-of-a-1d-bar" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/axial-vibration1d.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>Let’s study the axial vibration of a continuum bar with Young’s modulus E = 100 and the bar length L = 25.
 Exact solutions for mode 1 are:</p>
 <p><span class="math notranslate nohighlight">\(v(x, t) = v_0 \cos(\omega_1 t) \sin(\beta_1 x)\)</span></p>
@@ -408,10 +446,175 @@ plt.show()
 </pre></div>
 </div>
 </div>
+</div>
+<section id="mpm-axial-vibration-of-a-1d-bar">
+<h2>MPM axial vibration of a 1D bar<a class="headerlink" href="#mpm-axial-vibration-of-a-1d-bar" title="Permalink to this headline">#</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Work In Progress</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import matplotlib.pyplot as plt
+
+# mass tolerance
+tol = 1e-5
+
+# Domain
+L = 25
+
+# Material properties
+E = 100
+rho = 1
+
+# Computational grid
+
+nelements = 13 # number of elements
+dx = L / nelements # element length
+
+# Create equally spaced nodes
+x_n = np.linspace(0, L, nelements + 1)
+nnodes = len(x_n)
+
+# Set-up a 2D array of elements with node ids
+elements = np.zeros((nelements, 2), dtype = int)
+for nid in range(nelements):
+    elements[nid, :] = np.array([nid, nid+1])
+
+# Id of the particle in the central element
+pmid = int(np.floor((nelements/2)+1))
+
+# Loading conditions
+v0 = 0.1             # initial velocity
+c  = np.sqrt(E/rho)  # speed of sound
+b1 = np.pi / (2 * L) # beta1
+w1 = b1 * c          # omega1
+
+# Create material points at the center of each element
+nparticles = nelements  # number of particles
+
+# Material point properties
+x_p      = np.zeros(nparticles)       # positions
+vol_p    = np.ones(nparticles) * dx   # volume
+mass_p   = vol_p * rho                # mass
+gradf_p  = np.ones(nparticles)        # gradient of deformation
+stress_p = np.zeros(nparticles)       # stress
+vel_p    = np.zeros(nparticles)       # velocity
+vol0_p   = vol_p                      # initial volume
+
+for i in range(nelements):
+    # Create particle at the center
+    x_p[i] = 0.5 * (x_n[i] + x_n[i+1])
+    # set initial velocities
+    vel_p[i] = v0 * np.sin(b1 * x_p[i])
+
+# Time steps and duration
+duration = 100
+dt_crit = dx / c
+dt = 0.1 * dt_crit
+t = 0
+nsteps = int(duration / dt)
+
+tt, vt, xt = [], [], []
+
+# Intialize nodal properties
+mass_n  = np.zeros(nnodes)  # mass
+mom_n   = np.zeros(nnodes)  # momentum
+f_int_n = np.zeros(nnodes)  # internal force
+
+for step in range(nsteps):
+    # reset nodal values
+    mass_n  = np.zeros(nnodes)  # mass
+    mom_n   = np.zeros(nnodes)  # momentum
+    f_int_n = np.zeros(nnodes)  # internal force
+
+    # iterate through each element
+    for id in range(nelements):
+        # get nodal ids
+        nid1, nid2 = elements[id]
+        # compute shape functions and derivatives
+        N1 = 1 - abs(x_p[id] - x_n[nid1]) / dx
+        N2 = 1 - abs(x_p[id] - x_n[nid2]) / dx
+        dN1 = -1/dx
+        dN2 = 1/dx
+
+        # map particle mass and momentum to nodes
+        mass_n[nid1] += N1 * mass_p[id]
+        mass_n[nid2] += N2 * mass_p[id]
+        mom_n[nid1]  += N1 * mass_p[id] * vel_p[id]
+        mom_n[nid2]  += N2 * mass_p[id] * vel_p[id]
+
+        # compute nodal internal force
+        f_int_n[nid1] -= vol_p[id] * stress_p[id] * dN1
+        f_int_n[nid2] -= vol_p[id] * stress_p[id] * dN2
+
+    # apply boundary conditions
+    mom_n[0] = 0   # Nodal velocity v = 0 in m * v at node 0.
+    f_int_n[0] = 0 # Nodal force f = m * a, where a = 0 at node 0.
+
+    # update nodal momentum
+    for nid in range(nnodes):
+        mom_n[nid] += f_int_n[nid] * dt
+
+    # update particle velocity position and stress
+    # iterate through each element
+    for id in range(nelements):
+        # get nodal ids
+        nid1, nid2 = elements[id]
+        
+        # compute shape functions and derivatives
+        N1 = 1 - abs(x_p[id] - x_n[nid1]) / dx
+        N2 = 1 - abs(x_p[id] - x_n[nid2]) / dx
+        dN1 = -1/dx
+        dN2 = 1/dx
+
+        # compute particle velocity
+        if (mass_n[nid1]) &gt; tol:
+            vel_p[id] += dt * N1 * f_int_n[nid1] / mass_n[nid1]
+        if (mass_n[nid2]) &gt; tol:
+            vel_p[id] += dt * N2 * f_int_n[nid2] / mass_n[nid2]
+        
+        # update particle position based on nodal momentum
+        x_p[id] += dt * (N1 * mom_n[nid1]/mass_n[nid1] + N2 * mom_n[nid2]/mass_n[nid2])
+
+        # nodal velocity
+        nv1 = mom_n[nid1]/mass_n[nid1]
+        nv2 = mom_n[nid2]/mass_n[nid2]
+
+        # Apply boundary condition
+        if (nid1 == 0): nv1 = 0
+
+        # particle gradient velocity
+        grad_v = dN1 * nv1 + dN2 * nv2
+        # particle deformation gradient
+        gradf_p[id] = (1 + grad_v * dt) * gradf_p[id]
+        # particle volume
+        vol_p[id] = gradf_p[id] * vol0_p[id]
+        # particle dstrain
+        dstrain = grad_v * dt
+        # update stress using linear elastic model
+        stress_p[id] += E * dstrain
+
+    # update plot params
+    tt.append(t)
+    vt.append(vel_p[pmid])
+    xt.append(x_p[pmid])
+
+    t = t + dt
+
+plt.plot(tt, vt)
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_3_0.png" src="_images/axial-vibration1d_3_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x10ffb6910&gt;]
+</pre></div>
+</div>
+<img alt="_images/axial-vibration1d_6_1.png" src="_images/axial-vibration1d_6_1.png" />
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
