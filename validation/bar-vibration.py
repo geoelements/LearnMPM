@@ -1,4 +1,4 @@
-# include the modules path to the current path
+# include the learnmpm path to the current path
 import sys
 sys.path.append("..")
 
