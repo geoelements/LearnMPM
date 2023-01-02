@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Coding 1D MPM &#8212; Learn MPM</title>
+    <title>Axial vibration of 1D bar - LearnMPM &#8212; Learn MPM</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Axial vibration of 1D bar - LearnMPM" href="mpm1d-axial-vibration.html" />
-    <link rel="prev" title="Axial vibration of a 1D bar" href="axial-vibration1d.html" />
+    <link rel="prev" title="Coding 1D MPM" href="mpm-code.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -125,7 +124,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+  <a class="reference internal" href="mpm-code.html">
    Coding 1D MPM
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -133,9 +132,9 @@ const thebe_selector_output = ".output, .cell_output"
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="mpm1d-axial-vibration.html">
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Axial vibration of 1D bar - LearnMPM
     </a>
    </li>
@@ -188,6 +187,53 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/geoelements/learn-mpm/main?urlpath=lab/tree/docs/mpm1d-axial-vibration.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/docs/mpm1d-axial-vibration.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -227,7 +273,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Fmpm-code.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Fmpm1d-axial-vibration.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -255,7 +301,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/mpm-code.md"
+        <a href="_sources/mpm1d-axial-vibration.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -266,7 +312,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -304,7 +350,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Coding 1D MPM</h1>
+                <h1>Axial vibration of 1D bar - LearnMPM</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -316,21 +362,91 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="coding-1d-mpm">
-<h1>Coding 1D MPM<a class="headerlink" href="#coding-1d-mpm" title="Permalink to this headline">#</a></h1>
-<p><img alt="MPM entities" src="_images/mpm.png" /></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="axial-vibration-of-1d-bar-learnmpm">
+<h1>Axial vibration of 1D bar - LearnMPM<a class="headerlink" href="#axial-vibration-of-1d-bar-learnmpm" title="Permalink to this headline">#</a></h1>
+<p>Implementation of axial 1D bar using <code class="docutils literal notranslate"><span class="pre">LearnMPM</span></code> module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># include the learnmpm path to the current path
+import sys
+sys.path.append(&quot;..&quot;)
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+from analytical import axial_vibration_bar1d as avb
+
+from learnmpm import mesh
+from learnmpm import material
+from learnmpm import params as prms
+from learnmpm import solver
+
+# bar length
+Length = 25
+
+# number of elements
+nelements = 15
+
+# create an 1D mesh
+msh = mesh.Mesh1D(domain_size=Length, nelements=nelements)
+
+# define a linear material 
+elastic = material.LinearElastic1D(E=100, density=1)
+
+# generate particles in mesh elements and set the material
+msh.generate_particles_uniform(ppc = 2, material = elastic)
+# msh.generate_particles_gauss(ppc = 2,material = elastic)
+
+# setup the model
+params = prms.Params()
+params.mpm_scheme = &#39;USF&#39;
+params.nsteps = 600
+params.dt = 0.1
+params.solution_particle = -1
+params.solution_field = &#39;velocity&#39;
+params.damping = 0.0
+
+# verify time step
+dt_critical=msh.elements[0].size/np.sqrt(elastic.E/elastic.density)
+params.dt = params.dt if (params.dt &lt; dt_critical) else dt_critical
+
+# impose initial condition in particles
+vo = 0.1
+b1 = np.pi/2.0/Length
+for prtcl in msh.particles:
+  prtcl.velocity = vo * np.sin(b1 * prtcl.x)
+
+# solve the problem in time
+solver.explicit_solution(msh, params)
+</pre></div>
+</div>
+</div>
+</div>
 <blockquote>
-<div><p>MPM entities</p>
+<div><p>Plot results</p>
 </div></blockquote>
-<p><img alt="MPM 1D" src="_images/mpm1d.png" /></p>
-<blockquote>
-<div><p>1D MPM entities</p>
-</div></blockquote>
-<p><img alt="code overview" src="_images/mpm-code.png" /></p>
-<blockquote>
-<div><p>Overview of MPM code</p>
-</div></blockquote>
-<div class="toctree-wrapper compound">
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+# plot mpm solution
+plt.plot(params.solution_array[0], params.solution_array[1], &#39;ob&#39;, markersize = 2, label=&#39;mpm&#39;)
+
+# plot the analytical solution
+[anal_xt,anal_vt, anal_t] = avb.axial_vibration_bar1d(Length, elastic.E, elastic.density, 
+                                params.dt * params.nsteps, params.dt, vo, msh.particles[params.solution_particle].x)
+plt.plot(anal_t,anal_vt,&#39;r&#39;,linewidth=2,label=&#39;analytical&#39;)
+
+# configure axis, legends and show plot
+plt.xlabel(&#39;time (s)&#39;)
+plt.ylabel(&#39;velocity (m/s)&#39;)
+plt.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/mpm1d-axial-vibration_3_0.png" src="_images/mpm1d-axial-vibration_3_0.png" />
+</div>
 </div>
 </section>
 
@@ -361,19 +477,12 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="axial-vibration1d.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="mpm-code.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Axial vibration of a 1D bar</p>
+            <p class="prev-next-title">Coding 1D MPM</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="mpm1d-axial-vibration.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Axial vibration of 1D bar - LearnMPM</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
