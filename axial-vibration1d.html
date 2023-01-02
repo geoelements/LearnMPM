@@ -355,6 +355,40 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#mpm-axial-vibration-of-a-1d-bar">
    MPM axial vibration of a 1D bar
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-results">
+     Plot results
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extending-it-to-support-multiple-material-points">
+   Extending it to support multiple material points
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generating-material-points-in-a-cell">
+     Generating material points in a cell
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generating-multiple-material-points-per-cell">
+     Generating multiple material points per cell
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iterate-over-particles">
+     Iterate over particles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiple-material-points-per-cell">
+     Multiple material points per cell
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -379,6 +413,40 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#mpm-axial-vibration-of-a-1d-bar">
    MPM axial vibration of a 1D bar
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-results">
+     Plot results
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extending-it-to-support-multiple-material-points">
+   Extending it to support multiple material points
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generating-material-points-in-a-cell">
+     Generating material points in a cell
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generating-multiple-material-points-per-cell">
+     Generating multiple material points per cell
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iterate-over-particles">
+     Iterate over particles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiple-material-points-per-cell">
+     Multiple material points per cell
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -586,7 +654,7 @@ for step in range(nsteps):
         # particle dstrain
         dstrain = grad_v * dt
         # particle volume
-        vol_p[id] *= (1 + dstrain)
+        vol_p[id] *= (1 + dstrain)        
         # update stress using linear elastic model
         stress_p[id] += E * dstrain
 
@@ -596,8 +664,18 @@ for step in range(nsteps):
     xt.append(x_p[pmid])
 
     t = t + dt
-
-plt.plot(ta, va, &#39;r&#39;, linewidth=1,label=&#39;analytical&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="plot-results">
+<h3>Plot results<a class="headerlink" href="#plot-results" title="Permalink to this headline">#</a></h3>
+<blockquote>
+<div><p>Velocity</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(ta, va, &#39;r&#39;, linewidth=1,label=&#39;analytical&#39;)
 plt.plot(tt, vt, &#39;ob&#39;, markersize=1, label=&#39;mpm&#39;)
 
 plt.xlabel(&#39;time (s)&#39;)
@@ -608,9 +686,490 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_5_0.png" src="_images/axial-vibration1d_5_0.png" />
+<img alt="_images/axial-vibration1d_7_0.png" src="_images/axial-vibration1d_7_0.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(ta, xa, &#39;r&#39;, linewidth=1,label=&#39;analytical&#39;)
+plt.plot(tt, xt - xt[0], &#39;ob&#39;, markersize=1, label=&#39;mpm&#39;)
+
+plt.xlabel(&#39;time (s)&#39;)
+plt.ylabel(&#39;displacement (m)&#39;)
+plt.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/axial-vibration1d_8_0.png" src="_images/axial-vibration1d_8_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="extending-it-to-support-multiple-material-points">
+<h2>Extending it to support multiple material points<a class="headerlink" href="#extending-it-to-support-multiple-material-points" title="Permalink to this headline">#</a></h2>
+<p>The code we have written is specific for a two-noded element with a single material point at the center of the element. The first step is to implement multiple material points in an element. Let’s start with particle generation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Material point properties</span>
+<span class="n">x_p</span>      <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nparticles</span><span class="p">)</span>       <span class="c1"># positions</span>
+<span class="n">vol_p</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nparticles</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>   <span class="c1"># volume</span>
+<span class="n">mass_p</span>   <span class="o">=</span> <span class="n">vol_p</span> <span class="o">*</span> <span class="n">rho</span>                <span class="c1"># mass</span>
+<span class="n">stress_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nparticles</span><span class="p">)</span>       <span class="c1"># stress</span>
+<span class="n">vel_p</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nparticles</span><span class="p">)</span>       <span class="c1"># velocity</span>
+<span class="n">vol0_p</span>   <span class="o">=</span> <span class="n">vol_p</span>                      <span class="c1"># initial volume</span>
+
+<span class="c1"># Generate material points in cell</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nelements</span><span class="p">):</span>
+    <span class="c1"># Create particle at the center</span>
+    <span class="n">x_p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">x_n</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="c1"># set initial velocities</span>
+    <span class="n">vel_p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">b1</span> <span class="o">*</span> <span class="n">x_p</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>We are placing the particles at the center of the element, so the volume and mass of a particle is the volume and mass of the element. Let’s create a new variable called <code class="docutils literal notranslate"><span class="pre">ppc</span></code> (particles per cell) to support multiple material points (particles) per cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Material point properties
+# Unchanged definitions
+x_p      = np.zeros(nparticles)            # positions
+stress_p = np.zeros(nparticles)            # stress
+vel_p    = np.zeros(nparticles)            # velocity
+
+# New/updated variables
+ppc      = 1                               # particles / cell
+vol_p    = np.ones(nparticles) * dx / ppc  # volume
+
+# these variables haven&#39;t changed, they are updated based on vol
+mass_p   = vol_p * rho                     # mass
+vol0_p   = vol_p                           # initial volume
+</pre></div>
+</div>
+</div>
+</div>
+<section id="generating-material-points-in-a-cell">
+<h3>Generating material points in a cell<a class="headerlink" href="#generating-material-points-in-a-cell" title="Permalink to this headline">#</a></h3>
+<p>The current implementation generates a single material point per element.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x_p      = np.zeros(nparticles)            # positions
+# Generate material points in cell
+for i in range(nelements):
+    # Create particle at the center
+    x_p[i] = 0.5 * (x_n[i] + x_n[i+1])
+    # set initial velocities
+    vel_p[i] = v0 * np.sin(b1 * x_p[i])
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Let’s plot the current mesh with a single material point per cell and see how it looks</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Function to plot mesh
+import matplotlib.pyplot as plt
+def plot_mesh(elements, x_n, x_p, fontsize=13):
+    # plt.cla()
+    fig = plt.gcf()
+    fig.set_size_inches(15, 5)
+    eid = 0
+    for element in elements:
+        n1, n2 = element
+        n1x, n2x = x_n[n1], x_n[n2]
+        plt.plot([n1x,n2x],[0,0],&#39;--sk&#39;)
+        dy = 0.005
+        
+        x=(n1x + n2x)/2
+        plt.annotate(&quot;e%d&quot;%eid, xy=(x,-1.5*dy),fontsize=fontsize)
+        plt.annotate(&quot;n%d&quot;%n1, xy=(n1x,dy),fontsize=fontsize)
+        plt.annotate(&quot;n%d&quot;%n2, xy=(n2x,dy),fontsize=fontsize)
+        eid = eid + 1
+
+    pid = 0    
+    for x in x_p:
+        plt.plot(x,0,&#39;ob&#39;)
+        plt.annotate(&quot;p%d&quot;%pid, xy=(x, dy),fontsize=fontsize)
+        pid = pid + 1
+ 
+    n1 = elements[0][0]
+    x = x_n[n1]
+    y = -0.04
+    plt.annotate(&quot;n = node\np = material point\ne = element&quot;, xy=(x,y),fontsize=fontsize)
+    plt.xlabel(r&quot;Node position, $x_I$&quot;)
+    plt.title(&quot;Mesh and Material Points&quot;)
+    plt.show()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plot_mesh(elements, x_n, x_p)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/axial-vibration1d_15_0.png" src="_images/axial-vibration1d_15_0.png" />
+</div>
+</div>
+</section>
+<section id="generating-multiple-material-points-per-cell">
+<h3>Generating multiple material points per cell<a class="headerlink" href="#generating-multiple-material-points-per-cell" title="Permalink to this headline">#</a></h3>
+<p>Let’s define a function that takes the number of particles per cell as an argument and return an array of positions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def generate_particles(ppc, elements, x_n):
+    &quot;&quot;&quot;
+    Generate particles in mesh
+
+    Arguments:
+    ppc: int
+        number of particles per cell
+
+    elements: List
+        node ids of each element
+    
+    x_n: List
+        nodal coordinates
+    
+    Returns:
+    x_p: List
+        particle coordinates
+    el_pids: List
+        List of particle ids for each cell
+    &quot;&quot;&quot;
+    # ppc = number of particles per cell
+    # total number of particles
+    nparticles = nelements * ppc
+    # positions
+    x_p  = np.zeros(nparticles)
+    # particle id
+    pid = 0
+    eid = 0
+
+    # Create a map of particle ids to each element
+    mpoints = []
+    # iterate through each element
+    for element in elements:
+        # get nodal ids
+        n1, n2 = element
+        # get nodal coordinates
+        n1x, n2x = x_n[n1], x_n[n2]
+        # element length
+        dx = abs(n2x - n1x)
+        # create an empty list of particles for each cell
+        particles = []
+        # generate particles uniformly across the element
+        for _ in range(ppc):
+            # first particle
+            if(len(particles)==0):
+                x_p[pid] = n1x + dx/(2 * ppc)
+            # last particle
+            elif(len(particles)==(ppc - 1)):
+                x_p[pid] = n2x - dx/(2 * ppc)
+            # mid particles
+            else:
+                x_p[pid] = n1x + dx/(2 * ppc) + len(particles) * (dx/ppc)
+            
+            # Append to particles
+            particles.append(pid)
+            # particle id
+            pid += 1
+        
+        # Add pids to each element
+        mpoints.append(particles)
+        # element id    
+        eid += 1 
+
+    return x_p, mpoints
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>1 PPC</p>
+</div></blockquote>
+<p>Let us know generate a single material point per cell and plot to see if we get the same result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x_p, _ = generate_particles(ppc=1, elements=elements, x_n=x_n)
+plot_mesh(elements, x_n, x_p)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/axial-vibration1d_19_0.png" src="_images/axial-vibration1d_19_0.png" />
+</div>
+</div>
+<blockquote>
+<div><p>2 PPC</p>
+</div></blockquote>
+<p>Let us know generate two material point per cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x_p, _ = generate_particles(ppc=2, elements=elements, x_n=x_n)
+plot_mesh(elements, x_n, x_p, fontsize=9)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/axial-vibration1d_21_0.png" src="_images/axial-vibration1d_21_0.png" />
+</div>
+</div>
+</section>
+<section id="iterate-over-particles">
+<h3>Iterate over particles<a class="headerlink" href="#iterate-over-particles" title="Permalink to this headline">#</a></h3>
+<p>Now that we have the ability to generate multiple material points per cell, we should also change how we loop over particle to map particle properties to node. Instead of mapping a single material property to the node, we need to map all particles’ properties in the element to the node.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># iterate through each element</span>
+    <span class="k">for</span> <span class="n">eid</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nelements</span><span class="p">):</span>
+        <span class="c1"># get nodal ids</span>
+        <span class="n">nid1</span><span class="p">,</span> <span class="n">nid2</span> <span class="o">=</span> <span class="n">elements</span><span class="p">[</span><span class="n">eid</span><span class="p">]</span>
+
+        <span class="c1"># compute shape functions and derivatives</span>
+        <span class="n">N1</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_p</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">-</span> <span class="n">x_n</span><span class="p">[</span><span class="n">nid1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span>
+        <span class="n">N2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_p</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">-</span> <span class="n">x_n</span><span class="p">[</span><span class="n">nid2</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span>
+        <span class="n">dN1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">dx</span>
+        <span class="n">dN2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">dx</span>
+
+        <span class="c1"># map particle mass and momentum to nodes</span>
+        <span class="n">mass_n</span><span class="p">[</span><span class="n">nid1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">N1</span> <span class="o">*</span> <span class="n">mass_p</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
+        <span class="n">mass_n</span><span class="p">[</span><span class="n">nid2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">N2</span> <span class="o">*</span> <span class="n">mass_p</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
+        <span class="n">mom_n</span><span class="p">[</span><span class="n">nid1</span><span class="p">]</span>  <span class="o">+=</span> <span class="n">N1</span> <span class="o">*</span> <span class="n">mass_p</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">*</span> <span class="n">vel_p</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
+        <span class="n">mom_n</span><span class="p">[</span><span class="n">nid2</span><span class="p">]</span>  <span class="o">+=</span> <span class="n">N2</span> <span class="o">*</span> <span class="n">mass_p</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">*</span> <span class="n">vel_p</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
+
+        <span class="c1"># compute nodal internal force</span>
+        <span class="n">fint_n</span><span class="p">[</span><span class="n">nid1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">vol_p</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">*</span> <span class="n">stress_p</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">*</span> <span class="n">dN1</span>
+        <span class="n">fint_n</span><span class="p">[</span><span class="n">nid2</span><span class="p">]</span> <span class="o">-=</span> <span class="n">vol_p</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">*</span> <span class="n">stress_p</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">*</span> <span class="n">dN2</span>
+</pre></div>
+</div>
+<p>We need the associated particle ids for each element. We have the variable <code class="docutils literal notranslate"><span class="pre">mpoints</span></code> returned by <code class="docutils literal notranslate"><span class="pre">generate_particles()</span></code> function. The variable <code class="docutils literal notranslate"><span class="pre">mpoints</span></code> maps the particle ids to each element. Now we can iterate through all the particles in each element, instead of one particle per element.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># iterate through each element</span>
+<span class="k">for</span> <span class="n">eid</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nelements</span><span class="p">):</span>
+    <span class="c1"># get nodal ids</span>
+    <span class="n">nid1</span><span class="p">,</span> <span class="n">nid2</span> <span class="o">=</span> <span class="n">elements</span><span class="p">[</span><span class="n">eid</span><span class="p">]</span>    
+    <span class="c1"># get particle ids associated with the element </span>
+    <span class="n">mpts</span> <span class="o">=</span> <span class="n">mpoints</span><span class="p">[</span><span class="n">eid</span><span class="p">]</span>
+    <span class="c1"># iterate through all particles in the element</span>
+    <span class="k">for</span> <span class="n">pid</span> <span class="ow">in</span> <span class="n">mpts</span><span class="p">:</span>
+        <span class="c1"># compute shape functions and derivatives</span>
+        <span class="n">N1</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_p</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="o">-</span> <span class="n">x_n</span><span class="p">[</span><span class="n">nid1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span>
+        <span class="n">N2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_p</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="o">-</span> <span class="n">x_n</span><span class="p">[</span><span class="n">nid2</span><span class="p">])</span> <span class="o">/</span> <span class="n">dx</span>
+        <span class="n">dN1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">dx</span>
+        <span class="n">dN2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">dx</span>
+
+        <span class="c1"># map particle mass and momentum to nodes</span>
+        <span class="n">mass_n</span><span class="p">[</span><span class="n">nid1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">N1</span> <span class="o">*</span> <span class="n">mass_p</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span>
+        <span class="n">mass_n</span><span class="p">[</span><span class="n">nid2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">N2</span> <span class="o">*</span> <span class="n">mass_p</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span>
+        <span class="n">mom_n</span><span class="p">[</span><span class="n">nid1</span><span class="p">]</span>  <span class="o">+=</span> <span class="n">N1</span> <span class="o">*</span> <span class="n">mass_p</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="o">*</span> <span class="n">vel_p</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span>
+        <span class="n">mom_n</span><span class="p">[</span><span class="n">nid2</span><span class="p">]</span>  <span class="o">+=</span> <span class="n">N2</span> <span class="o">*</span> <span class="n">mass_p</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="o">*</span> <span class="n">vel_p</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span>
+
+        <span class="c1"># compute nodal internal force</span>
+        <span class="n">fint_n</span><span class="p">[</span><span class="n">nid1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">vol_p</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="o">*</span> <span class="n">stress_p</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="o">*</span> <span class="n">dN1</span>
+        <span class="n">fint_n</span><span class="p">[</span><span class="n">nid2</span><span class="p">]</span> <span class="o">-=</span> <span class="n">vol_p</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="o">*</span> <span class="n">stress_p</span><span class="p">[</span><span class="n">pid</span><span class="p">]</span> <span class="o">*</span> <span class="n">dN2</span>
+</pre></div>
+</div>
+<p>Similarly, we will modify the mapping from node to particles.</p>
+</section>
+<section id="multiple-material-points-per-cell">
+<h3>Multiple material points per cell<a class="headerlink" href="#multiple-material-points-per-cell" title="Permalink to this headline">#</a></h3>
+<p>Full implementation to support multiple material points per cell. The following example shows how to perform the axial vibration in a 1D bar with 2 particles per cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+import matplotlib.pyplot as plt
+
+# particles per cell
+ppc      = 2                 
+
+# mass tolerance
+tol = 1e-12
+
+# Domain
+L = 25
+
+# Material properties
+E = 100
+rho = 1
+
+# Computational grid
+
+nelements = 13 # number of elements
+dx = L / nelements # element length
+
+# Create equally spaced nodes
+x_n = np.linspace(0, L, nelements+1)
+nnodes = len(x_n)
+
+# Set-up a 2D array of elements with node ids
+elements = np.zeros((nelements, 2), dtype = int)
+for nid in range(nelements):
+    elements[nid, :] = np.array([nid, nid+1])
+
+# Loading conditions
+v0 = 0.1             # initial velocity
+c  = np.sqrt(E/rho)  # speed of sound
+b1 = np.pi / (2 * L) # beta1
+w1 = b1 * c          # omega1
+
+# Create material points 
+nparticles = nelements * ppc  # number of particles
+# Id of the particle in the central element
+pmid = int(np.floor((nparticles/2)))
+
+# Material point properties
+x_p      = np.zeros(nparticles)       # positions
+vol_p    = np.ones(nparticles)*dx/ppc # volume
+mass_p   = vol_p * rho                # mass
+stress_p = np.zeros(nparticles)       # stress
+vel_p    = np.zeros(nparticles)       # velocity
+vol0_p   = vol_p                      # initial volume
+defg_p   = np.ones(nparticles)
+
+# Generate particles
+x_p, mpoints = generate_particles(ppc, elements, x_n)
+
+for i in range(nparticles):
+    # set initial velocities
+    vel_p[i] = v0 * np.sin(b1 * x_p[i])
+
+# Time steps and duration
+duration = 100
+dt_crit = dx / c
+dt = 0.1 * dt_crit
+t = 0
+nsteps = int(duration / dt)
+
+tt, vt, xt = [], [], []
+
+for step in range(nsteps):
+    # reset nodal values
+    mass_n  = np.zeros(nnodes)  # mass
+    mom_n   = np.zeros(nnodes)  # momentum
+    fint_n = np.zeros(nnodes)  # internal force
+
+    # iterate through each element
+    for eid in range(nelements):
+        # get nodal ids
+        nid1, nid2 = elements[eid]
+        # get particle ids associated with the element 
+        mpts = mpoints[eid]
+        # iterate through all particles in the element
+        for pid in mpts:
+            # compute shape functions and derivatives
+            N1 = 1 - abs(x_p[pid] - x_n[nid1]) / dx
+            N2 = 1 - abs(x_p[pid] - x_n[nid2]) / dx
+            dN1 = -1/dx
+            dN2 = 1/dx
+
+            # map particle mass and momentum to nodes
+            mass_n[nid1] += N1 * mass_p[pid]
+            mass_n[nid2] += N2 * mass_p[pid]
+            mom_n[nid1]  += N1 * mass_p[pid] * vel_p[pid]
+            mom_n[nid2]  += N2 * mass_p[pid] * vel_p[pid]
+
+            # compute nodal internal force
+            fint_n[nid1] -= vol_p[pid] * stress_p[pid] * dN1
+            fint_n[nid2] -= vol_p[pid] * stress_p[pid] * dN2
+
+    # apply boundary conditions
+    mom_n[0]  = 0  # Nodal velocity v = 0 in m * v at node 0.
+    fint_n[0] = 0  # Nodal force f = m * a, where a = 0 at node 0.
+
+    # update nodal momentum
+    for nid in range(nnodes):
+        mom_n[nid] += fint_n[nid] * dt
+
+    # update particle velocity position and stress
+    # iterate through each element
+    for eid in range(nelements):
+        # get nodal ids
+        nid1, nid2 = elements[eid]
+        # get particle ids associated with the element 
+        mpts = mpoints[eid]
+        # iterate through all particles in the element
+        for pid in mpts:
+            # compute shape functions and derivatives
+            N1 = 1 - abs(x_p[pid] - x_n[nid1]) / dx
+            N2 = 1 - abs(x_p[pid] - x_n[nid2]) / dx
+            dN1 = -1/dx
+            dN2 = 1/dx
+
+            # compute particle velocity
+            if (mass_n[nid1]) &gt; tol:
+                vel_p[pid] += dt * N1 * fint_n[nid1] / mass_n[nid1]
+            if (mass_n[nid2]) &gt; tol:
+                vel_p[pid] += dt * N2 * fint_n[nid2] / mass_n[nid2]
+            
+            # update particle position based on nodal momentum
+            x_p[pid] += dt * (N1 * mom_n[nid1]/mass_n[nid1] + N2 * mom_n[nid2]/mass_n[nid2])
+
+            # nodal velocity
+            nv1 = mom_n[nid1]/mass_n[nid1]
+            nv2 = mom_n[nid2]/mass_n[nid2]
+
+            # Apply boundary condition
+            # Rendundant, since momentum and forces are already set to zero
+            # if (nid1 == 0): nv1 = 0
+
+            # rate of strain increment
+            grad_v = dN1 * nv1 + dN2 * nv2
+            # particle dstrain
+            dstrain = grad_v * dt
+            # particle volume
+            vol_p[pid] *= (1 + dstrain)        
+            # update stress using linear elastic model
+            stress_p[pid] += E * dstrain
+
+    # update plot params
+    tt.append(t)
+    vt.append(vel_p[pmid])
+    xt.append(x_p[pmid])
+
+    t = t + dt
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Plot velocity at the center of the bar</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(ta, va, &#39;r&#39;, linewidth=1,label=&#39;analytical&#39;)
+plt.plot(tt, vt, &#39;ob&#39;, markersize=1, label=&#39;mpm&#39;)
+
+plt.xlabel(&#39;time (s)&#39;)
+plt.ylabel(&#39;velocity (m/s)&#39;)
+plt.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/axial-vibration1d_26_0.png" src="_images/axial-vibration1d_26_0.png" />
+</div>
+</div>
+<blockquote>
+<div><p>Plot displacement at the center of the bar</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(ta, xa, &#39;r&#39;, linewidth=1,label=&#39;analytical&#39;)
+plt.plot(tt, xt-xt[0], &#39;ob&#39;, markersize=1, label=&#39;mpm&#39;)
+
+plt.xlabel(&#39;time (s)&#39;)
+plt.ylabel(&#39;displacement (m)&#39;)
+plt.legend()
+plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/axial-vibration1d_28_0.png" src="_images/axial-vibration1d_28_0.png" />
+</div>
+</div>
+</section>
 </section>
 </section>
 
