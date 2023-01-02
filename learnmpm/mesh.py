@@ -10,9 +10,9 @@ class Mesh1D:
         self.nodes = []       # List of nodes
         self.elements = []    # List of elements
         self.particles = []   # List of particles
-        
+        self.boundary_nodes = []      # List of boundary nodes
         self.nelements = nelements    # Number of elements in mesh
-        self.dim = 1          # Dimension
+        self.dim = 1                  # Dimension
 
         # Subsequent elements
         for i in range(nelements):

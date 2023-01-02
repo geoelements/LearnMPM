@@ -19,6 +19,15 @@ def nodal_velocity(mesh):
         if(node.mass > 0.):
             node.velocity = node.momentum / node.mass
 
+def fix_nodal_bc_momentum(mesh):
+    for nid in mesh.boundary_nodes:
+        mesh.nodes[nid].momentum = 0
+        mesh.nodes[nid].velocity = 0
+
+def fix_nodal_bc_force(mesh):
+    for nid in mesh.boundary_nodes:
+        mesh.nodes[nid].f_total = 0
+
 def momentum_in_nodes(mesh, dt):
     for node in mesh.nodes:
         node.momentum += node.f_total * dt

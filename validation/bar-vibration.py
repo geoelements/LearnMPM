@@ -47,6 +47,9 @@ b1 = np.pi/2.0/Length
 for prtcl in msh.particles:
   prtcl.velocity = vo * np.sin(b1 * prtcl.x)
 
+# Apply boundary conditions
+msh.boundary_nodes = [0]
+
 # solve the problem in time
 solver.explicit_solution(msh, params)
     

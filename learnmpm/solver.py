@@ -25,7 +25,7 @@ def explicit_solution(mesh, params):
         interpolate.mass_momentum_to_nodes(mesh)
 
         # impose essential boundary conditions (in fixed nodes set mv=0)
-        mesh.elements[0].nodes[0].momentum = 0
+        update.fix_nodal_bc_momentum(mesh)
 
         if params.mpm_scheme == 'USF':
             compute_stress(mesh, params)
@@ -40,7 +40,7 @@ def explicit_solution(mesh, params):
         update.nodal_total_force(mesh)
         
         # impose essential boundary conditions (in fixed nodes set f=m*a=0)
-        mesh.elements[0].nodes[0].f_total=0
+        update.fix_nodal_bc_force(mesh)
         
         # integrate the grid nodal momentum equation
         update.momentum_in_nodes(mesh, params.dt)
@@ -56,7 +56,7 @@ def explicit_solution(mesh, params):
         # update.nodal_acceleration_velocity(mesh, params.dt)
 
         # # impose essential boundary conditions (in fixed nodes set f=m*a=0)
-        # mesh.elements[0].nodes[0].velocity = 0
+        # update.fix_nodal_bc_momentum(mesh)
 
         # # update particle position
         # update.particle_position_velocity(mesh, params.dt)
@@ -64,9 +64,8 @@ def explicit_solution(mesh, params):
         if (params.mpm_scheme == 'MUSL'):
             # recalculate the nodal momentum
             update.nodal_momentum(mesh)
-            # impose essential boundary conditions (in fixed nodes v=0)
-            mesh.elements[0].nodes[0].velocity=0
-            mesh.elements[0].nodes[0].momentum=0
+            # impose essential boundary conditions (in fixed nodes set v=0)
+            update.fix_nodal_bc_momentum(mesh)
         
         # Modified Update Stress Last or Update Stress Last Scheme
         if (params.mpm_scheme == 'MUSL' or params.mpm_scheme == 'USL'):
