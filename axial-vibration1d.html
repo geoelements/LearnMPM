@@ -550,9 +550,6 @@ elements = np.zeros((nelements, 2), dtype = int)
 for nid in range(nelements):
     elements[nid, :] = np.array([nid, nid+1])
 
-# Id of the particle in the central element
-pmid = int(np.floor((nelements/2)))
-
 # Loading conditions
 v0 = 0.1             # initial velocity
 c  = np.sqrt(E/rho)  # speed of sound
@@ -561,6 +558,8 @@ w1 = b1 * c          # omega1
 
 # Create material points at the center of each element
 nparticles = nelements  # number of particles
+# Id of the particle in the central element
+pmid = int(np.floor((nparticles/2)))
 
 # Material point properties
 x_p      = np.zeros(nparticles)       # positions
