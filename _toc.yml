@@ -7,3 +7,5 @@ chapters:
 - file: bar1d-vibration
 - file: axial-vibration1d
 - file: mpm-code
+  sections:
+    - file: mpm1d-axial-vibration
