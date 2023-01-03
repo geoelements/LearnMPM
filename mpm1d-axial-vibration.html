@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Axial vibration of 1D bar - LearnMPM &#8212; Learn MPM</title>
+    <title>Axial vibration of 1D bar using LearnMPM &#8212; Learn MPM</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -135,7 +135,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Axial vibration of 1D bar - LearnMPM
+     Axial vibration of 1D bar using LearnMPM
     </a>
    </li>
   </ul>
@@ -350,7 +350,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Axial vibration of 1D bar - LearnMPM</h1>
+                <h1>Axial vibration of 1D bar using LearnMPM</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -362,8 +362,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="axial-vibration-of-1d-bar-learnmpm">
-<h1>Axial vibration of 1D bar - LearnMPM<a class="headerlink" href="#axial-vibration-of-1d-bar-learnmpm" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="axial-vibration-of-1d-bar-using-learnmpm">
+<h1>Axial vibration of 1D bar using LearnMPM<a class="headerlink" href="#axial-vibration-of-1d-bar-using-learnmpm" title="Permalink to this headline">#</a></h1>
 <p>Implementation of axial 1D bar using <code class="docutils literal notranslate"><span class="pre">LearnMPM</span></code> module.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -402,8 +402,8 @@ params = prms.Params()
 params.mpm_scheme = &#39;USF&#39;
 params.nsteps = 600
 params.dt = 0.1
-params.solution_particle = -1
-params.solution_field = &#39;velocity&#39;
+params.results_particle = -1
+params.results_fields = [&#39;velocity&#39;, &#39;position&#39;]
 params.damping = 0.0
 
 # verify time step
@@ -430,13 +430,14 @@ solver.explicit_solution(msh, params)
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># get analytical solution
+[anal_xt,anal_vt, anal_t] = avb.axial_vibration_bar1d(Length, elastic.E, elastic.density, 
+                              params.dt * params.nsteps, params.dt, vo, msh.particles[params.results_particle].x)
+    
 # plot mpm solution
-plt.plot(params.solution_array[0], params.solution_array[1], &#39;ob&#39;, markersize = 2, label=&#39;mpm&#39;)
+plt.plot(params.results[&#39;time&#39;], params.results[&#39;velocity&#39;], &#39;ob&#39;, markersize = 2, label=&#39;mpm&#39;)
 
 # plot the analytical solution
-[anal_xt,anal_vt, anal_t] = avb.axial_vibration_bar1d(Length, elastic.E, elastic.density, 
-                                params.dt * params.nsteps, params.dt, vo, msh.particles[params.solution_particle].x)
 plt.plot(anal_t,anal_vt,&#39;r&#39;,linewidth=2,label=&#39;analytical&#39;)
 
 # configure axis, legends and show plot
