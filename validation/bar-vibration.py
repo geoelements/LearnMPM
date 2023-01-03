@@ -33,8 +33,8 @@ params = prms.Params()
 params.mpm_scheme = 'USF'
 params.nsteps = 600
 params.dt = 0.1
-params.result_particle = -1
-params.results_fields = ['velocity']
+params.results_particle = -1
+params.results_fields = ['velocity', 'position']
 params.damping = 0.0
 
 # verify time step
@@ -52,14 +52,15 @@ msh.boundary_nodes = [0]
 
 # solve the problem in time
 solver.explicit_solution(msh, params)
+
+# get analytical solution
+[anal_xt,anal_vt, anal_t] = avb.axial_vibration_bar1d(Length, elastic.E, elastic.density, 
+                              params.dt * params.nsteps, params.dt, vo, msh.particles[params.results_particle].x)
     
 # plot mpm solution
 plt.plot(params.results['time'], params.results['velocity'], 'ob', markersize = 2, label='mpm')
 
 # plot the analytical solution
-# TODO: Fix id of particle
-[anal_xt,anal_vt, anal_t] = avb.axial_vibration_bar1d(Length, elastic.E, elastic.density, 
-                                params.dt * params.nsteps, params.dt, vo, msh.particles[-1].x)
 plt.plot(anal_t,anal_vt,'r',linewidth=2,label='analytical')
 
 # configure axis, legends and show plot

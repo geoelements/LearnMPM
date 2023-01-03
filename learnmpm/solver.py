@@ -57,16 +57,6 @@ def explicit_solution(mesh, params):
         # update particle position
         update.particle_position(mesh, params.dt)
 
-        #TODO: Fix velocity update
-        # # calculate nodal acceleration and velocity
-        # update.nodal_acceleration_velocity(mesh, params.dt)
-
-        # # impose essential boundary conditions (in fixed nodes set f=m*a=0)
-        # update.fix_nodal_bc_momentum(mesh)
-
-        # # update particle position
-        # update.particle_position_velocity(mesh, params.dt)
-
         if (params.mpm_scheme == 'MUSL'):
             # recalculate the nodal momentum
             update.nodal_momentum(mesh)
@@ -84,10 +74,9 @@ def explicit_solution(mesh, params):
         params.results['time'].append(i*params.dt)
         
         #TODO: Fix 0 index
-        #TODO: Fix particle indexing
         if 'velocity' in params.results_fields:
-            params.results['velocity'].append(mesh.elements[-1].particles[-1].velocity[0])
+            params.results['velocity'].append(mesh.particles[params.results_particle].velocity[0])
 
         if 'position' in params.results_fields:
-            params.results['position'].append(mesh.particles[params.solution_particle].x[0])
+            params.results['position'].append(mesh.particles[params.results_particle].x[0])
     
