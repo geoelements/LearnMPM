@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Solving 1D vibrating bar with Material Point Method &#8212; Learn MPM</title>
+    <title>1D vibration of a single material point &#8212; Learn MPM</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -118,7 +118,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Solving 1D vibrating bar with Material Point Method
+   1D vibration of a single material point
   </a>
  </li>
  <li class="toctree-l1">
@@ -137,7 +137,7 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="mpm1d-axial-vibration.html">
+    <a class="reference internal" href="learnmpm-axial-vibration1d.html">
      Axial vibration of 1D bar using LearnMPM
     </a>
    </li>
@@ -198,7 +198,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/geoelements/learn-mpm/main?urlpath=lab/tree/docs/bar1d-vibration.ipynb"
+        <a href="https://mybinder.org/v2/gh/geoelements/learn-mpm/main?urlpath=lab/tree/docs/point-axial-vibration1d.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -216,7 +216,7 @@ title="Launch on Binder"
       </li>
       
       <li>
-        <a href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/docs/bar1d-vibration.ipynb"
+        <a href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/docs/point-axial-vibration1d.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -276,7 +276,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Fbar1d-vibration.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Fpoint-axial-vibration1d.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -304,7 +304,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/bar1d-vibration.ipynb"
+        <a href="_sources/point-axial-vibration1d.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -518,7 +518,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Solving 1D vibrating bar with Material Point Method</h1>
+                <h1>1D vibration of a single material point</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -684,17 +684,9 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="solving-1d-vibrating-bar-with-material-point-method">
-<h1>Solving 1D vibrating bar with Material Point Method<a class="headerlink" href="#solving-1d-vibrating-bar-with-material-point-method" title="Permalink to this headline">#</a></h1>
-<p><a class="reference external" href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/bar1d-vibration.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import sys
-sys.path.append(&quot;..&quot;)
-</pre></div>
-</div>
-</div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="d-vibration-of-a-single-material-point">
+<h1>1D vibration of a single material point<a class="headerlink" href="#d-vibration-of-a-single-material-point" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/book/bar1d-vibration.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>Let us consider the vibration of a single material point as shown below. The bar is represented by a single point initially located at <span class="math notranslate nohighlight">\(x_p = L/2\)</span>, which has an initial velocity <span class="math notranslate nohighlight">\(v_0\)</span>. The material is linear elastic.</p>
 <p><img alt="bar1d" src="_images/bar1d.png" /></p>
 <p>The exact solution for the velocity is: <span class="math notranslate nohighlight">\(v(t) = v_0 \cos (\omega t), \quad \omega = \frac{1}{L}\sqrt{E/\rho}\)</span></p>
@@ -745,7 +737,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_6_0.png" src="_images/bar1d-vibration_6_0.png" />
+<img alt="_images/point-axial-vibration1d_4_0.png" src="_images/point-axial-vibration1d_4_0.png" />
 </div>
 </div>
 </section>
@@ -878,7 +870,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_17_0.png" src="_images/bar1d-vibration_17_0.png" />
+<img alt="_images/point-axial-vibration1d_15_0.png" src="_images/point-axial-vibration1d_15_0.png" />
 </div>
 </div>
 <p>The derivative of the shape function is:</p>
@@ -906,7 +898,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_19_0.png" src="_images/bar1d-vibration_19_0.png" />
+<img alt="_images/point-axial-vibration1d_17_0.png" src="_images/point-axial-vibration1d_17_0.png" />
 </div>
 </div>
 <section id="shape-function-for-material-point">
@@ -1374,7 +1366,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_54_0.png" src="_images/bar1d-vibration_54_0.png" />
+<img alt="_images/point-axial-vibration1d_52_0.png" src="_images/point-axial-vibration1d_52_0.png" />
 </div>
 </div>
 <blockquote>
@@ -1393,7 +1385,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_56_0.png" src="_images/bar1d-vibration_56_0.png" />
+<img alt="_images/point-axial-vibration1d_54_0.png" src="_images/point-axial-vibration1d_54_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1410,7 +1402,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_57_0.png" src="_images/bar1d-vibration_57_0.png" />
+<img alt="_images/point-axial-vibration1d_55_0.png" src="_images/point-axial-vibration1d_55_0.png" />
 </div>
 </div>
 </section>

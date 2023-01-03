@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Coding 1D MPM" href="mpm-code.html" />
-    <link rel="prev" title="Solving 1D vibrating bar with Material Point Method" href="bar1d-vibration.html" />
+    <link rel="prev" title="1D vibration of a single material point" href="point-axial-vibration1d.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -117,8 +117,8 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="bar1d-vibration.html">
-   Solving 1D vibrating bar with Material Point Method
+  <a class="reference internal" href="point-axial-vibration1d.html">
+   1D vibration of a single material point
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -137,7 +137,7 @@ const thebe_selector_output = ".output, .cell_output"
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="mpm1d-axial-vibration.html">
+    <a class="reference internal" href="learnmpm-axial-vibration1d.html">
      Axial vibration of 1D bar using LearnMPM
     </a>
    </li>
@@ -472,15 +472,7 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="axial-vibration-of-a-1d-bar">
 <h1>Axial vibration of a 1D bar<a class="headerlink" href="#axial-vibration-of-a-1d-bar" title="Permalink to this headline">#</a></h1>
-<p><a class="reference external" href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/axial-vibration1d.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import sys
-sys.path.append(&quot;..&quot;)
-</pre></div>
-</div>
-</div>
-</div>
+<p><a class="reference external" href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/book/axial-vibration1d.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>Let’s study the axial vibration of a continuum bar with Young’s modulus E = 100 and the bar length L = 25.
 Exact solutions for mode 1 are:</p>
 <p><span class="math notranslate nohighlight">\(v(x, t) = v_0 \cos(\omega_1 t) \sin(\beta_1 x)\)</span></p>
@@ -535,7 +527,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_5_0.png" src="_images/axial-vibration1d_5_0.png" />
+<img alt="_images/axial-vibration1d_3_0.png" src="_images/axial-vibration1d_3_0.png" />
 </div>
 </div>
 <section id="mpm-axial-vibration-of-a-1d-bar">
@@ -705,7 +697,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_9_0.png" src="_images/axial-vibration1d_9_0.png" />
+<img alt="_images/axial-vibration1d_7_0.png" src="_images/axial-vibration1d_7_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -721,7 +713,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_10_0.png" src="_images/axial-vibration1d_10_0.png" />
+<img alt="_images/axial-vibration1d_8_0.png" src="_images/axial-vibration1d_8_0.png" />
 </div>
 </div>
 </section>
@@ -829,7 +821,7 @@ def plot_mesh(elements, x_n, x_p, fontsize=13):
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_17_0.png" src="_images/axial-vibration1d_17_0.png" />
+<img alt="_images/axial-vibration1d_15_0.png" src="_images/axial-vibration1d_15_0.png" />
 </div>
 </div>
 </section>
@@ -918,7 +910,7 @@ plot_mesh(elements, x_n, x_p)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_21_0.png" src="_images/axial-vibration1d_21_0.png" />
+<img alt="_images/axial-vibration1d_19_0.png" src="_images/axial-vibration1d_19_0.png" />
 </div>
 </div>
 <blockquote>
@@ -933,7 +925,7 @@ plot_mesh(elements, x_n, x_p, fontsize=9)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_23_0.png" src="_images/axial-vibration1d_23_0.png" />
+<img alt="_images/axial-vibration1d_21_0.png" src="_images/axial-vibration1d_21_0.png" />
 </div>
 </div>
 </section>
@@ -1166,7 +1158,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_28_0.png" src="_images/axial-vibration1d_28_0.png" />
+<img alt="_images/axial-vibration1d_26_0.png" src="_images/axial-vibration1d_26_0.png" />
 </div>
 </div>
 <blockquote>
@@ -1185,7 +1177,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_30_0.png" src="_images/axial-vibration1d_30_0.png" />
+<img alt="_images/axial-vibration1d_28_0.png" src="_images/axial-vibration1d_28_0.png" />
 </div>
 </div>
 </section>
@@ -1219,11 +1211,11 @@ plt.show()
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="bar1d-vibration.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="point-axial-vibration1d.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Solving 1D vibrating bar with Material Point Method</p>
+            <p class="prev-next-title">1D vibration of a single material point</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="mpm-code.html" title="next page">
