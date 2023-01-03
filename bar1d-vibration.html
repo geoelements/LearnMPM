@@ -687,6 +687,14 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="solving-1d-vibrating-bar-with-material-point-method">
 <h1>Solving 1D vibrating bar with Material Point Method<a class="headerlink" href="#solving-1d-vibrating-bar-with-material-point-method" title="Permalink to this headline">#</a></h1>
 <p><a class="reference external" href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/bar1d-vibration.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import sys
+sys.path.append(&quot;..&quot;)
+</pre></div>
+</div>
+</div>
+</div>
 <p>Let us consider the vibration of a single material point as shown below. The bar is represented by a single point initially located at <span class="math notranslate nohighlight">\(x_p = L/2\)</span>, which has an initial velocity <span class="math notranslate nohighlight">\(v_0\)</span>. The material is linear elastic.</p>
 <p><img alt="bar1d" src="_images/bar1d.png" /></p>
 <p>The exact solution for the velocity is: <span class="math notranslate nohighlight">\(v(t) = v_0 \cos (\omega t), \quad \omega = \frac{1}{L}\sqrt{E/\rho}\)</span></p>
@@ -737,7 +745,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_4_0.png" src="_images/bar1d-vibration_4_0.png" />
+<img alt="_images/bar1d-vibration_6_0.png" src="_images/bar1d-vibration_6_0.png" />
 </div>
 </div>
 </section>
@@ -870,7 +878,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_15_0.png" src="_images/bar1d-vibration_15_0.png" />
+<img alt="_images/bar1d-vibration_17_0.png" src="_images/bar1d-vibration_17_0.png" />
 </div>
 </div>
 <p>The derivative of the shape function is:</p>
@@ -898,7 +906,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_17_0.png" src="_images/bar1d-vibration_17_0.png" />
+<img alt="_images/bar1d-vibration_19_0.png" src="_images/bar1d-vibration_19_0.png" />
 </div>
 </div>
 <section id="shape-function-for-material-point">
@@ -1366,7 +1374,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_52_0.png" src="_images/bar1d-vibration_52_0.png" />
+<img alt="_images/bar1d-vibration_54_0.png" src="_images/bar1d-vibration_54_0.png" />
 </div>
 </div>
 <blockquote>
@@ -1385,7 +1393,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_54_0.png" src="_images/bar1d-vibration_54_0.png" />
+<img alt="_images/bar1d-vibration_56_0.png" src="_images/bar1d-vibration_56_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1402,7 +1410,7 @@ plt.show()
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bar1d-vibration_55_0.png" src="_images/bar1d-vibration_55_0.png" />
+<img alt="_images/bar1d-vibration_57_0.png" src="_images/bar1d-vibration_57_0.png" />
 </div>
 </div>
 </section>
