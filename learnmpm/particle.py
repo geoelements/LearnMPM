@@ -1,5 +1,5 @@
 import numpy as np
-from learnmpm import element
+from LearnMPM import element
 
 class Particle1D:
     def __init__(self, mass, x, xi, material):

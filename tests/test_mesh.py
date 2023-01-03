@@ -3,9 +3,9 @@
 import sys
 sys.path.append("..")
 
-from learnmpm import mesh
-from learnmpm import material
-from learnmpm import interpolate
+from LearnMPM import mesh
+from LearnMPM import material
+from LearnMPM import interpolate
 
 def test_mesh_init():
     msh = mesh.Mesh1D(10,1)

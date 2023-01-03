@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Kumar
+    given-names: Krishna
+    orcid: https://orcid.org/0000-0003-2144-5562 
+  
+title: "LearnMPM: v1.0.0"
+version: v1.0.0
+doi: 
+date-released: 2023-01-03
+url: "https://github.com/geoelements/learnmpm"

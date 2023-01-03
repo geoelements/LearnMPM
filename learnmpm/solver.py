@@ -1,5 +1,5 @@
-from learnmpm import update
-from learnmpm import interpolate
+from LearnMPM import update
+from LearnMPM import interpolate
 
 def compute_stress(mesh, params):
     # calculate the grid nodal velocity

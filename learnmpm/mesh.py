@@ -1,9 +1,9 @@
 import numpy as np
 
-from learnmpm import element
-from learnmpm import node
-from learnmpm import particle
-from learnmpm import shapefn
+from LearnMPM import element
+from LearnMPM import node
+from LearnMPM import particle
+from LearnMPM import shapefn
 
 class Mesh1D:
     def __init__(self, domain_size, nelements):
