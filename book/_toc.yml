@@ -4,8 +4,8 @@
 format: jb-book
 root: intro
 chapters:
-- file: bar1d-vibration
+- file: point-axial-vibration1d
 - file: axial-vibration1d
 - file: mpm-code
   sections:
-    - file: mpm1d-axial-vibration
+    - file: learnmpm-axial-vibration1d
