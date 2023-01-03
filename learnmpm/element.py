@@ -31,6 +31,14 @@ class Bar1D:
         self.shapefn = None
 
     def is_point_in_element(self, x):
+        """Checks if a given material point coordinates is withing the cell
+
+        Args:
+            x: coordinate of material point
+        
+        Returns:
+            A boolean to indicate if a coordinate is in the cell or not
+        """
         # get the nodal position
         xn0 = self.nodes[0].x
         xn1 = self.nodes[1].x
@@ -40,6 +48,20 @@ class Bar1D:
             return False
 
     def compute_xi(self, x):
+        """Computes the local xi (natural coordinates) of a given coordinate(x)
+        The function transforms the physical coordinate to a natural coordinate.
+        We call the `is_point_in_element(x)` function to check if the coordinate
+        is in the cell.
+
+        Args:
+            x: coordinate of material point
+        
+        Returns:
+            A tuple of a boolean to indicate if a coordinate is in the cell or not
+            and the natural coordinate equivalent of the physical coordinate. We 
+            return a value of zero for the natural coordinate, if the coordinate is
+            not in the cell.
+        """
         # get the nodal position
         xn0 = self.nodes[0].x
         xn1 = self.nodes[1].x
