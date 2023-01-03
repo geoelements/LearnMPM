@@ -19,8 +19,10 @@ pip install -r requirements.txt
 python3 validation/bar-vibration1d.py
 ```
 
-### Inspiration
-[MPM-Py](https://github.com/fabricix/MPM-Py) and [Material point method: basics and applications](https://www.researchgate.net/profile/Vinh-Phu-Nguyen/publication/262415477_Material_point_method_basics_and_applications/links/00463537ab99f084f0000000/Material-point-method-basics-and-applications.pdf).
+### Inspirations
+* Discussions with Prof. Pedro Arduino, UW.
+* [MPM-Py](https://github.com/fabricix/MPM-Py)
+* [Material point method: basics and applications](https://www.researchgate.net/profile/Vinh-Phu-Nguyen/publication/262415477_Material_point_method_basics_and_applications/links/00463537ab99f084f0000000/Material-point-method-basics-and-applications.pdf).
 
 ### Acknowledgement
 This code is based upon work supported by the National Science Foundation under Grant CMMI-2022469.
