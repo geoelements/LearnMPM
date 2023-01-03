@@ -368,60 +368,60 @@ title="Print to PDF"
 <p>Implementation of axial 1D bar using <code class="docutils literal notranslate"><span class="pre">LearnMPM</span></code> module.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># include the learnmpm path to the current path
-import sys
-sys.path.append(&quot;..&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># include the learnmpm path to the current path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span>
 
-import matplotlib.pyplot as plt
-import numpy as np
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-from analytical import axial_vibration_bar1d as avb
+<span class="kn">from</span> <span class="nn">analytical</span> <span class="kn">import</span> <span class="n">axial_vibration_bar1d</span> <span class="k">as</span> <span class="n">avb</span>
 
-from LearnMPM import mesh
-from LearnMPM import material
-from LearnMPM import params as prms
-from LearnMPM import solver
+<span class="kn">from</span> <span class="nn">LearnMPM</span> <span class="kn">import</span> <span class="n">mesh</span>
+<span class="kn">from</span> <span class="nn">LearnMPM</span> <span class="kn">import</span> <span class="n">material</span>
+<span class="kn">from</span> <span class="nn">LearnMPM</span> <span class="kn">import</span> <span class="n">params</span> <span class="k">as</span> <span class="n">prms</span>
+<span class="kn">from</span> <span class="nn">LearnMPM</span> <span class="kn">import</span> <span class="n">solver</span>
 
-# bar length
-Length = 25
+<span class="c1"># bar length</span>
+<span class="n">Length</span> <span class="o">=</span> <span class="mi">25</span>
 
-# number of elements
-nelements = 15
+<span class="c1"># number of elements</span>
+<span class="n">nelements</span> <span class="o">=</span> <span class="mi">15</span>
 
-# create an 1D mesh
-msh = mesh.Mesh1D(domain_size=Length, nelements=nelements)
+<span class="c1"># create an 1D mesh</span>
+<span class="n">msh</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">Mesh1D</span><span class="p">(</span><span class="n">domain_size</span><span class="o">=</span><span class="n">Length</span><span class="p">,</span> <span class="n">nelements</span><span class="o">=</span><span class="n">nelements</span><span class="p">)</span>
 
-# define a linear material 
-elastic = material.LinearElastic1D(E=100, density=1)
+<span class="c1"># define a linear material </span>
+<span class="n">elastic</span> <span class="o">=</span> <span class="n">material</span><span class="o">.</span><span class="n">LinearElastic1D</span><span class="p">(</span><span class="n">E</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-# generate particles in mesh elements and set the material
-msh.generate_particles_uniform(ppc = 2, material = elastic)
-# msh.generate_particles_gauss(ppc = 2,material = elastic)
+<span class="c1"># generate particles in mesh elements and set the material</span>
+<span class="n">msh</span><span class="o">.</span><span class="n">generate_particles_uniform</span><span class="p">(</span><span class="n">ppc</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">material</span> <span class="o">=</span> <span class="n">elastic</span><span class="p">)</span>
+<span class="c1"># msh.generate_particles_gauss(ppc = 2,material = elastic)</span>
 
-# setup the model
-params = prms.Params()
-params.mpm_scheme = &#39;USF&#39;
-params.nsteps = 600
-params.dt = 0.1
-params.results_particle = -1
-params.results_fields = [&#39;velocity&#39;, &#39;position&#39;]
-params.damping = 0.0
+<span class="c1"># setup the model</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">prms</span><span class="o">.</span><span class="n">Params</span><span class="p">()</span>
+<span class="n">params</span><span class="o">.</span><span class="n">mpm_scheme</span> <span class="o">=</span> <span class="s1">&#39;USF&#39;</span>
+<span class="n">params</span><span class="o">.</span><span class="n">nsteps</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="n">params</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">params</span><span class="o">.</span><span class="n">results_particle</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">params</span><span class="o">.</span><span class="n">results_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">,</span> <span class="s1">&#39;position&#39;</span><span class="p">]</span>
+<span class="n">params</span><span class="o">.</span><span class="n">damping</span> <span class="o">=</span> <span class="mf">0.0</span>
 
-# verify time step
-dt_critical=msh.elements[0].size/np.sqrt(elastic.E/elastic.density)
-params.dt = params.dt if (params.dt &lt; dt_critical) else dt_critical
+<span class="c1"># verify time step</span>
+<span class="n">dt_critical</span><span class="o">=</span><span class="n">msh</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">elastic</span><span class="o">.</span><span class="n">E</span><span class="o">/</span><span class="n">elastic</span><span class="o">.</span><span class="n">density</span><span class="p">)</span>
+<span class="n">params</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">dt</span> <span class="k">if</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">dt</span> <span class="o">&lt;</span> <span class="n">dt_critical</span><span class="p">)</span> <span class="k">else</span> <span class="n">dt_critical</span>
 
-# impose initial condition in particles
-vo = 0.1
-b1 = np.pi/2.0/Length
-for prtcl in msh.particles:
-  prtcl.velocity = vo * np.sin(b1 * prtcl.x)
+<span class="c1"># impose initial condition in particles</span>
+<span class="n">vo</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">2.0</span><span class="o">/</span><span class="n">Length</span>
+<span class="k">for</span> <span class="n">prtcl</span> <span class="ow">in</span> <span class="n">msh</span><span class="o">.</span><span class="n">particles</span><span class="p">:</span>
+  <span class="n">prtcl</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">vo</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">b1</span> <span class="o">*</span> <span class="n">prtcl</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 
-# Apply boundary conditions
-msh.boundary_nodes = [0]
+<span class="c1"># Apply boundary conditions</span>
+<span class="n">msh</span><span class="o">.</span><span class="n">boundary_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-# solve the problem in time
-solver.explicit_solution(msh, params)
+<span class="c1"># solve the problem in time</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">explicit_solution</span><span class="p">(</span><span class="n">msh</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -431,21 +431,21 @@ solver.explicit_solution(msh, params)
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># get analytical solution
-[anal_xt,anal_vt, anal_t] = avb.axial_vibration_bar1d(Length, elastic.E, elastic.density, 
-                              params.dt * params.nsteps, params.dt, vo, msh.particles[params.results_particle].x)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get analytical solution</span>
+<span class="p">[</span><span class="n">anal_xt</span><span class="p">,</span><span class="n">anal_vt</span><span class="p">,</span> <span class="n">anal_t</span><span class="p">]</span> <span class="o">=</span> <span class="n">avb</span><span class="o">.</span><span class="n">axial_vibration_bar1d</span><span class="p">(</span><span class="n">Length</span><span class="p">,</span> <span class="n">elastic</span><span class="o">.</span><span class="n">E</span><span class="p">,</span> <span class="n">elastic</span><span class="o">.</span><span class="n">density</span><span class="p">,</span> 
+                              <span class="n">params</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="n">params</span><span class="o">.</span><span class="n">nsteps</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="n">vo</span><span class="p">,</span> <span class="n">msh</span><span class="o">.</span><span class="n">particles</span><span class="p">[</span><span class="n">params</span><span class="o">.</span><span class="n">results_particle</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
     
-# plot mpm solution
-plt.plot(params.results[&#39;time&#39;], params.results[&#39;velocity&#39;], &#39;ob&#39;, markersize = 2, label=&#39;mpm&#39;)
+<span class="c1"># plot mpm solution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">params</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">],</span> <span class="s1">&#39;ob&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;mpm&#39;</span><span class="p">)</span>
 
-# plot the analytical solution
-plt.plot(anal_t,anal_vt,&#39;r&#39;,linewidth=2,label=&#39;analytical&#39;)
+<span class="c1"># plot the analytical solution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">anal_t</span><span class="p">,</span><span class="n">anal_vt</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;analytical&#39;</span><span class="p">)</span>
 
-# configure axis, legends and show plot
-plt.xlabel(&#39;time (s)&#39;)
-plt.ylabel(&#39;velocity (m/s)&#39;)
-plt.legend()
-plt.show()
+<span class="c1"># configure axis, legends and show plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;velocity (m/s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

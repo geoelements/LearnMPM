@@ -696,22 +696,22 @@ title="Print to PDF"
 <h2>Analytical solution<a class="headerlink" href="#analytical-solution" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-# Analytical solution
-def analytical_vibration(E, rho, v0, x_loc, duration, dt, L):
-    nsteps = int(duration/dt)
-    tt, vt, xt = [], [], []
-    t = 0
-    for _ in range(nsteps):
-        omega = 1. / L * np.sqrt(E / rho)
-        v = v0 * np.cos(omega * t)
-        x = x_loc * np.exp(v0 / (L * omega) * np.sin(omega * t))
-        vt.append(v)
-        xt.append(x)
-        tt.append(t)
-        t += dt
-    return tt, vt, xt
+<span class="c1"># Analytical solution</span>
+<span class="k">def</span> <span class="nf">analytical_vibration</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">x_loc</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+    <span class="n">nsteps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">duration</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+    <span class="n">tt</span><span class="p">,</span> <span class="n">vt</span><span class="p">,</span> <span class="n">xt</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span>
+        <span class="n">omega</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">L</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">E</span> <span class="o">/</span> <span class="n">rho</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">v0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">omega</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x_loc</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">v0</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">*</span> <span class="n">omega</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omega</span> <span class="o">*</span> <span class="n">t</span><span class="p">))</span>
+        <span class="n">vt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">xt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">tt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">+=</span> <span class="n">dt</span>
+    <span class="k">return</span> <span class="n">tt</span><span class="p">,</span> <span class="n">vt</span><span class="p">,</span> <span class="n">xt</span>
 </pre></div>
 </div>
 </div>
@@ -719,20 +719,20 @@ def analytical_vibration(E, rho, v0, x_loc, duration, dt, L):
 <p>Let’s now plot the analytical solution of a vibrating bar at the end of the bar <span class="math notranslate nohighlight">\(x = 1\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-# Young&#39;s modulus
-E = 4 * (np.pi)**2
+<span class="c1"># Young&#39;s modulus</span>
+<span class="n">E</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
 
-# analytical solution at the end of the bar
-ta, va, xa = analytical_vibration(E = E, rho = 1, v0 = 0.1, x_loc = 1.0, duration = 10, dt = 0.01, L = 1.0)
+<span class="c1"># analytical solution at the end of the bar</span>
+<span class="n">ta</span><span class="p">,</span> <span class="n">va</span><span class="p">,</span> <span class="n">xa</span> <span class="o">=</span> <span class="n">analytical_vibration</span><span class="p">(</span><span class="n">E</span> <span class="o">=</span> <span class="n">E</span><span class="p">,</span> <span class="n">rho</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">v0</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">x_loc</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">duration</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span>
 
-plt.plot(ta, va, &#39;r&#39;,linewidth=2,label=&#39;analytical&#39;)
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span> <span class="n">va</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;analytical&#39;</span><span class="p">)</span>
 
-plt.xlabel(&#39;time (s)&#39;)
-plt.ylabel(&#39;velocity (m/s)&#39;)
-plt.legend()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;velocity (m/s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -777,17 +777,17 @@ plt.show()
 <p>The domain (bar) has a length of 1 m. We descritize the bar using a single linear element with two nodes. The left node is at 0 and the right node is at the end of the bar at L.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-# Computational grid
-L          = 1                       # domain size
-nodes      = np.array([0, L])        # nodal coordinates
-nnodes     = len(nodes)              # number of nodes
-nelements  = 1                       # number of elements
-nparticles = 1                       # number of particles
-el_length  = L / nelements           # element length
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># Computational grid</span>
+<span class="n">L</span>          <span class="o">=</span> <span class="mi">1</span>                       <span class="c1"># domain size</span>
+<span class="n">nodes</span>      <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">])</span>        <span class="c1"># nodal coordinates</span>
+<span class="n">nnodes</span>     <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>              <span class="c1"># number of nodes</span>
+<span class="n">nelements</span>  <span class="o">=</span> <span class="mi">1</span>                       <span class="c1"># number of elements</span>
+<span class="n">nparticles</span> <span class="o">=</span> <span class="mi">1</span>                       <span class="c1"># number of particles</span>
+<span class="n">el_length</span>  <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="n">nelements</span>           <span class="c1"># element length</span>
 
-print(&quot;Number of elements: {} nodal coordinates: {}, nnodes: {} nparticles: {}&quot;.
-        format(nelements, nodes, nnodes, nparticles))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of elements: </span><span class="si">{}</span><span class="s2"> nodal coordinates: </span><span class="si">{}</span><span class="s2">, nnodes: </span><span class="si">{}</span><span class="s2"> nparticles: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span>
+        <span class="nb">format</span><span class="p">(</span><span class="n">nelements</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">nnodes</span><span class="p">,</span> <span class="n">nparticles</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -803,9 +803,9 @@ print(&quot;Number of elements: {} nodal coordinates: {}, nnodes: {} nparticles:
 <p>We now define a linear elastic material with <span class="math notranslate nohighlight">\(E = 2 * \pi^2\)</span> and a density <span class="math notranslate nohighlight">\(\rho = 1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Material property
-E          = 4 * (np.pi)**2          # Young&#39;s modulus
-rho        = 1.                      # Density
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Material property</span>
+<span class="n">E</span>          <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>          <span class="c1"># Young&#39;s modulus</span>
+<span class="n">rho</span>        <span class="o">=</span> <span class="mf">1.</span>                      <span class="c1"># Density</span>
 </pre></div>
 </div>
 </div>
@@ -816,9 +816,9 @@ rho        = 1.                      # Density
 <p>We apply an initial velocity <span class="math notranslate nohighlight">\(v_0 = 0.1\)</span> at the material point.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Initial conditions 
-v0         = 0.1                     # initial velocity
-x_loc      = 0.5                     # location to get analytical solution
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initial conditions </span>
+<span class="n">v0</span>         <span class="o">=</span> <span class="mf">0.1</span>                     <span class="c1"># initial velocity</span>
+<span class="n">x_loc</span>      <span class="o">=</span> <span class="mf">0.5</span>                     <span class="c1"># location to get analytical solution</span>
 </pre></div>
 </div>
 </div>
@@ -829,13 +829,13 @@ x_loc      = 0.5                     # location to get analytical solution
 <p>In MPM, the material points keep track of the position, mass, velocity, volume, momentum and stress. The material point is at the middle of the element. The volume of the material point is the size of the entire length of the bar. Assuming a density <span class="math notranslate nohighlight">\(\rho = 1\)</span>, the mass of the material point is <span class="math notranslate nohighlight">\(\rho * L = 1 * 1 = 1.0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># Material points
-x_p        = 0.5 * el_length         # position
-mass_p     = 1.                      # mass
-vol_p      = el_length / nparticles  # volume
-vel_p      = v0                      # velocity
-stress_p   = 0.                      # stress
-mv_p       = mass_p * vel_p          # momentum = m * v
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Material points</span>
+<span class="n">x_p</span>        <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">el_length</span>         <span class="c1"># position</span>
+<span class="n">mass_p</span>     <span class="o">=</span> <span class="mf">1.</span>                      <span class="c1"># mass</span>
+<span class="n">vol_p</span>      <span class="o">=</span> <span class="n">el_length</span> <span class="o">/</span> <span class="n">nparticles</span>  <span class="c1"># volume</span>
+<span class="n">vel_p</span>      <span class="o">=</span> <span class="n">v0</span>                      <span class="c1"># velocity</span>
+<span class="n">stress_p</span>   <span class="o">=</span> <span class="mf">0.</span>                      <span class="c1"># stress</span>
+<span class="n">mv_p</span>       <span class="o">=</span> <span class="n">mass_p</span> <span class="o">*</span> <span class="n">vel_p</span>          <span class="c1"># momentum = m * v</span>
 </pre></div>
 </div>
 </div>
@@ -849,23 +849,23 @@ mv_p       = mass_p * vel_p          # momentum = m * v
 <p>The following listings show the general shape functions and gradients for an element.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-nodes = np.array([0, L])
-xs = np.arange(0, L+0.1, 0.1)
-y = np.zeros_like(xs)
+<span class="n">nodes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">])</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
 
-# shape function
-n1 = [1 - abs(x - nodes[0])/L for x in xs]
-n2 = [1 - abs(x - nodes[1])/L for x in xs]
+<span class="c1"># shape function</span>
+<span class="n">n1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">L</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+<span class="n">n2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">L</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
 
-plt.plot(xs, n1, &#39;r&#39;, linewidth=2, label=&#39;N1&#39;)
-plt.plot(xs, n2, &#39;b&#39;, linewidth=2, label=&#39;N2&#39;)
-plt.plot(xs, y, &#39;-.&#39;, linewidth=2, label=&#39;element&#39;)
-plt.xlabel(&#39;l&#39;)
-plt.ylabel(&#39;N(x)&#39;)
-plt.legend()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;N1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;N2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;element&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;l&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;N(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -877,23 +877,23 @@ plt.show()
 <p><span class="math notranslate nohighlight">\(B (x) = [-1/l_x, 1/l_x]\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-nodes = np.array([0, L])
-xs = np.arange(0, L+0.1, 0.1)
-y = np.zeros_like(xs)
+<span class="n">nodes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">])</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
 
-# shape function
-b1 = [-1/L for x_p in xs]
-b2 = [1/L for x_p in xs]
+<span class="c1"># shape function</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">L</span> <span class="k">for</span> <span class="n">x_p</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">L</span> <span class="k">for</span> <span class="n">x_p</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">]</span>
 
-plt.plot(xs, b1, &#39;r&#39;, linewidth=2, label=&#39;B1&#39;)
-plt.plot(xs, b2, &#39;b&#39;, linewidth=2, label=&#39;B2&#39;)
-plt.plot(xs, y, &#39;-.&#39;, linewidth=2, label=&#39;element&#39;)
-plt.xlabel(&#39;l&#39;)
-plt.ylabel(&#39;B(x)&#39;)
-plt.legend()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;B1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;B2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-.&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;element&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;l&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;B(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -906,12 +906,12 @@ plt.show()
 <p>We will now define the shape function and its derivatives for the material point located at <span class="math notranslate nohighlight">\(x_p\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># shape function and derivative
-N     = np.array([1 - abs(x_p - nodes[0])/L, 1 - abs(x_p - nodes[1])/L])
-dN    = np.array([-1/L, 1/L])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># shape function and derivative</span>
+<span class="n">N</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_p</span> <span class="o">-</span> <span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_p</span> <span class="o">-</span> <span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">L</span><span class="p">])</span>
+<span class="n">dN</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">L</span><span class="p">])</span>
 
-print(&quot;Shape function for material point at x_p = 0.5, is N: {}&quot;.format(N))
-print(&quot;Gradient of shape function for material point at x_p = 0.5, is B: {}&quot;.format(dN))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape function for material point at x_p = 0.5, is N: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gradient of shape function for material point at x_p = 0.5, is B: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dN</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -949,9 +949,9 @@ variable of the location of each material point at time <span class="math notran
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># map particle mass and momentum to nodes
-mass_n = N * mass_p
-mv_n   = N * mv_p
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># map particle mass and momentum to nodes</span>
+<span class="n">mass_n</span> <span class="o">=</span> <span class="n">N</span> <span class="o">*</span> <span class="n">mass_p</span>
+<span class="n">mv_n</span>   <span class="o">=</span> <span class="n">N</span> <span class="o">*</span> <span class="n">mv_p</span>
 </pre></div>
 </div>
 </div>
@@ -959,7 +959,7 @@ mv_n   = N * mv_p
 <p>The mass of the particle 1.0, is split equally between both the nodes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;Mapped mass at the nodes: {}&quot;.format(mass_n))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mapped mass at the nodes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mass_n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -972,7 +972,7 @@ mv_n   = N * mv_p
 <p>Similarly, the momentum of the particle, calculated as <span class="math notranslate nohighlight">\(m_p * v_p\)</span> is split evenly between the nodes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(&quot;Momentum at nodes: {}&quot;.format(mv_n))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Momentum at nodes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mv_n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -988,10 +988,10 @@ mv_n   = N * mv_p
 <p>Since the left node is fixed, we constrain the velocity at the node <span class="math notranslate nohighlight">\(v_n = 0\)</span> for node 0. As we store momentum, rather than the velocity at the node, we constrain the momentum on the left node to be zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># apply boundary condition: velocity at left node is zero
-mv_n[0] = 0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># apply boundary condition: velocity at left node is zero</span>
+<span class="n">mv_n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-print(&quot;Momentum at nodes after apply BCs: {}&quot;.format(mv_n))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Momentum at nodes after apply BCs: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mv_n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1015,10 +1015,10 @@ print(&quot;Momentum at nodes after apply BCs: {}&quot;.format(mv_n))
 <p>In this problem, there is no external force, so we set the external forces at both nodes to be zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># external force at nodes
-f_ext_n = np.array([0, 0])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># external force at nodes</span>
+<span class="n">f_ext_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 
-print(&quot;External forces at the nodes: {}&quot;.format(f_ext_n))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;External forces at the nodes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f_ext_n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1042,10 +1042,10 @@ print(&quot;External forces at the nodes: {}&quot;.format(f_ext_n))
 <p>At the start of the time step, <span class="math notranslate nohighlight">\(t = 0\)</span>, the body is unstressed <span class="math notranslate nohighlight">\(\sigma = 0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># compute internal force at nodes
-f_int_n = - dN * vol_p * stress_p 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute internal force at nodes</span>
+<span class="n">f_int_n</span> <span class="o">=</span> <span class="o">-</span> <span class="n">dN</span> <span class="o">*</span> <span class="n">vol_p</span> <span class="o">*</span> <span class="n">stress_p</span> 
 
-print(&quot;Internal forces at the nodes: {}&quot;.format(f_ext_n))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Internal forces at the nodes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f_ext_n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1063,10 +1063,10 @@ print(&quot;Internal forces at the nodes: {}&quot;.format(f_ext_n))
 <p>For this problem, the external force is zero, so the total force must equal the internal force.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># total forces at nodes
-f_total_n = f_int_n + f_ext_n
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># total forces at nodes</span>
+<span class="n">f_total_n</span> <span class="o">=</span> <span class="n">f_int_n</span> <span class="o">+</span> <span class="n">f_ext_n</span>
 
-print(&quot;Total forces at the nodes: {}&quot;.format(f_total_n))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total forces at the nodes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f_total_n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1079,10 +1079,10 @@ print(&quot;Total forces at the nodes: {}&quot;.format(f_total_n))
 <p>We apply boundary condition on the left node, which is fixed (the velocity and acceleration are zero). Hence, we set the total force <span class="math notranslate nohighlight">\(f = m * a = 0\)</span>, since <span class="math notranslate nohighlight">\(a = 0\)</span> at the node.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># apply boundary condition: left node has no acceleration (f = m * a, and a = 0)
-f_total_n[0] = 0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># apply boundary condition: left node has no acceleration (f = m * a, and a = 0)</span>
+<span class="n">f_total_n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-print(&quot;Total forces at the nodes: {}&quot;.format(f_total_n))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total forces at the nodes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f_total_n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1103,9 +1103,9 @@ print(&quot;Total forces at the nodes: {}&quot;.format(f_total_n))
 <p><span class="math notranslate nohighlight">\(\Delta t_{crit} = \frac{L}{\sqrt{E \cdot \rho}}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># critical time step
-dt_crit = L /np.sqrt(E/rho)
-print(&quot;Critical time step for an explicit simulation: {}&quot;.format(dt_crit))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># critical time step</span>
+<span class="n">dt_crit</span> <span class="o">=</span> <span class="n">L</span> <span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">E</span><span class="o">/</span><span class="n">rho</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Critical time step for an explicit simulation: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt_crit</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1118,11 +1118,11 @@ print(&quot;Critical time step for an explicit simulation: {}&quot;.format(dt_cr
 <p>We use a time step <span class="math notranslate nohighlight">\(\Delta t\)</span> of 0.01.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># update nodal momentum
-dt = 0.01 
-mv_n += f_total_n * dt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># update nodal momentum</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span> 
+<span class="n">mv_n</span> <span class="o">+=</span> <span class="n">f_total_n</span> <span class="o">*</span> <span class="n">dt</span>
 
-print(&quot;Momentum at nodes: {}&quot;.format(mv_n))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Momentum at nodes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mv_n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1147,12 +1147,12 @@ print(&quot;Momentum at nodes: {}&quot;.format(mv_n))
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># update particle position and velocity
-for i in range(nnodes):
-    vel_p += dt * N[i] * f_total_n[i] / mass_n[i]
-    x_p += dt * N[i] * mv_n[i] / mass_n[i]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># update particle position and velocity</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nnodes</span><span class="p">):</span>
+    <span class="n">vel_p</span> <span class="o">+=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">f_total_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">mass_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">x_p</span> <span class="o">+=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">mv_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">mass_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-print(&quot;Velocity of particle: {} and position: {}&quot;.format(vel_p, x_p))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Velocity of particle: </span><span class="si">{}</span><span class="s2"> and position: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vel_p</span><span class="p">,</span> <span class="n">x_p</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1168,8 +1168,8 @@ print(&quot;Velocity of particle: {} and position: {}&quot;.format(vel_p, x_p))
 <p>Material point momentum: <span class="math notranslate nohighlight">\( (m\textbf{v})_p^{t+\Delta t} = m_p * \textbf{v}_p^{t+\Delta t}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># update particle momentum
-mv_p = mass_p * vel_p
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># update particle momentum</span>
+<span class="n">mv_p</span> <span class="o">=</span> <span class="n">mass_p</span> <span class="o">*</span> <span class="n">vel_p</span>
 </pre></div>
 </div>
 </div>
@@ -1182,15 +1182,15 @@ mv_p = mass_p * vel_p
 <p>After updating the nodal velocity, re-constrain the velocity at the fixed node back to zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># map nodal velocity
-# vel_n[0] = N[0] * mass_p * vel_p / mass_n[0]
-# vel_n[1] = N[1] * mass_p * vel_p / mass_n[1]
-vel_n = np.divide(N, mass_n) * mass_p * vel_p
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># map nodal velocity</span>
+<span class="c1"># vel_n[0] = N[0] * mass_p * vel_p / mass_n[0]</span>
+<span class="c1"># vel_n[1] = N[1] * mass_p * vel_p / mass_n[1]</span>
+<span class="n">vel_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">mass_n</span><span class="p">)</span> <span class="o">*</span> <span class="n">mass_p</span> <span class="o">*</span> <span class="n">vel_p</span>
 
-# Apply boundary condition and set left nodal velocity to zero
-vel_n[0] = 0
+<span class="c1"># Apply boundary condition and set left nodal velocity to zero</span>
+<span class="n">vel_n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-print(&quot;Velocity at the nodes: {}&quot;.format(vel_n))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Velocity at the nodes: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vel_n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1211,15 +1211,15 @@ print(&quot;Velocity at the nodes: {}&quot;.format(vel_n))
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># compute strain rate at the particle
-# strain_rate = dN[0] * vel_n[0] + dN[1] * vel_n[1]
-strain_rate_p = np.dot(dN, vel_n) 
-# compute strain increament 
-dstrain_p = strain_rate_p * dt
-# compute stress
-stress_p += E * dstrain_p
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute strain rate at the particle</span>
+<span class="c1"># strain_rate = dN[0] * vel_n[0] + dN[1] * vel_n[1]</span>
+<span class="n">strain_rate_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dN</span><span class="p">,</span> <span class="n">vel_n</span><span class="p">)</span> 
+<span class="c1"># compute strain increament </span>
+<span class="n">dstrain_p</span> <span class="o">=</span> <span class="n">strain_rate_p</span> <span class="o">*</span> <span class="n">dt</span>
+<span class="c1"># compute stress</span>
+<span class="n">stress_p</span> <span class="o">+=</span> <span class="n">E</span> <span class="o">*</span> <span class="n">dstrain_p</span>
 
-print(&quot;Strain rate: {}, dstrain: {} and stress: {} and stress: {}&quot;.format(strain_rate_p, dstrain_p, E * dstrain_p, stress_p))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Strain rate: </span><span class="si">{}</span><span class="s2">, dstrain: </span><span class="si">{}</span><span class="s2"> and stress: </span><span class="si">{}</span><span class="s2"> and stress: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">strain_rate_p</span><span class="p">,</span> <span class="n">dstrain_p</span><span class="p">,</span> <span class="n">E</span> <span class="o">*</span> <span class="n">dstrain_p</span><span class="p">,</span> <span class="n">stress_p</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1238,107 +1238,107 @@ print(&quot;Strain rate: {}, dstrain: {} and stress: {} and stress: {}&quot;.for
 <p>Putting it all together</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-# Computational grid
-L          = 1                       # domain size
-nodes      = np.array([0, L])        # nodal coordinates
-nnodes     = len(nodes)              # number of nodes
-nelements  = 1                       # number of elements
-nparticles = 1                       # number of particles
-el_length  = L / nelements           # element length
+<span class="c1"># Computational grid</span>
+<span class="n">L</span>          <span class="o">=</span> <span class="mi">1</span>                       <span class="c1"># domain size</span>
+<span class="n">nodes</span>      <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">])</span>        <span class="c1"># nodal coordinates</span>
+<span class="n">nnodes</span>     <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>              <span class="c1"># number of nodes</span>
+<span class="n">nelements</span>  <span class="o">=</span> <span class="mi">1</span>                       <span class="c1"># number of elements</span>
+<span class="n">nparticles</span> <span class="o">=</span> <span class="mi">1</span>                       <span class="c1"># number of particles</span>
+<span class="n">el_length</span>  <span class="o">=</span> <span class="n">L</span> <span class="o">/</span> <span class="n">nelements</span>           <span class="c1"># element length</span>
 
-# Initial conditions 
-v0         = 0.1                     # initial velocity
-x_loc      = 0.5                     # location to get analytical solution
+<span class="c1"># Initial conditions </span>
+<span class="n">v0</span>         <span class="o">=</span> <span class="mf">0.1</span>                     <span class="c1"># initial velocity</span>
+<span class="n">x_loc</span>      <span class="o">=</span> <span class="mf">0.5</span>                     <span class="c1"># location to get analytical solution</span>
 
-# Material property
-E          = 4 * (np.pi)**2          # Young&#39;s modulus
-rho        = 1.                      # Density
+<span class="c1"># Material property</span>
+<span class="n">E</span>          <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>          <span class="c1"># Young&#39;s modulus</span>
+<span class="n">rho</span>        <span class="o">=</span> <span class="mf">1.</span>                      <span class="c1"># Density</span>
 
-# Material points
-x_p        = 0.5 * el_length         # position
-mass_p     = 1.                      # mass
-vol_p      = el_length / nparticles  # volume
-vel_p      = v0                      # velocity
-stress_p   = 0.                      # stress
-strain_p   = 0.                      # strain
-mv_p       = mass_p * vel_p          # momentum = m * v
+<span class="c1"># Material points</span>
+<span class="n">x_p</span>        <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">el_length</span>         <span class="c1"># position</span>
+<span class="n">mass_p</span>     <span class="o">=</span> <span class="mf">1.</span>                      <span class="c1"># mass</span>
+<span class="n">vol_p</span>      <span class="o">=</span> <span class="n">el_length</span> <span class="o">/</span> <span class="n">nparticles</span>  <span class="c1"># volume</span>
+<span class="n">vel_p</span>      <span class="o">=</span> <span class="n">v0</span>                      <span class="c1"># velocity</span>
+<span class="n">stress_p</span>   <span class="o">=</span> <span class="mf">0.</span>                      <span class="c1"># stress</span>
+<span class="n">strain_p</span>   <span class="o">=</span> <span class="mf">0.</span>                      <span class="c1"># strain</span>
+<span class="n">mv_p</span>       <span class="o">=</span> <span class="n">mass_p</span> <span class="o">*</span> <span class="n">vel_p</span>          <span class="c1"># momentum = m * v</span>
 
-# Time
-duration   = 10
-dt         = 0.01
-time       = 0
-nsteps     = int(duration/dt)
+<span class="c1"># Time</span>
+<span class="n">duration</span>   <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dt</span>         <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">time</span>       <span class="o">=</span> <span class="mi">0</span>
+<span class="n">nsteps</span>     <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">duration</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
 
-# Store time, velocity and position with time
-time_t, vel_t, x_t, se_t, ke_t, te_t = [], [], [], [], [], []
+<span class="c1"># Store time, velocity and position with time</span>
+<span class="n">time_t</span><span class="p">,</span> <span class="n">vel_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">,</span> <span class="n">se_t</span><span class="p">,</span> <span class="n">ke_t</span><span class="p">,</span> <span class="n">te_t</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
 
-for _ in range(nsteps):
-    # shape function and derivative
-    N  = np.array([1 - abs(x_p - nodes[0])/L, 1 - abs(x_p - nodes[1])/L])
-    dN = np.array([-1/L, 1/L])
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span>
+    <span class="c1"># shape function and derivative</span>
+    <span class="n">N</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_p</span> <span class="o">-</span> <span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_p</span> <span class="o">-</span> <span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">L</span><span class="p">])</span>
+    <span class="n">dN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">L</span><span class="p">])</span>
 
-    # map particle mass and momentum to nodes
-    mass_n = N * mass_p
-    mv_n   = N * mv_p
+    <span class="c1"># map particle mass and momentum to nodes</span>
+    <span class="n">mass_n</span> <span class="o">=</span> <span class="n">N</span> <span class="o">*</span> <span class="n">mass_p</span>
+    <span class="n">mv_n</span>   <span class="o">=</span> <span class="n">N</span> <span class="o">*</span> <span class="n">mv_p</span>
     
-    # apply boundary condition: velocity at left node is zero
-    mv_n[0] = 0
+    <span class="c1"># apply boundary condition: velocity at left node is zero</span>
+    <span class="n">mv_n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-    # external force at nodes
-    f_ext_n = np.array([0, 0])
+    <span class="c1"># external force at nodes</span>
+    <span class="n">f_ext_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 
-    # compute internal force at nodes
-    f_int_n = - dN * vol_p * stress_p 
+    <span class="c1"># compute internal force at nodes</span>
+    <span class="n">f_int_n</span> <span class="o">=</span> <span class="o">-</span> <span class="n">dN</span> <span class="o">*</span> <span class="n">vol_p</span> <span class="o">*</span> <span class="n">stress_p</span> 
 
-    # total forces at nodes
-    f_total_n = f_int_n + f_ext_n
+    <span class="c1"># total forces at nodes</span>
+    <span class="n">f_total_n</span> <span class="o">=</span> <span class="n">f_int_n</span> <span class="o">+</span> <span class="n">f_ext_n</span>
 
-    # apply boundary condition: left node has no acceleration (f = m * a, and a = 0)
-    f_total_n[0] = 0
+    <span class="c1"># apply boundary condition: left node has no acceleration (f = m * a, and a = 0)</span>
+    <span class="n">f_total_n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-    # update nodal momentum
-    mv_n += f_total_n * dt
+    <span class="c1"># update nodal momentum</span>
+    <span class="n">mv_n</span> <span class="o">+=</span> <span class="n">f_total_n</span> <span class="o">*</span> <span class="n">dt</span>
 
-    # update particle position and velocity
-    for i in range(nnodes):
-        vel_p += dt * N[i] * f_total_n[i] / mass_n[i]
-        x_p += dt * N[i] * mv_n[i] / mass_n[i]
+    <span class="c1"># update particle position and velocity</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nnodes</span><span class="p">):</span>
+        <span class="n">vel_p</span> <span class="o">+=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">f_total_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">mass_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">x_p</span> <span class="o">+=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">mv_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">mass_n</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-    # update particle momentum
-    mv_p = mass_p * vel_p
+    <span class="c1"># update particle momentum</span>
+    <span class="n">mv_p</span> <span class="o">=</span> <span class="n">mass_p</span> <span class="o">*</span> <span class="n">vel_p</span>
 
-    # map nodal velocity
-    vel_n = mass_p * vel_p * np.divide(N, mass_n)
-    # Apply boundary condition and set left nodal velocity to zero
-    vel_n[0] = 0
+    <span class="c1"># map nodal velocity</span>
+    <span class="n">vel_n</span> <span class="o">=</span> <span class="n">mass_p</span> <span class="o">*</span> <span class="n">vel_p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">mass_n</span><span class="p">)</span>
+    <span class="c1"># Apply boundary condition and set left nodal velocity to zero</span>
+    <span class="n">vel_n</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-    # compute strain rate at the particle
-    strain_rate_p = np.dot(dN, vel_n) 
-    # compute strain increament 
-    dstrain_p = strain_rate_p * dt
-    # compute strain
-    strain_p += dstrain_p
-    # compute stress
-    stress_p += E * dstrain_p
+    <span class="c1"># compute strain rate at the particle</span>
+    <span class="n">strain_rate_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">dN</span><span class="p">,</span> <span class="n">vel_n</span><span class="p">)</span> 
+    <span class="c1"># compute strain increament </span>
+    <span class="n">dstrain_p</span> <span class="o">=</span> <span class="n">strain_rate_p</span> <span class="o">*</span> <span class="n">dt</span>
+    <span class="c1"># compute strain</span>
+    <span class="n">strain_p</span> <span class="o">+=</span> <span class="n">dstrain_p</span>
+    <span class="c1"># compute stress</span>
+    <span class="n">stress_p</span> <span class="o">+=</span> <span class="n">E</span> <span class="o">*</span> <span class="n">dstrain_p</span>
 
-    # store properties for plotting
-    time_t.append(time)
-    vel_t.append(vel_p)
-    x_t.append(x_p)
+    <span class="c1"># store properties for plotting</span>
+    <span class="n">time_t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">vel_t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vel_p</span><span class="p">)</span>
+    <span class="n">x_t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_p</span><span class="p">)</span>
 
-    # Energies
-    strain_energy = 0.5 * stress_p * strain_p * vol_p
-    kinetic_energy = 0.5 * vel_p**2 * mass_p**2
-    total_energy = strain_energy + kinetic_energy
-    se_t.append(strain_energy)
-    ke_t.append(kinetic_energy)
-    te_t.append(total_energy)
+    <span class="c1"># Energies</span>
+    <span class="n">strain_energy</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">stress_p</span> <span class="o">*</span> <span class="n">strain_p</span> <span class="o">*</span> <span class="n">vol_p</span>
+    <span class="n">kinetic_energy</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">vel_p</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">mass_p</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">total_energy</span> <span class="o">=</span> <span class="n">strain_energy</span> <span class="o">+</span> <span class="n">kinetic_energy</span>
+    <span class="n">se_t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">strain_energy</span><span class="p">)</span>
+    <span class="n">ke_t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kinetic_energy</span><span class="p">)</span>
+    <span class="n">te_t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">total_energy</span><span class="p">)</span>
     
-    # update time
-    time += dt
+    <span class="c1"># update time</span>
+    <span class="n">time</span> <span class="o">+=</span> <span class="n">dt</span>
 </pre></div>
 </div>
 </div>
@@ -1351,17 +1351,17 @@ for _ in range(nsteps):
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import matplotlib.pyplot as plt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-ta, va, xa = analytical_vibration(E, rho, v0, x_loc, duration, dt, L)
+<span class="n">ta</span><span class="p">,</span> <span class="n">va</span><span class="p">,</span> <span class="n">xa</span> <span class="o">=</span> <span class="n">analytical_vibration</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">x_loc</span><span class="p">,</span> <span class="n">duration</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
 
-plt.plot(ta, va, &#39;r&#39;, linewidth=2,label=&#39;analytical&#39;)
-plt.plot(time_t, vel_t, &#39;ob&#39;, markersize = 2, label=&#39;mpm&#39;)
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span> <span class="n">va</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;analytical&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_t</span><span class="p">,</span> <span class="n">vel_t</span><span class="p">,</span> <span class="s1">&#39;ob&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;mpm&#39;</span><span class="p">)</span>
 
-plt.xlabel(&#39;time (s)&#39;)
-plt.ylabel(&#39;velocity (m/s)&#39;)
-plt.legend()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;velocity (m/s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1374,13 +1374,13 @@ plt.show()
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(ta, xa, &#39;r&#39;,linewidth=2,label=&#39;analytical&#39;)
-plt.plot(time_t, x_t, &#39;ob&#39;, markersize = 2, label=&#39;mpm&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ta</span><span class="p">,</span> <span class="n">xa</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;analytical&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_t</span><span class="p">,</span> <span class="n">x_t</span><span class="p">,</span> <span class="s1">&#39;ob&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;mpm&#39;</span><span class="p">)</span>
 
-plt.xlabel(&#39;time (s)&#39;)
-plt.ylabel(&#39;displacement (m)&#39;)
-plt.legend()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;displacement (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1390,14 +1390,14 @@ plt.show()
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>plt.plot(time_t, se_t, &#39;-&#39;, markersize = 2, label=&#39;strain energy&#39;)
-plt.plot(time_t, ke_t, &#39;r&#39;, markersize = 2, label=&#39;kinetic energy&#39;)
-plt.plot(time_t, te_t, &#39;g&#39;, markersize = 2, label=&#39;total energy&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_t</span><span class="p">,</span> <span class="n">se_t</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;strain energy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_t</span><span class="p">,</span> <span class="n">ke_t</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;kinetic energy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_t</span><span class="p">,</span> <span class="n">te_t</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;total energy&#39;</span><span class="p">)</span>
 
-plt.xlabel(&#39;time (s)&#39;)
-plt.ylabel(&#39;energy&#39;)
-plt.legend()
-plt.show()
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;energy&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
