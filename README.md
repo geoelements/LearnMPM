@@ -1,10 +1,9 @@
 # LearnMPM
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/geoelements/gns/main/license.md)
-
-[![OnlineBook](https://img.shields.io/badge/online-book-blueviolet)](https://geoelements.org/LearnMPM/)
-
 > Krishna Kumar, The University of Texas at Austin.
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/geoelements/gns/main/license.md)
+[![OnlineBook](https://img.shields.io/badge/online-book-blueviolet)](https://geoelements.org/LearnMPM/)
 
 LearnMPM is a Python codebase to learn Material Point Method. Please refer to the [LearnMPM online book](https://geoelements.org/LearnMPM/) for examples.
 
