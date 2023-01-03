@@ -4,7 +4,7 @@ class Params:
         self.mpm_scheme = "USF"
         self.nsteps = 1000
         self.dt = 0
-        self.solution_particle = 0
-        self.solution_field = "position"
-        self.solution_array = [[],[]]
+        self.results_particle = 0
+        self.results_fields = ["position"]
+        self.results = {}
         self.damping = 0

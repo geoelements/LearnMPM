@@ -16,6 +16,12 @@ def compute_stress(mesh, params):
     
 # Update Stress First Scheme
 def explicit_solution(mesh, params):
+    # create a dictionary of solution fields
+    params.results = {}
+    params.results['time'] = []
+    for field in params.results_fields:
+        params.results[field] = []
+
     # main simulation loop
     for i in range(params.nsteps):    
         # update particles list in each element
@@ -75,12 +81,13 @@ def explicit_solution(mesh, params):
         update.reset_nodal_values(mesh)
         
          # store data for plot
-        params.solution_array[0].append(i*params.dt)
+        params.results['time'].append(i*params.dt)
         
         #TODO: Fix 0 index
-        if params.solution_field=='velocity':
-            params.solution_array[1].append(mesh.elements[-1].particles[-1].velocity[0])
+        #TODO: Fix particle indexing
+        if 'velocity' in params.results_fields:
+            params.results['velocity'].append(mesh.elements[-1].particles[-1].velocity[0])
 
-        elif params.solution_field=='position':
-            params.solution_array[1].append(mesh.particles[params.solution_particle].x[0])
+        if 'position' in params.results_fields:
+            params.results['position'].append(mesh.particles[params.solution_particle].x[0])
     
