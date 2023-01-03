@@ -2,8 +2,8 @@
 import sys
 sys.path.append("..")
 
-from learnmpm import element
-from learnmpm import node
+from LearnMPM import element
+from LearnMPM import node
 
 def test_element_init():
     el = element.Bar1D()

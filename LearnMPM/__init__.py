@@ -3,7 +3,7 @@
 import logging
 
 from .meta import __version__
-from .element import Element1D
+from .element import Bar1D
 from .material import LinearElastic1D
 from .mesh import Mesh1D
 from .node import Node1D
