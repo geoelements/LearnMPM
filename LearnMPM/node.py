@@ -2,15 +2,34 @@ import numpy as np
 
 class Node1D:
     """1D MPM node
-    
+
     Attributes:
-        id: Index of node class.
-        x: Location of node.
-        mass: Mass at node.
-        velocity: Velocity at node.
-        momentum: Momentum at node.
-        f_int: Internal force.
-        f_ext: External force.
+        id: int
+            Index of node class.
+
+        x: float
+            Location of node.
+        
+        mass: float
+            Mass at node.
+        
+        velocity: float
+            Velocity at node.
+        
+        momentum: float
+            Momentum at node.
+        
+        f_int: float
+            Internal force.
+        
+        f_ext: float
+            External force.
+        
+        f_damp: float
+            Damping force at the node.
+        
+        f_total: float
+            Total nodal force.
 
     """
 
@@ -27,6 +46,11 @@ class Node1D:
         self.f_total  = 0.
     
     def compute_damping_force(self, alpha):
+        """Compute the nodal damping force based on the nodal unbalanced forces.
+
+        Arguments:
+            alpha: Damping coefficient.
+        """
         # unbalanced nodal force magnitude
         unbalanced_force = self.f_int + self.f_ext
         # nodal velocity
@@ -38,6 +62,8 @@ class Node1D:
             self.f_damp = - alpha * abs(unbalanced_force) * vel_direction
 
     def reset_values(self):
+        """Reset nodal values to zero at the end of time step.
+        """
         self.mass     = 0.
         self.velocity = 0.
         self.acc      = 0.
