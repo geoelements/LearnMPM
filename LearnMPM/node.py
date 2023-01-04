@@ -30,7 +30,6 @@ class Node1D:
         
         f_total: float
             Total nodal force.
-
     """
 
     def __init__(self):
