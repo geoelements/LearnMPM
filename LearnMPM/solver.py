@@ -2,6 +2,14 @@ from LearnMPM import update
 from LearnMPM import interpolate
 
 def compute_stress(mesh, params):
+    """compute stress update: (1) compute nodal velocity, (2) particle strain increment, 
+    (3) update particle volume and density based on `dstrain`, and (4) compute particle stress.
+
+    Arguments:
+        mesh: Mesh object
+
+        params: MPM simulation set-up
+    """
     # calculate the grid nodal velocity
     update.nodal_velocity(mesh)
 

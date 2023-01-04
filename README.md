@@ -4,6 +4,8 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/geoelements/gns/main/license.md)
 [![OnlineBook](https://img.shields.io/badge/online-book-blueviolet)](https://geoelements.org/LearnMPM/)
+[![API docs](https://img.shields.io/badge/api-docs-ff69b4)](https://learnmpm.readthedocs.io/en/latest/LearnMPM.html)
+
 
 LearnMPM is a Python codebase to learn Material Point Method. Please refer to the [LearnMPM online book](https://geoelements.org/LearnMPM/) for examples.
 
