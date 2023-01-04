@@ -2,6 +2,7 @@ import numpy as np
 
 class Node1D:
     """1D MPM node
+    
     Attributes:
         id: Index of node class.
         x: Location of node.
@@ -10,6 +11,7 @@ class Node1D:
         momentum: Momentum at node.
         f_int: Internal force.
         f_ext: External force.
+
     """
 
     def __init__(self):

@@ -43,7 +43,8 @@ release = meta['__version__']
 # ones.
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.autosectionlabel',
-              'sphinx.ext.napoleon'
+              'sphinx.ext.napoleon',
+              'sphinx.ext.mathjax'
               ]
 
 napoleon_google_docstring = False
@@ -71,6 +72,10 @@ add_module_names = False
 latex_elements = {
   'extraclassoptions': 'openany,oneside'
 }
+
+# extensions = ['sphinx.ext.todo', 'sphinx.ext.ifconfig']
+
+# mathjax_path="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 
 master_doc = 'index'
 
