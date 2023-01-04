@@ -6,6 +6,29 @@ from LearnMPM import particle
 from LearnMPM import shapefn
 
 class Mesh1D:
+    """
+    1D Mesh class with nodes, elements and particles. 
+
+    Attributes:
+
+    nodes: List
+        List of nodes
+
+    elements: List
+        List of elements
+
+    particles: List
+        List of particles
+    
+    boundary_nodes: List
+        Node ids of the boundary nodes
+
+    nelements: int
+        Number of elements in the mesh
+    
+    dim: int
+        Dimension of Mesh (1D)
+    """
     def __init__(self, domain_size, nelements):
         self.nodes = []       # List of nodes
         self.elements = []    # List of elements
@@ -90,6 +113,17 @@ class Mesh1D:
                 self.particles.append(prtcl)
 
     def generate_particles_gauss(self, ppc, material):
+        """
+        Distributes particles at Gauss locations in the elements.
+        
+        Arguments
+        ---------
+        ppc: int
+            number of particles per cell
+
+        material: material
+            a material object
+        """        
         # Iterate through each element
         for el in self.elements:
             # Compute particle mass

@@ -3,7 +3,7 @@ LearnMPM API Documentation
 
 `LearnMPM` is a Python package for developing Material Point Method.
 
-Contents:
+Contents
 =========
 
 .. toctree::
