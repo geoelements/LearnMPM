@@ -196,7 +196,7 @@ $$
 
 In the standard MPM formulation, the consistent mass matrix is generally replaced by the lumped masses at nodes, $m_i$. This practice leads to a straightforward computation of the nodal acceleration in semi-discrete formulation.
 
-## Time integration and numerical implementation} 
+## Time integration and numerical implementation 
 
 In order to obtain the fully discrete form of the governing equations, semi-discrete equation must be discretized in time. MPM is well known for its explicit dynamic formulation which employs the forward Euler (explicit) time integration scheme. This follows that nodal acceleration in semi-discrete equation is solved explicitly using the known internal and external forces at the current configuration at time $t$ as 
 
