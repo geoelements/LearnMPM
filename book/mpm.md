@@ -11,6 +11,22 @@ Arrows represent material point state vectors (mass, volume, velocity, etc.) bei
 (4) The state of the material points is updated, and the
 computational grid is reset
 
+
+## MPM discretization
+
+A typical 2D discretisation of a solid body is shown below. 
+The grey circles are the material points $x_{p}$, where _p_ represents a material point, and the computational nodes are the points of intersection of the grid (denoted as $X_{i}$, where _i_ represents a computational node). 
+The MPM involves discretising the domain, $\Omega$, with a set of material points. 
+The material points are assigned an initial value of position, velocity, mass, volume, and stress, denoted as 
+$\mathbf{x}_{p}$, $\mathbf{\mathit{v}}_{p}$, $\mathit{m}_{p}$, $\mathbf{V}_{p}$, and $\sigma_{p}$. 
+Depending on the material being simulated, additional parameters, like pressure, temperature, pore-water pressure, etc., are specified at the material points. 
+The material points are assumed to be within the computational grid which for ease of computation, is assumed to be a Cartesian lattice. 
+At every time step $\mathit{t}_{k}$, the MPM computation cycle involves projecting the data, such as position, mass, and velocity, from the material points to the computational grid using the standard nodal basis functions, called the _shape functions_, derived from the position of the particle with respect to the grid. 
+Gradient terms are calculated on the computational grid, and the governing equation, i.e. the equation of motion, is solved with the updated position and velocity values mapping back to the material points. 
+The mesh is reinitialised to its original state and the computational cycle is repeated. 
+
+![MPM discretization](img/mpm-discretization.png)
+
 ## Conservation properties
 MPM automatically satisfies the mass conservation by assigning a constant mass to each material point. 
 The momentum balance is enforced in governing equations. 
