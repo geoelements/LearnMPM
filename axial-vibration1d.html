@@ -364,8 +364,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mpm-axial-vibration-of-a-1d-bar">
-   MPM axial vibration of a 1D bar
+  <a class="reference internal nav-link" href="#mpm-implementation">
+   MPM implementation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -376,8 +376,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#extending-it-to-support-multiple-material-points">
-   Extending it to support multiple material points
+  <a class="reference internal nav-link" href="#extending-mpm-to-support-multiple-material-points-per-element">
+   Extending MPM to support multiple material points per element
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -422,8 +422,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mpm-axial-vibration-of-a-1d-bar">
-   MPM axial vibration of a 1D bar
+  <a class="reference internal nav-link" href="#mpm-implementation">
+   MPM implementation
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -434,8 +434,8 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#extending-it-to-support-multiple-material-points">
-   Extending it to support multiple material points
+  <a class="reference internal nav-link" href="#extending-mpm-to-support-multiple-material-points-per-element">
+   Extending MPM to support multiple material points per element
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -478,11 +478,13 @@ title="Print to PDF"
 <blockquote>
 <div><p>Schematic of uniform bar undergoing longitudinal motion</p>
 </div></blockquote>
-<p>Let’s study the axial vibration of a continuum bar with Young’s modulus E = 100 and the bar length L = 25.
-Exact solutions for mode 1 are:</p>
-<p><span class="math notranslate nohighlight">\(v(x, t) = v_0 \cos(\omega_1 t) \sin(\beta_1 x)\)</span></p>
-<p><span class="math notranslate nohighlight">\(u(x, t) = \frac{v_0}{\omega_1} \sin(\omega_1 t) \sin(\beta_1 x)\)</span></p>
-<p>where <span class="math notranslate nohighlight">\(\omega_1 = \frac{\pi}{2 L}\sqrt{E/\rho}\)</span> and <span class="math notranslate nohighlight">\(\beta_1 = \frac{\pi}{2L}\)</span>. The initial velocity is <span class="math notranslate nohighlight">\(v(x, 0) = v_0 \sin(\beta_1 x)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Analytical solution</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -532,12 +534,13 @@ Exact solutions for mode 1 are:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_3_0.png" src="_images/axial-vibration1d_3_0.png" />
+<img alt="_images/axial-vibration1d_4_0.png" src="_images/axial-vibration1d_4_0.png" />
 </div>
 </div>
-<section id="mpm-axial-vibration-of-a-1d-bar">
-<h2>MPM axial vibration of a 1D bar<a class="headerlink" href="#mpm-axial-vibration-of-a-1d-bar" title="Permalink to this headline">#</a></h2>
+<section id="mpm-implementation">
+<h2>MPM implementation<a class="headerlink" href="#mpm-implementation" title="Permalink to this headline">#</a></h2>
 <p>The grid consists of 13 two-noded line elements (14 grid nodes) and 13 material points placed at the center of the elements are used. We study the axial vibration of a continuum bar with Young’s modulus E = 100 and the bar length L = 25. The time increment is chosen as <span class="math notranslate nohighlight">\(\Delta t = 0.1 \Delta x / c\)</span> where <span class="math notranslate nohighlight">\(\Delta x\)</span> denotes the nodal spacing. The initial velocity is given by: <span class="math notranslate nohighlight">\(v (x, 0) = v_0 \sin (\beta_1 x)\)</span>, where <span class="math notranslate nohighlight">\(v_0 = 0.1\)</span>.</p>
+<p><img alt="MPM 1D mesh" src="_images/mpm1d-mesh.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -702,7 +705,7 @@ Exact solutions for mode 1 are:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_7_0.png" src="_images/axial-vibration1d_7_0.png" />
+<img alt="_images/axial-vibration1d_8_0.png" src="_images/axial-vibration1d_8_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -718,13 +721,13 @@ Exact solutions for mode 1 are:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_8_0.png" src="_images/axial-vibration1d_8_0.png" />
+<img alt="_images/axial-vibration1d_9_0.png" src="_images/axial-vibration1d_9_0.png" />
 </div>
 </div>
 </section>
 </section>
-<section id="extending-it-to-support-multiple-material-points">
-<h2>Extending it to support multiple material points<a class="headerlink" href="#extending-it-to-support-multiple-material-points" title="Permalink to this headline">#</a></h2>
+<section id="extending-mpm-to-support-multiple-material-points-per-element">
+<h2>Extending MPM to support multiple material points per element<a class="headerlink" href="#extending-mpm-to-support-multiple-material-points-per-element" title="Permalink to this headline">#</a></h2>
 <p>The code we have written is specific for a two-noded element with a single material point at the center of the element. The first step is to implement multiple material points in an element. Let’s start with particle generation:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Material point properties</span>
 <span class="n">x_p</span>      <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nparticles</span><span class="p">)</span>       <span class="c1"># positions</span>
@@ -826,7 +829,7 @@ Exact solutions for mode 1 are:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_15_0.png" src="_images/axial-vibration1d_15_0.png" />
+<img alt="_images/axial-vibration1d_16_0.png" src="_images/axial-vibration1d_16_0.png" />
 </div>
 </div>
 </section>
@@ -915,7 +918,7 @@ Exact solutions for mode 1 are:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_19_0.png" src="_images/axial-vibration1d_19_0.png" />
+<img alt="_images/axial-vibration1d_20_0.png" src="_images/axial-vibration1d_20_0.png" />
 </div>
 </div>
 <blockquote>
@@ -930,7 +933,7 @@ Exact solutions for mode 1 are:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_21_0.png" src="_images/axial-vibration1d_21_0.png" />
+<img alt="_images/axial-vibration1d_22_0.png" src="_images/axial-vibration1d_22_0.png" />
 </div>
 </div>
 </section>
@@ -1163,7 +1166,7 @@ Exact solutions for mode 1 are:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_26_0.png" src="_images/axial-vibration1d_26_0.png" />
+<img alt="_images/axial-vibration1d_27_0.png" src="_images/axial-vibration1d_27_0.png" />
 </div>
 </div>
 <blockquote>
@@ -1182,7 +1185,7 @@ Exact solutions for mode 1 are:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/axial-vibration1d_28_0.png" src="_images/axial-vibration1d_28_0.png" />
+<img alt="_images/axial-vibration1d_29_0.png" src="_images/axial-vibration1d_29_0.png" />
 </div>
 </div>
 </section>
@@ -1198,16 +1201,16 @@ Exact solutions for mode 1 are:</p>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "xai"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "xai",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'xai'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
