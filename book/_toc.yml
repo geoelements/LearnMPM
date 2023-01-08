@@ -9,7 +9,6 @@ chapters:
     - file: mpm-schemes
     - file: usf
     - file: usl
-chapters:
 - file: point-axial-vibration1d
 - file: axial-vibration1d
 - file: mpm-code
