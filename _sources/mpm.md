@@ -1,5 +1,5 @@
-# Material Point Method
-Material Point Method (MPM) is a particle based method that represents the material as a collection of material points, and their deformations are determined by Newton’s laws of motion. 
+# An introduction to the Material Point Method
+The Material Point Method (MPM) is a particle based method that represents the material as a collection of material points, and their deformations are determined by Newton’s laws of motion. 
 The MPM is a hybrid Eulerian-Lagrangian approach, which uses moving material points and computational nodes on a background mesh.
 This approach is very effective particularly in the context of large deformations.
 
