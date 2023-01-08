@@ -7,8 +7,9 @@ chapters:
 - file: mpm
   sections:
     - file: mpm-schemes
-    - file: usf
-    - file: usl
+    sections:
+      - file: usf
+      - file: usl
 - file: point-axial-vibration1d
 - file: axial-vibration1d
 - file: mpm-code
