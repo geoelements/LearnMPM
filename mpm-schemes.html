@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Welcome to learn MPM with Python &#8212; Learn MPM</title>
+    <title>MPM stress update schemes &#8212; Learn MPM</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,9 +50,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1D vibration of a single material point" href="point-axial-vibration1d.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -106,8 +107,8 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Welcome to learn MPM with Python
                 </a>
             </li>
@@ -226,7 +227,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Fmpm-schemes.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -254,7 +255,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/intro.md"
+        <a href="_sources/mpm-schemes.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -291,74 +292,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#material-point-method">
-   Material Point Method
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#conservation-properties">
-     Conservation properties
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Welcome to learn MPM with Python</h1>
+                <h1>MPM stress update schemes</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#material-point-method">
-   Material Point Method
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#conservation-properties">
-     Conservation properties
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -366,39 +316,18 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-learn-mpm-with-python">
-<h1>Welcome to learn MPM with Python<a class="headerlink" href="#welcome-to-learn-mpm-with-python" title="Permalink to this headline">#</a></h1>
-<p>This is a small sample book to give you a feel for material point method.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="point-axial-vibration1d.html">1D vibration of a single material point</a></li>
-<li class="toctree-l1"><a class="reference internal" href="axial-vibration1d.html">Axial vibration of a 1D bar</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mpm-code.html">Coding 1D MPM</a></li>
-</ul>
-</div>
-<section id="material-point-method">
-<h2>Material Point Method<a class="headerlink" href="#material-point-method" title="Permalink to this headline">#</a></h2>
-<p>Material Point Method (MPM) is a particle based method that represents the material as a collection of material points, and their deformations are determined by Newton’s laws of motion.
-The MPM is a hybrid Eulerian-Lagrangian approach, which uses moving material points and computational nodes on a background mesh.
-This approach is very effective particularly in the context of large deformations.</p>
-<p><img alt="algorithm" src="_images/mpm-algorithm.png" /></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="mpm-stress-update-schemes">
+<h1>MPM stress update schemes<a class="headerlink" href="#mpm-stress-update-schemes" title="Permalink to this headline">#</a></h1>
+<p><img alt="Stress update algorithms" src="_images/stress-update-algorithms.png" /></p>
 <blockquote>
-<div><p>Illustration of the MPM algorithm: (1) A representation of material points overlaid on a computational grid.
-Arrows represent material point state vectors (mass, volume, velocity, etc.) being projected to the nodes of the computational grid.
-(2) The equations of motion are solved onto the nodes, resulting in updated nodal velocities and positions.
-(3) The updated nodal kinematics are interpolated back to the material points.
-(4) The state of the material points is updated, and the
-computational grid is reset</p>
+<div><p>Comparison of USF, USL, MUSL and USAVG. <span class="math notranslate nohighlight">\(x\)</span> is the position vector, <span class="math notranslate nohighlight">\(v\)</span> is the velocity,
+<span class="math notranslate nohighlight">\(a\)</span> is the acceleration, <span class="math notranslate nohighlight">\(\varepsilon\)</span> is the strain tensor and <span class="math notranslate nohighlight">\(\sigma\)</span> is the stress
+tensor. Subscripts, <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(I\)</span> represents values at material points and background nodes.
+<span class="math notranslate nohighlight">\(\Delta t^* = \Delta t\)</span> is the time step size for USF, USL and MUSL. For USAVG,
+<span class="math notranslate nohighlight">\(\Delta t^* = \frac{1}{2} \Delta t\)</span>. (reproduced after Kularathna., 2018).</p>
 </div></blockquote>
-<section id="conservation-properties">
-<h3>Conservation properties<a class="headerlink" href="#conservation-properties" title="Permalink to this headline">#</a></h3>
-<p>MPM automatically satisfies the mass conservation by assigning a constant mass to each material point.
-The momentum balance is enforced in governing equations.
-However, Bardenhagen (2002) showed that the original MPM formulation does not satisfy the energy conservation explicitly.
-It was found that the energy conservation in MPM is strongly
-dependent on the two algorithms which are used to update the stress at material points.</p>
-</section>
-</section>
+<p>[1] Nairn, J. A. (2003). Material point method calculations with explicit cracks. Computer Modeling in Engineering and Sciences, 4(6), 649-664.</p>
+<p>[2] Kularathna, S. (2018). Splitting solution scheme for material point method (Doctoral dissertation, University of Cambridge).</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -428,13 +357,6 @@ dependent on the two algorithms which are used to update the stress at material 
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="point-axial-vibration1d.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">1D vibration of a single material point</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
