@@ -1,48 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>1D vibration of a single material point &#8212; Learn MPM</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -52,61 +63,93 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'point-axial-vibration1d';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Axial vibration of a 1D bar" href="axial-vibration1d.html" />
     <link rel="prev" title="Update Stress Last (USL)" href="usl.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Learn MPM</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -116,610 +159,296 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="mpm.html">
-   An introduction to the Material Point Method
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="mpm-schemes.html">
-     MPM stress update schemes
-    </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label for="toctree-checkbox-2">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul>
-     <li class="toctree-l3">
-      <a class="reference internal" href="usf.html">
-       Update Stress First (USF)
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="usl.html">
-       Update Stress Last (USL)
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   1D vibration of a single material point
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="axial-vibration1d.html">
-   Axial vibration of a 1D bar
-  </a>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="mpm-code.html">
-   Coding 1D MPM
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="learnmpm-axial-vibration1d.html">
-     Axial vibration of 1D bar using LearnMPM
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="mpm.html">An introduction to the Material Point Method</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="mpm-schemes.html">MPM stress update schemes</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="usf.html">Update Stress First (USF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usl.html">Update Stress Last (USL)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1D vibration of a single material point</a></li>
+<li class="toctree-l1"><a class="reference internal" href="axial-vibration1d.html">Axial vibration of a 1D bar</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="mpm-code.html">Coding 1D MPM</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="learnmpm-axial-vibration1d.html">Axial vibration of 1D bar using LearnMPM</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/geoelements/learn-mpm/main?urlpath=lab/tree/docs/point-axial-vibration1d.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
   
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
+  <div id="rtd-footer-container"></div>
 
-      </li>
+
+      </div>
       
-      <li>
-        <a href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/docs/point-axial-vibration1d.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/docs/point-axial-vibration1d.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   
     <img src="_static/images/logo_colab.png">
   </span>
-<span class="headerbtn__text-container">Colab</span>
+<span class="btn__text-container">Colab</span>
 </a>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/geoelements/learn-mpm" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Fpoint-axial-vibration1d.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/point-axial-vibration1d.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/geoelements/learn-mpm"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Fpoint-axial-vibration1d.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/point-axial-vibration1d.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#analytical-solution">
-   Analytical solution
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#d-mpm-code-usl-scheme">
-   1D MPM code - USL Scheme
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#initialization-phase">
-     1. Initialization phase
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#computational-domain">
-       Computational domain
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#material-properties">
-       Material properties
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#initial-loading-conditions">
-       Initial loading conditions
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#material-points">
-       Material points
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#shape-functions">
-       Shape functions
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#shape-function-for-material-point">
-         Shape function for material point
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solution-phase-for-time-step-t-to-t-delta-t">
-     2. Solution phase for time step
-     <span class="math notranslate nohighlight">
-      \(t\)
-     </span>
-     to
-     <span class="math notranslate nohighlight">
-      \(t + \Delta t\)
-     </span>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#map-mass-and-momentum-to-nodes">
-       Map mass and momentum to nodes
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#applying-boundary-condition">
-       Applying boundary condition
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compute-nodal-forces">
-       Compute nodal forces
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compute-external-forces">
-       Compute external forces
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compute-internal-forces">
-       Compute internal forces
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#calculate-the-total-unbalanced-nodal-forces">
-       Calculate the total unbalanced nodal forces
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#update-nodal-momentum">
-     Update nodal momentum
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#critical-time-step">
-       Critical time step
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mapping-from-nodes-to-particles">
-     Mapping from nodes to particles
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#update-particle-velocities-and-position">
-       Update particle velocities and position
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#update-particle-momentum">
-       Update particle momentum
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#update-nodal-velocity">
-       Update nodal velocity
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compute-strains-and-stresses">
-       Compute strains and stresses
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#d-mpm-code-complete">
-   1D MPM code complete
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">
-     Plot results of MPM and analytical solution
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>1D vibration of a single material point</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#analytical-solution">
-   Analytical solution
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#d-mpm-code-usl-scheme">
-   1D MPM code - USL Scheme
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#initialization-phase">
-     1. Initialization phase
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#computational-domain">
-       Computational domain
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#material-properties">
-       Material properties
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#initial-loading-conditions">
-       Initial loading conditions
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#material-points">
-       Material points
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#shape-functions">
-       Shape functions
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#shape-function-for-material-point">
-         Shape function for material point
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solution-phase-for-time-step-t-to-t-delta-t">
-     2. Solution phase for time step
-     <span class="math notranslate nohighlight">
-      \(t\)
-     </span>
-     to
-     <span class="math notranslate nohighlight">
-      \(t + \Delta t\)
-     </span>
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#map-mass-and-momentum-to-nodes">
-       Map mass and momentum to nodes
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#applying-boundary-condition">
-       Applying boundary condition
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compute-nodal-forces">
-       Compute nodal forces
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compute-external-forces">
-       Compute external forces
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compute-internal-forces">
-       Compute internal forces
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#calculate-the-total-unbalanced-nodal-forces">
-       Calculate the total unbalanced nodal forces
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#update-nodal-momentum">
-     Update nodal momentum
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#critical-time-step">
-       Critical time step
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mapping-from-nodes-to-particles">
-     Mapping from nodes to particles
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#update-particle-velocities-and-position">
-       Update particle velocities and position
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#update-particle-momentum">
-       Update particle momentum
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#update-nodal-velocity">
-       Update nodal velocity
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#compute-strains-and-stresses">
-       Compute strains and stresses
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#d-mpm-code-complete">
-   1D MPM code complete
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">
-     Plot results of MPM and analytical solution
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1D vibration of a single material point</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution">Analytical solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-mpm-code-usl-scheme">1D MPM code - USL Scheme</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-phase">1. Initialization phase</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-domain">Computational domain</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#material-properties">Material properties</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-loading-conditions">Initial loading conditions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#material-points">Material points</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-functions">Shape functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-function-for-material-point">Shape function for material point</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-phase-for-time-step-t-to-t-delta-t">2. Solution phase for time step <span class="math notranslate nohighlight">\(t\)</span> to <span class="math notranslate nohighlight">\(t + \Delta t\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#map-mass-and-momentum-to-nodes">Map mass and momentum to nodes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-boundary-condition">Applying boundary condition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-nodal-forces">Compute nodal forces</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-external-forces">Compute external forces</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-internal-forces">Compute internal forces</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-total-unbalanced-nodal-forces">Calculate the total unbalanced nodal forces</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-nodal-momentum">Update nodal momentum</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-time-step">Critical time step</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-from-nodes-to-particles">Mapping from nodes to particles</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#update-particle-velocities-and-position">Update particle velocities and position</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#update-particle-momentum">Update particle momentum</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#update-nodal-velocity">Update nodal velocity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-strains-and-stresses">Compute strains and stresses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-mpm-code-complete">1D MPM code complete</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">Plot results of MPM and analytical solution</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="d-vibration-of-a-single-material-point">
-<h1>1D vibration of a single material point<a class="headerlink" href="#d-vibration-of-a-single-material-point" title="Permalink to this headline">#</a></h1>
+<h1>1D vibration of a single material point<a class="headerlink" href="#d-vibration-of-a-single-material-point" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/book/bar1d-vibration.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a>
 <a class="reference external" href="https://jupyter.designsafe-ci.org/user/name/notebooks/CommunityData/Use%20Case%20Products/MPM/LearnMPM/point-axial-vibration1d.ipynb"><img alt="Try on DesignSafe" src="https://raw.githubusercontent.com/geoelements/LearnMPM/main/DesignSafe-Badge.svg" /></a></p>
 <p>Let us consider the vibration of a single material point as shown below. The bar is represented by a single point initially located at <span class="math notranslate nohighlight">\(x_p = L/2\)</span>, which has an initial velocity <span class="math notranslate nohighlight">\(v_0\)</span>. The material is linear elastic.</p>
@@ -728,7 +457,7 @@ title="Print to PDF"
 <p>and for the position is: <span class="math notranslate nohighlight">\(x(t) = x_0 \exp \left[\frac{v_0}{L \omega} \sin (\omega t)\right]\)</span></p>
 <p>The bar has a constant density <span class="math notranslate nohighlight">\(\rho = 1.0\)</span>. The constitutive equation is <span class="math notranslate nohighlight">\(\dot\sigma = E \dot \varepsilon\)</span>, where <span class="math notranslate nohighlight">\(\dot \varepsilon = dv/dx\)</span> and <span class="math notranslate nohighlight">\(E\)</span> is the Young’s modulus. The mesh consists of a single two-noded element. The elastic wave speed is <span class="math notranslate nohighlight">\(c = \sqrt{E/\rho} = 2 \pi\)</span>. The boundary conditions are imposed on the mesh, both the nodal velocity and the acceleration at <span class="math notranslate nohighlight">\(x = 0\)</span> (the left node) is zero throughout the simulation.</p>
 <section id="analytical-solution">
-<h2>Analytical solution<a class="headerlink" href="#analytical-solution" title="Permalink to this headline">#</a></h2>
+<h2>Analytical solution<a class="headerlink" href="#analytical-solution" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -772,14 +501,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/point-axial-vibration1d_6_0.png" src="_images/point-axial-vibration1d_6_0.png" />
+<img alt="_images/610a3e28319c69582c48a8d22785053db06b5aebf664bb47046d92fa4884e2b1.png" src="_images/610a3e28319c69582c48a8d22785053db06b5aebf664bb47046d92fa4884e2b1.png" />
 </div>
 </div>
 </section>
 <section id="d-mpm-code-usl-scheme">
-<h2>1D MPM code - USL Scheme<a class="headerlink" href="#d-mpm-code-usl-scheme" title="Permalink to this headline">#</a></h2>
+<h2>1D MPM code - USL Scheme<a class="headerlink" href="#d-mpm-code-usl-scheme" title="Permalink to this heading">#</a></h2>
 <p>We will use the Update Stress Last (USL) algorithm to implement the 1D vibrating bar example. An overview of the USL MPM algorithm is shown below:</p>
-<ol>
+<ol class="arabic">
 <li><p>Initialisation phase</p>
 <p>(a) Particle distribution in the undeformed configuration</p>
 <p>(b) Grid set up</p>
@@ -804,9 +533,9 @@ title="Print to PDF"
 <li><p>Reset the grid and advance to the next step</p></li>
 </ol>
 <section id="initialization-phase">
-<h3>1. Initialization phase<a class="headerlink" href="#initialization-phase" title="Permalink to this headline">#</a></h3>
+<h3>1. Initialization phase<a class="headerlink" href="#initialization-phase" title="Permalink to this heading">#</a></h3>
 <section id="computational-domain">
-<h4>Computational domain<a class="headerlink" href="#computational-domain" title="Permalink to this headline">#</a></h4>
+<h4>Computational domain<a class="headerlink" href="#computational-domain" title="Permalink to this heading">#</a></h4>
 <p>Let’s now develop a 1D MPM code for bar vibration with a single material point in the middle of the element.</p>
 <p><img alt="1d bar" src="_images/bar1dmpm.png" /></p>
 <p>The domain (bar) has a length of 1 m. We descritize the bar using a single linear element with two nodes. The left node is at 0 and the right node is at the end of the bar at L.</p>
@@ -834,7 +563,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="material-properties">
-<h4>Material properties<a class="headerlink" href="#material-properties" title="Permalink to this headline">#</a></h4>
+<h4>Material properties<a class="headerlink" href="#material-properties" title="Permalink to this heading">#</a></h4>
 <p>We now define a linear elastic material with <span class="math notranslate nohighlight">\(E = 2 * \pi^2\)</span> and a density <span class="math notranslate nohighlight">\(\rho = 1\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -847,7 +576,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="initial-loading-conditions">
-<h4>Initial loading conditions<a class="headerlink" href="#initial-loading-conditions" title="Permalink to this headline">#</a></h4>
+<h4>Initial loading conditions<a class="headerlink" href="#initial-loading-conditions" title="Permalink to this heading">#</a></h4>
 <p>We apply an initial velocity <span class="math notranslate nohighlight">\(v_0 = 0.1\)</span> at the material point.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -860,7 +589,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="material-points">
-<h4>Material points<a class="headerlink" href="#material-points" title="Permalink to this headline">#</a></h4>
+<h4>Material points<a class="headerlink" href="#material-points" title="Permalink to this heading">#</a></h4>
 <p>In MPM, the material points keep track of the position, mass, velocity, volume, momentum and stress. The material point is at the middle of the element. The volume of the material point is the size of the entire length of the bar. Assuming a density <span class="math notranslate nohighlight">\(\rho = 1\)</span>, the mass of the material point is <span class="math notranslate nohighlight">\(\rho * L = 1 * 1 = 1.0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -877,7 +606,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="shape-functions">
-<h4>Shape functions<a class="headerlink" href="#shape-functions" title="Permalink to this headline">#</a></h4>
+<h4>Shape functions<a class="headerlink" href="#shape-functions" title="Permalink to this heading">#</a></h4>
 <p>We will use a two-noded single element with linear elements. In order to avoid finding the natural coordinates of material points, we define the shape functions in the global coordinate system. In 1D, the shape functions are defined as:</p>
 <p><span class="math notranslate nohighlight">\(N_i (x) = \begin{cases} 1 - |x - x_i|/l &amp; \text{if } | x - x_i| \le l \\ 0 &amp; \text{else}  \end{cases}\)</span></p>
 <p>where <span class="math notranslate nohighlight">\(l\)</span> denotes the element size.</p>
@@ -905,7 +634,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/point-axial-vibration1d_17_0.png" src="_images/point-axial-vibration1d_17_0.png" />
+<img alt="_images/bf3ed66953745b9f9b5bd3a2aed67b1002bfc76a6c6428ebee97093fa24f9e95.png" src="_images/bf3ed66953745b9f9b5bd3a2aed67b1002bfc76a6c6428ebee97093fa24f9e95.png" />
 </div>
 </div>
 <p>The derivative of the shape function is:</p>
@@ -933,11 +662,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/point-axial-vibration1d_19_0.png" src="_images/point-axial-vibration1d_19_0.png" />
+<img alt="_images/46250ba9a69856262cab3e13ffa26b3631248094734af665145a08927d01d728.png" src="_images/46250ba9a69856262cab3e13ffa26b3631248094734af665145a08927d01d728.png" />
 </div>
 </div>
 <section id="shape-function-for-material-point">
-<h5>Shape function for material point<a class="headerlink" href="#shape-function-for-material-point" title="Permalink to this headline">#</a></h5>
+<h5>Shape function for material point<a class="headerlink" href="#shape-function-for-material-point" title="Permalink to this heading">#</a></h5>
 <p>We will now define the shape function and its derivatives for the material point located at <span class="math notranslate nohighlight">\(x_p\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -961,9 +690,9 @@ Gradient of shape function for material point at x_p = 0.5, is B: [-1.  1.]
 </section>
 </section>
 <section id="solution-phase-for-time-step-t-to-t-delta-t">
-<h3>2. Solution phase for time step <span class="math notranslate nohighlight">\(t\)</span> to <span class="math notranslate nohighlight">\(t + \Delta t\)</span><a class="headerlink" href="#solution-phase-for-time-step-t-to-t-delta-t" title="Permalink to this headline">#</a></h3>
+<h3>2. Solution phase for time step <span class="math notranslate nohighlight">\(t\)</span> to <span class="math notranslate nohighlight">\(t + \Delta t\)</span><a class="headerlink" href="#solution-phase-for-time-step-t-to-t-delta-t" title="Permalink to this heading">#</a></h3>
 <section id="map-mass-and-momentum-to-nodes">
-<h4>Map mass and momentum to nodes<a class="headerlink" href="#map-mass-and-momentum-to-nodes" title="Permalink to this headline">#</a></h4>
+<h4>Map mass and momentum to nodes<a class="headerlink" href="#map-mass-and-momentum-to-nodes" title="Permalink to this heading">#</a></h4>
 <p>Mapping from particles to nodes. Let’s compute the nodal mass and momentum using the linear shape functions to map  mass and velocity of the material point.</p>
 <p>Compute nodal mass: <span class="math notranslate nohighlight">\(m_i^t = \sum\limits_{p=1}^{n_P} N_i(\textbf{x}_p^t) m_p\)</span></p>
 <p>Compute nodal momentum: <span class="math notranslate nohighlight">\((m \textbf{v})_i^{t} = \sum\limits_{p=1}^{n_P} N_i(\textbf{x}_p^t) m_p \textbf{v}_p^{t}\)</span></p>
@@ -1019,7 +748,7 @@ variable of the location of each material point at time <span class="math notran
 </div>
 </section>
 <section id="applying-boundary-condition">
-<h4>Applying boundary condition<a class="headerlink" href="#applying-boundary-condition" title="Permalink to this headline">#</a></h4>
+<h4>Applying boundary condition<a class="headerlink" href="#applying-boundary-condition" title="Permalink to this heading">#</a></h4>
 <p>Since the left node is fixed, we constrain the velocity at the node <span class="math notranslate nohighlight">\(v_n = 0\)</span> for node 0. As we store momentum, rather than the velocity at the node, we constrain the momentum on the left node to be zero.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1038,10 +767,10 @@ variable of the location of each material point at time <span class="math notran
 </div>
 </section>
 <section id="compute-nodal-forces">
-<h4>Compute nodal forces<a class="headerlink" href="#compute-nodal-forces" title="Permalink to this headline">#</a></h4>
+<h4>Compute nodal forces<a class="headerlink" href="#compute-nodal-forces" title="Permalink to this heading">#</a></h4>
 </section>
 <section id="compute-external-forces">
-<h4>Compute external forces<a class="headerlink" href="#compute-external-forces" title="Permalink to this headline">#</a></h4>
+<h4>Compute external forces<a class="headerlink" href="#compute-external-forces" title="Permalink to this heading">#</a></h4>
 <p><span class="math notranslate nohighlight">\( (\textbf{f}_i)^{ext,t} = \textbf{b}_i^{t} + \textbf{t}_i^{t} \)</span></p>
 <p>where,</p>
 <p><span class="math notranslate nohighlight">\(\textbf{f}_i^{ext,t}\)</span> nodal external force of node <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(t\)</span></p>
@@ -1065,7 +794,7 @@ variable of the location of each material point at time <span class="math notran
 </div>
 </section>
 <section id="compute-internal-forces">
-<h4>Compute internal forces<a class="headerlink" href="#compute-internal-forces" title="Permalink to this headline">#</a></h4>
+<h4>Compute internal forces<a class="headerlink" href="#compute-internal-forces" title="Permalink to this heading">#</a></h4>
 <p>The internal force at the nodes is mapped from the particle stress:</p>
 <p><span class="math notranslate nohighlight">\( (\textbf{f}_i)^{int,t} = \sum\limits_{p=1}^{n_P} V_p^t B_i(\textbf{x}_p^t) \boldsymbol{\sigma}_p^{t} \)</span></p>
 <p>where,</p>
@@ -1092,7 +821,7 @@ variable of the location of each material point at time <span class="math notran
 </div>
 </section>
 <section id="calculate-the-total-unbalanced-nodal-forces">
-<h4>Calculate the total unbalanced nodal forces<a class="headerlink" href="#calculate-the-total-unbalanced-nodal-forces" title="Permalink to this headline">#</a></h4>
+<h4>Calculate the total unbalanced nodal forces<a class="headerlink" href="#calculate-the-total-unbalanced-nodal-forces" title="Permalink to this heading">#</a></h4>
 <p>The total unbalanced force at the node: <span class="math notranslate nohighlight">\( \textbf{f}_i^{tot,t} = \textbf{f}_i^{int,t} + \textbf{f}_i^{ext,t}\)</span></p>
 <hr class="docutils" />
 <p>For this problem, the external force is zero, so the total force must equal the internal force.</p>
@@ -1130,10 +859,10 @@ variable of the location of each material point at time <span class="math notran
 </section>
 </section>
 <section id="update-nodal-momentum">
-<h3>Update nodal momentum<a class="headerlink" href="#update-nodal-momentum" title="Permalink to this headline">#</a></h3>
+<h3>Update nodal momentum<a class="headerlink" href="#update-nodal-momentum" title="Permalink to this heading">#</a></h3>
 <p>Nodal momentum: <span class="math notranslate nohighlight">\( (m\textbf{v})_i^{t+\Delta t} = (m\textbf{v})_i^t + \textbf{f}_i^{tot,t} * \Delta t\)</span></p>
 <section id="critical-time-step">
-<h4>Critical time step<a class="headerlink" href="#critical-time-step" title="Permalink to this headline">#</a></h4>
+<h4>Critical time step<a class="headerlink" href="#critical-time-step" title="Permalink to this heading">#</a></h4>
 <p>The time step <span class="math notranslate nohighlight">\(\Delta t\)</span> must be smaller than the critical time step <span class="math notranslate nohighlight">\(\Delta t_{crit}\)</span>. Typically, <span class="math notranslate nohighlight">\(\Delta t = \Delta t_{crit}/10\)</span>.</p>
 <p><span class="math notranslate nohighlight">\(\Delta t_{crit} = \frac{L}{\sqrt{E \cdot \rho}}\)</span></p>
 <div class="cell docutils container">
@@ -1170,9 +899,9 @@ variable of the location of each material point at time <span class="math notran
 </section>
 </section>
 <section id="mapping-from-nodes-to-particles">
-<h3>Mapping from nodes to particles<a class="headerlink" href="#mapping-from-nodes-to-particles" title="Permalink to this headline">#</a></h3>
+<h3>Mapping from nodes to particles<a class="headerlink" href="#mapping-from-nodes-to-particles" title="Permalink to this heading">#</a></h3>
 <section id="update-particle-velocities-and-position">
-<h4>Update particle velocities and position<a class="headerlink" href="#update-particle-velocities-and-position" title="Permalink to this headline">#</a></h4>
+<h4>Update particle velocities and position<a class="headerlink" href="#update-particle-velocities-and-position" title="Permalink to this heading">#</a></h4>
 <p>Update the position of the material points based on the nodal velocity.</p>
 <ul class="simple">
 <li><p>Material point velocity:
@@ -1199,7 +928,7 @@ variable of the location of each material point at time <span class="math notran
 </div>
 </section>
 <section id="update-particle-momentum">
-<h4>Update particle momentum<a class="headerlink" href="#update-particle-momentum" title="Permalink to this headline">#</a></h4>
+<h4>Update particle momentum<a class="headerlink" href="#update-particle-momentum" title="Permalink to this heading">#</a></h4>
 <p>Material point momentum: <span class="math notranslate nohighlight">\( (m\textbf{v})_p^{t+\Delta t} = m_p * \textbf{v}_p^{t+\Delta t}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1211,7 +940,7 @@ variable of the location of each material point at time <span class="math notran
 </div>
 </section>
 <section id="update-nodal-velocity">
-<h4>Update nodal velocity<a class="headerlink" href="#update-nodal-velocity" title="Permalink to this headline">#</a></h4>
+<h4>Update nodal velocity<a class="headerlink" href="#update-nodal-velocity" title="Permalink to this heading">#</a></h4>
 <p>The typical equation to update nodal velocity is based on the nodal momentum: <span class="math notranslate nohighlight">\(\textbf{v}_i^{t + \Delta t} = (m \textbf{v})_i^{t + \Delta t} / m_i^{t}\)</span>.</p>
 <p>However, we prefer to remap the particle velocity and mass and use the interpolated nodal mass to compute the nodal velocities: <span class="math notranslate nohighlight">\((\textbf{v})_i^{t + \Delta t} = \sum\limits_{p=1}^{n_P} N_i(\textbf{x}_p^{t}) m_p \textbf{v}_p^{t + \Delta t} / m_i^{t + \Delta t}\)</span></p>
 <p>After updating the nodal velocity, re-constrain the velocity at the fixed node back to zero.</p>
@@ -1237,7 +966,7 @@ variable of the location of each material point at time <span class="math notran
 </div>
 </section>
 <section id="compute-strains-and-stresses">
-<h4>Compute strains and stresses<a class="headerlink" href="#compute-strains-and-stresses" title="Permalink to this headline">#</a></h4>
+<h4>Compute strains and stresses<a class="headerlink" href="#compute-strains-and-stresses" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>The strain at each material point is computed by mapping the strain rate from the nodes: <span class="math notranslate nohighlight">\( \boldsymbol{\varepsilon}_p^t = \sum\limits_{p=1}^{n_P} B_i(\textbf{x}_p^t) \textbf{v}_i^t \)</span></p></li>
 <li><p>The stress at each material point is updated using <span class="math notranslate nohighlight">\(\Delta\sigma_p^t\)</span> based on the constitutive model:
@@ -1269,7 +998,7 @@ variable of the location of each material point at time <span class="math notran
 </section>
 </section>
 <section id="d-mpm-code-complete">
-<h2>1D MPM code complete<a class="headerlink" href="#d-mpm-code-complete" title="Permalink to this headline">#</a></h2>
+<h2>1D MPM code complete<a class="headerlink" href="#d-mpm-code-complete" title="Permalink to this heading">#</a></h2>
 <p>Putting it all together</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1379,7 +1108,7 @@ variable of the location of each material point at time <span class="math notran
 </div>
 </div>
 <section id="plot-results-of-mpm-and-analytical-solution">
-<h3>Plot results of MPM and analytical solution<a class="headerlink" href="#plot-results-of-mpm-and-analytical-solution" title="Permalink to this headline">#</a></h3>
+<h3>Plot results of MPM and analytical solution<a class="headerlink" href="#plot-results-of-mpm-and-analytical-solution" title="Permalink to this heading">#</a></h3>
 <p>Compare the MPM results with the analytical solution.</p>
 <blockquote>
 <div><p>Velocity</p>
@@ -1401,7 +1130,7 @@ variable of the location of each material point at time <span class="math notran
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/point-axial-vibration1d_54_0.png" src="_images/point-axial-vibration1d_54_0.png" />
+<img alt="_images/fe37ede731692d0a71ea6c445c17e3a2a1d0ecb1bd9f3e979073aceb29fc2db9.png" src="_images/fe37ede731692d0a71ea6c445c17e3a2a1d0ecb1bd9f3e979073aceb29fc2db9.png" />
 </div>
 </div>
 <blockquote>
@@ -1420,7 +1149,7 @@ variable of the location of each material point at time <span class="math notran
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/point-axial-vibration1d_56_0.png" src="_images/point-axial-vibration1d_56_0.png" />
+<img alt="_images/cccb8c96220eb19debeee565fe723e1af15369e124e7b51ca7f5e23341b705a7.png" src="_images/cccb8c96220eb19debeee565fe723e1af15369e124e7b51ca7f5e23341b705a7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1437,7 +1166,7 @@ variable of the location of each material point at time <span class="math notran
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/point-axial-vibration1d_57_0.png" src="_images/point-axial-vibration1d_57_0.png" />
+<img alt="_images/dd695e920571e9bc045029f7fff4c6ee7ac3e8fe9d9df416a41bd8563d0d5cc1.png" src="_images/dd695e920571e9bc045029f7fff4c6ee7ac3e8fe9d9df416a41bd8563d0d5cc1.png" />
 </div>
 </div>
 </section>
@@ -1456,7 +1185,7 @@ variable of the location of each material point at time <span class="math notran
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1464,50 +1193,137 @@ variable of the location of each material point at time <span class="math notran
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="usl.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Update Stress Last (USL)</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="usl.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Update Stress Last (USL)</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="axial-vibration1d.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="axial-vibration1d.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Axial vibration of a 1D bar</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution">Analytical solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-mpm-code-usl-scheme">1D MPM code - USL Scheme</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization-phase">1. Initialization phase</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-domain">Computational domain</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#material-properties">Material properties</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-loading-conditions">Initial loading conditions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#material-points">Material points</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-functions">Shape functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-function-for-material-point">Shape function for material point</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-phase-for-time-step-t-to-t-delta-t">2. Solution phase for time step <span class="math notranslate nohighlight">\(t\)</span> to <span class="math notranslate nohighlight">\(t + \Delta t\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#map-mass-and-momentum-to-nodes">Map mass and momentum to nodes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#applying-boundary-condition">Applying boundary condition</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-nodal-forces">Compute nodal forces</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-external-forces">Compute external forces</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-internal-forces">Compute internal forces</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-total-unbalanced-nodal-forces">Calculate the total unbalanced nodal forces</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-nodal-momentum">Update nodal momentum</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#critical-time-step">Critical time step</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-from-nodes-to-particles">Mapping from nodes to particles</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#update-particle-velocities-and-position">Update particle velocities and position</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#update-particle-momentum">Update particle momentum</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#update-nodal-velocity">Update nodal velocity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-strains-and-stresses">Compute strains and stresses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-mpm-code-complete">1D MPM code complete</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results-of-mpm-and-analytical-solution">Plot results of MPM and analytical solution</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
   
-    By Krishna Kumar, Shyamini Kularathna<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
-</div>
+<p class="component-author">
+By Krishna Kumar, Shyamini Kularathna
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
 
-      </div>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
