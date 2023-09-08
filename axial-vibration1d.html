@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,8 +38,8 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -163,6 +163,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 has-children"><a class="reference internal" href="mpm-schemes.html">MPM stress update schemes</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="usf.html">Update Stress First (USF)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usl.html">Update Stress Last (USL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="update.html">Update</a></li>
 </ul>
 </li>
 </ul>
@@ -422,8 +423,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="axial-vibration-of-a-1d-bar">
 <h1>Axial vibration of a 1D bar<a class="headerlink" href="#axial-vibration-of-a-1d-bar" title="Permalink to this heading">#</a></h1>
-<p><a class="reference external" href="https://colab.research.google.com/github/geoelements/LearnMPM/blob/main/book/axial-vibration1d.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a>
-<a class="reference external" href="https://jupyter.designsafe-ci.org/user/name/notebooks/CommunityData/Use%20Case%20Products/MPM/LearnMPM/axial-vibration1d.ipynb"><img alt="Try on DesignSafe" src="https://raw.githubusercontent.com/geoelements/LearnMPM/main/DesignSafe-Badge.svg" /></a></p>
+<p><a class="reference external" href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/book/axial-vibration1d.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a>
+<a class="reference external" href="https://jupyter.designsafe-ci.org/hub/user-redirect/notebooks/CommunityData/Use%20Case%20Products/MPM/LearnMPM/axial-vibration1d.ipynb"><img alt="Try on DesignSafe" src="https://raw.githubusercontent.com/geoelements/LearnMPM/main/DesignSafe-Badge.svg" /></a></p>
 <p><img alt="Axial vibration of a continuum bar" src="_images/axial-vibration-continuum-bar.jpg" /></p>
 <blockquote>
 <div><p>Schematic of uniform bar undergoing longitudinal motion</p>
@@ -1164,7 +1165,10 @@ document.write(`
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="point-axial-vibration1d.html"
@@ -1184,7 +1188,10 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -1219,7 +1226,7 @@ document.write(`
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -1249,7 +1256,7 @@ By Krishna Kumar, Shyamini Kularathna
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -1258,8 +1265,8 @@ By Krishna Kumar, Shyamini Kularathna
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

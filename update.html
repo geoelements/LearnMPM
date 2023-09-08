@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Coding 1D MPM &#8212; Learn MPM</title>
+    <title>Update &#8212; Learn MPM</title>
   
   
   
@@ -61,11 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'mpm-code';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'update';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Axial vibration of 1D bar using LearnMPM" href="learnmpm-axial-vibration1d.html" />
-    <link rel="prev" title="Axial vibration of a 1D bar" href="axial-vibration1d.html" />
+    <link rel="next" title="1D vibration of a single material point" href="point-axial-vibration1d.html" />
+    <link rel="prev" title="Update Stress Last (USL)" href="usl.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -157,18 +157,18 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="mpm.html">An introduction to the Material Point Method</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="mpm-schemes.html">MPM stress update schemes</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="mpm.html">An introduction to the Material Point Method</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="mpm-schemes.html">MPM stress update schemes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="usf.html">Update Stress First (USF)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="usl.html">Update Stress Last (USL)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="update.html">Update</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Update</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="point-axial-vibration1d.html">1D vibration of a single material point</a></li>
 <li class="toctree-l1"><a class="reference internal" href="axial-vibration1d.html">Axial vibration of a 1D bar</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Coding 1D MPM</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="mpm-code.html">Coding 1D MPM</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="learnmpm-axial-vibration1d.html">Axial vibration of 1D bar using LearnMPM</a></li>
 </ul>
 </li>
@@ -243,7 +243,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Fmpm-code.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Fupdate.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -273,7 +273,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/mpm-code.md" target="_blank"
+      <li><a href="_sources/update.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -353,7 +353,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Coding 1D MPM</h1>
+    <h1>Update</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -367,25 +367,219 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="coding-1d-mpm">
-<h1>Coding 1D MPM<a class="headerlink" href="#coding-1d-mpm" title="Permalink to this heading">#</a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Work in progress</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="update">
+<h1>Update<a class="headerlink" href="#update" title="Permalink to this heading">#</a></h1>
+<p>import numpy as np</p>
+<p>def nodal_total_force(mesh):
+“””
+Compute total force as sum of internal, external and damping force.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+&quot;&quot;&quot;
+for node in mesh.nodes:
+    # Total force
+    node.f_total = node.f_int + node.f_ext + node.f_damp
+</pre></div>
 </div>
-<p><img alt="MPM entities" src="_images/mpm.png" /></p>
-<blockquote>
-<div><p>MPM entities</p>
-</div></blockquote>
-<p><img alt="MPM 1D" src="_images/mpm1d.png" /></p>
-<blockquote>
-<div><p>1D MPM entities</p>
-</div></blockquote>
-<p><img alt="code overview" src="_images/mpm-code.png" /></p>
-<blockquote>
-<div><p>Overview of MPM code</p>
-</div></blockquote>
-<div class="toctree-wrapper compound">
+<p>def nodal_acceleration_velocity(mesh, dt):
+“””
+Compute nodal acceleration as :math:<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">f</span> <span class="pre">/</span> <span class="pre">m</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span> <span class="pre">+=</span> <span class="pre">a</span> <span class="pre">*</span> <span class="pre">dt</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+    dt: float
+        time step
+&quot;&quot;&quot;
+for node in mesh.nodes:
+    # Total force
+    f_total = node.f_int + node.f_ext + node.f_damp
+    # Accleration 
+    node.acc =  f_total / node.mass if node.mass &gt; 0 else 0.
+    # Velocity
+    node.velocity += node.acc * dt
+</pre></div>
+</div>
+<p>def nodal_velocity(mesh):
+“””Compute nodal velocity as :math:<code class="docutils literal notranslate"><span class="pre">v</span> <span class="pre">=</span> <span class="pre">mv</span> <span class="pre">/</span> <span class="pre">m</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+&quot;&quot;&quot;
+for node in mesh.nodes:
+    if(node.mass &gt; 0.):
+        node.velocity = node.momentum / node.mass
+</pre></div>
+</div>
+<p>def fix_nodal_bc_momentum(mesh):
+“””Set momentum and velocity to zero on specific boundary nodes.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+&quot;&quot;&quot;
+for nid in mesh.boundary_nodes:
+    mesh.nodes[nid].momentum = 0
+    mesh.nodes[nid].velocity = 0
+</pre></div>
+</div>
+<p>def fix_nodal_bc_force(mesh):
+“””Set nodal force to zero on specific boundary nodes.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+&quot;&quot;&quot;
+for nid in mesh.boundary_nodes:
+    mesh.nodes[nid].f_total = 0
+</pre></div>
+</div>
+<p>def momentum_in_nodes(mesh, dt):
+“””Compute momentum in nodes. :math:<code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">+=</span> <span class="pre">force</span> <span class="pre">*</span> <span class="pre">dt</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+    dt: float
+        time step
+&quot;&quot;&quot;
+for node in mesh.nodes:
+    node.momentum += node.f_total * dt
+</pre></div>
+</div>
+<p>def nodal_momentum(mesh):
+“””
+Update nodal momentum :math:<code class="docutils literal notranslate"><span class="pre">(mv)_i</span> <span class="pre">=</span> <span class="pre">\sum_p</span> <span class="pre">N_i(x_p)</span> <span class="pre">*</span> <span class="pre">m_p</span> <span class="pre">*</span> <span class="pre">v_p</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+    dt: float
+        time step
+&quot;&quot;&quot;
+for node in mesh.nodes:
+    node.momentum = 0
+for el in mesh.elements:
+    for prtcl in el.particles:
+        for i in range(el.nnodes):
+            el.nodes[i].momentum += prtcl.mass * prtcl.velocity * prtcl.shapefn[i]
+</pre></div>
+</div>
+<p>def reset_nodal_values(mesh):
+“””Reset nodal values at the end of the iteration. Reset mesh.
+“””
+for node in mesh.nodes:
+node.reset_values()</p>
+<p>def particle_strain_increment(mesh,dt):
+“””
+Particle strain increment. Compute strain based on nodal velocity.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+    dt: float
+        time step
+&quot;&quot;&quot;
+for particle in mesh.particles:
+    particle.compute_strain(dt)
+</pre></div>
+</div>
+<p>def particle_velocity(mesh, dt):
+“””
+Compute particle velocity transfer nodal velocity to particle. :math:<code class="docutils literal notranslate"><span class="pre">v_p</span> <span class="pre">+=</span> <span class="pre">\sum_i</span> <span class="pre">N_i(x_p)</span> <span class="pre">*</span> <span class="pre">{f_{total}}_i/m_i</span> <span class="pre">*</span> <span class="pre">dt</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+    dt: float
+        time step
+&quot;&quot;&quot;
+for el in mesh.elements:
+    for prtcl in el.particles:
+        for i in range(el.nnodes):
+            prtcl.velocity += el.nodes[i].f_total/el.nodes[i].mass * prtcl.shapefn[i] * dt
+</pre></div>
+</div>
+<p>def particle_position(mesh, dt):
+“””
+Compute particle position based on nodal momentum to particle. :math:<code class="docutils literal notranslate"><span class="pre">x_p</span> <span class="pre">+=</span> <span class="pre">\sum_i</span> <span class="pre">N_i(x_p)</span> <span class="pre">*</span> <span class="pre">{mv}_i/m_i</span> <span class="pre">*</span> <span class="pre">dt</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+    dt: float
+        time step
+&quot;&quot;&quot;
+for el in mesh.elements:
+    for prtcl in el.particles:
+        for i in range(el.nnodes):
+            prtcl.x += el.nodes[i].momentum/el.nodes[i].mass * prtcl.shapefn[i] * dt
+</pre></div>
+</div>
+<p>def particle_position_velocity(mesh, dt):
+“””
+Compute particle position and velocity based on nodal velocity. :math:<code class="docutils literal notranslate"><span class="pre">x_p</span> <span class="pre">+=</span> <span class="pre">\sum_i</span> <span class="pre">N_i(x_p)</span> <span class="pre">*</span> <span class="pre">v_i</span></code> and particle position :math:<code class="docutils literal notranslate"><span class="pre">x_p</span> <span class="pre">+=</span> <span class="pre">v_p</span> <span class="pre">*</span> <span class="pre">dt</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+    dt: float
+        time step
+&quot;&quot;&quot;
+for el in mesh.elements:
+    for prtcl in el.particles:
+        prtcl.velocity = 0
+        for i in range(len(el.nodes)):
+            prtcl.velocity += prtcl.shapefn[i] * el.nodes[i].velocity
+        prtcl.x += prtcl.velocity * dt
+</pre></div>
+</div>
+<p>def particle_volume_density(mesh):
+“””
+Compute particle volume from :math:<code class="docutils literal notranslate"><span class="pre">V_p</span> <span class="pre">*=</span> <span class="pre">(1</span> <span class="pre">+</span> <span class="pre">d\epsilon)</span></code> and :math:<code class="docutils literal notranslate"><span class="pre">density</span> <span class="pre">=</span> <span class="pre">density</span> <span class="pre">/</span> <span class="pre">(1</span> <span class="pre">+</span> <span class="pre">\epsilon)</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+&quot;&quot;&quot;
+for prtcl in mesh.particles:
+    prtcl.volume *= (1 + prtcl.dstrain)
+    prtcl.density = prtcl.density / (1 + prtcl.dstrain)
+</pre></div>
+</div>
+<p>def particle_stress(mesh):
+“””Update particle stress based on dstrain.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+&quot;&quot;&quot;
+for particle in mesh.particles:
+    particle.material.update_stress(particle)
+</pre></div>
+</div>
+<p>def locate_particles(mesh):
+“””Locate particle in the mesh and compute xi (natural coordinates) of the material points.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Arguments:
+    mesh: mesh
+        a mesh object
+&quot;&quot;&quot;
+# clear particle list in elements
+for element in mesh.elements:
+    element.particles = []
+
+for prtcl in mesh.particles:
+    # get particle position
+    xp = prtcl.x
+    # for each element in mesh
+    for el in mesh.elements:
+        # verify the particle is inside the element
+        prcl_in_cell, xi = el.compute_xi(xp)
+        ncoords = np.array([node.x for node in el.nodes])
+        
+        if (prcl_in_cell):
+            # update particle xi
+            prtcl.xi = xi
+            # update element in particle
+            prtcl.element = el
+            # update particle shapefns and grads
+            prtcl.shapefn = el.shapefn.sf(xi)
+            prtcl.dn_dx = el.shapefn.dn_dx(xi, ncoords)
+            # add the particle to the element list
+            el.particles.append(prtcl)
+            # break element loop for testing other particle
+            break
+</pre></div>
 </div>
 </section>
 
@@ -421,20 +615,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="axial-vibration1d.html"
+       href="usl.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Axial vibration of a 1D bar</p>
+        <p class="prev-next-title">Update Stress Last (USL)</p>
       </div>
     </a>
     <a class="right-next"
-       href="learnmpm-axial-vibration1d.html"
+       href="point-axial-vibration1d.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Axial vibration of 1D bar using LearnMPM</p>
+        <p class="prev-next-title">1D vibration of a single material point</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
