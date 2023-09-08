@@ -24,10 +24,12 @@ class LinearElastic1D:
         self.density = density
 
     def update_stress(self, particle):
-        """Update particle stress based on particle strain. :math:`d\sigma = E \cdot d\epsilon` and the stress :math:`\sigma = \sigma + d \sigma`.
+        """Update particle stress based on particle strain. 
+        :math:`d\sigma = E \cdot d\epsilon` and 
+        the stress :math:`\sigma = \sigma + d \sigma`.
 
         Args:
             particle: Particle object
-        
+            E: Young's modulus
         """
         particle.stress+=particle.dstrain*self.E

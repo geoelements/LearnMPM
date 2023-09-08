@@ -1,5 +1,6 @@
 # include the learnmpm path to the current path
 import sys
+sys.path.append(".")
 sys.path.append("..")
 
 import matplotlib.pyplot as plt
@@ -21,8 +22,10 @@ nelements = 15
 # create an 1D mesh
 msh = mesh.Mesh1D(domain_size=Length, nelements=nelements)
 
+E = 100
+rho = 0.8
 # define a linear material 
-elastic = material.LinearElastic1D(E=100, density=1)
+elastic = material.LinearElastic1D(E=E, density=rho)
 
 # generate particles in mesh elements and set the material
 msh.generate_particles_uniform(ppc = 2, material = elastic)
@@ -63,8 +66,10 @@ plt.plot(params.results['time'], params.results['velocity'], 'ob', markersize = 
 # plot the analytical solution
 plt.plot(anal_t,anal_vt,'r',linewidth=2,label='analytical')
 
+print("state: \< E: {} N/m^2, rho: {} kg/m^3, v: {} m/s\>".format(E, rho, msh.particles[-1].velocity[0]))
+
 # configure axis, legends and show plot
-plt.xlabel('time (s)')
-plt.ylabel('velocity (m/s)')
-plt.legend()
-plt.show()
+# plt.xlabel('time (s)')
+# plt.ylabel('velocity (m/s)')
+# plt.legend()
+# plt.show()

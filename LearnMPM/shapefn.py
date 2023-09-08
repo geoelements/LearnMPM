@@ -68,3 +68,4 @@ class Linear1D:
             return np.array([-np.sqrt(0.6), 0, np.sqrt(6)])
         else:
             return np.array([0])
+    
