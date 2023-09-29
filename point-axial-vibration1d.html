@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>1D vibration of a single material point &#8212; Learn MPM</title>
+    <title>Axial virbation of a 1D bar with a single material point &#8212; Learn MPM</title>
   
   
   
@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'point-axial-vibration1d';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Axial vibration of a 1D bar" href="axial-vibration1d.html" />
+    <link rel="next" title="Axial vibration of a 1D bar (multiple material points)" href="axial-vibration1d.html" />
     <link rel="prev" title="Update" href="update.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -178,8 +178,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1D vibration of a single material point</a></li>
-<li class="toctree-l1"><a class="reference internal" href="axial-vibration1d.html">Axial vibration of a 1D bar</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Axial virbation of a 1D bar with a single material point</a></li>
+<li class="toctree-l1"><a class="reference internal" href="axial-vibration1d.html">Axial vibration of a 1D bar (multiple material points)</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="mpm-code.html">Coding 1D MPM</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="learnmpm-axial-vibration1d.html">Axial vibration of 1D bar using LearnMPM</a></li>
 </ul>
@@ -398,7 +398,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>1D vibration of a single material point</h1>
+    <h1>Axial virbation of a 1D bar with a single material point</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -458,12 +458,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="d-vibration-of-a-single-material-point">
-<h1>1D vibration of a single material point<a class="headerlink" href="#d-vibration-of-a-single-material-point" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="axial-virbation-of-a-1d-bar-with-a-single-material-point">
+<h1>Axial virbation of a 1D bar with a single material point<a class="headerlink" href="#axial-virbation-of-a-1d-bar-with-a-single-material-point" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/book/bar1d-vibration.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a>
 <a class="reference external" href="https://jupyter.designsafe-ci.org/hub/user-redirect/notebooks/CommunityData/Use%20Case%20Products/MPM/LearnMPM/point-axial-vibration1d.ipynb"><img alt="Try on DesignSafe" src="https://raw.githubusercontent.com/geoelements/LearnMPM/main/DesignSafe-Badge.svg" /></a></p>
 <p>Let us consider the vibration of a single material point as shown below. The bar is represented by a single point initially located at <span class="math notranslate nohighlight">\(x_p = L/2\)</span>, which has an initial velocity <span class="math notranslate nohighlight">\(v_0\)</span>. The material is linear elastic.</p>
-<p><img alt="bar1d" src="_images/bar1d.png" /></p>
+<p><img alt="bar1d" src="https://raw.githubusercontent.com/geoelements/LearnMPM/main/book/img/bar1d.png" /></p>
 <p>The exact solution for the velocity is: <span class="math notranslate nohighlight">\(v(t) = v_0 \cos (\omega t), \quad \omega = \frac{1}{L}\sqrt{E/\rho}\)</span></p>
 <p>and for the position is: <span class="math notranslate nohighlight">\(x(t) = x_0 \exp \left[\frac{v_0}{L \omega} \sin (\omega t)\right]\)</span></p>
 <p>The bar has a constant density <span class="math notranslate nohighlight">\(\rho = 1.0\)</span>. The constitutive equation is <span class="math notranslate nohighlight">\(\dot\sigma = E \dot \varepsilon\)</span>, where <span class="math notranslate nohighlight">\(\dot \varepsilon = dv/dx\)</span> and <span class="math notranslate nohighlight">\(E\)</span> is the Young’s modulus. The mesh consists of a single two-noded element. The elastic wave speed is <span class="math notranslate nohighlight">\(c = \sqrt{E/\rho} = 2 \pi\)</span>. The boundary conditions are imposed on the mesh, both the nodal velocity and the acceleration at <span class="math notranslate nohighlight">\(x = 0\)</span> (the left node) is zero throughout the simulation.</p>
@@ -548,7 +548,7 @@ document.write(`
 <section id="computational-domain">
 <h4>Computational domain<a class="headerlink" href="#computational-domain" title="Permalink to this heading">#</a></h4>
 <p>Let’s now develop a 1D MPM code for bar vibration with a single material point in the middle of the element.</p>
-<p><img alt="1d bar" src="_images/bar1dmpm.png" /></p>
+<p><img alt="1d bar" src="https://raw.githubusercontent.com/geoelements/LearnMPM/main/book/img/bar1dmpm.png" /></p>
 <p>The domain (bar) has a length of 1 m. We descritize the bar using a single linear element with two nodes. The left node is at 0 and the right node is at the end of the bar at L.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1228,7 +1228,7 @@ variable of the location of each material point at time <span class="math notran
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Axial vibration of a 1D bar</p>
+        <p class="prev-next-title">Axial vibration of a 1D bar (multiple material points)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
