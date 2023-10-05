@@ -4,7 +4,7 @@
 
 Preprocessing: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/book/preprocess.ipynb)
 
-Run MPM and Post-process: [![Try on DesignSafe](https://raw.githubusercontent.com/geoelements/LearnMPM/main/DesignSafe-Badge.svg)](https://jupyter.designsafe-ci.org/hub/user-redirect/notebooks/CommunityData/Use%20Case%20Products/MPM/LearnMPM/run-mpm.ipynb)
+Run MPM and Post-process: [![Try on DesignSafe](https://raw.githubusercontent.com/geoelements/LearnMPM/main/DesignSafe-Badge.svg)](https://jupyter.designsafe-ci.org/hub/user-redirect/notebooks/CommunityData/Use%20Case%20Products/MPM/run-mpm.ipynb)
 
 ## Clone MPM Benchmarks
 
