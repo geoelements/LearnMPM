@@ -16,3 +16,4 @@ chapters:
 - file: mpm-code
   sections:
     - file: learnmpm-axial-vibration1d
+- file: designsafe-mpm
