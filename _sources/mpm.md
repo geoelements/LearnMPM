@@ -179,17 +179,20 @@ $$
 
 where $M_{ij}$ is the consistent mass matrix, $\mathbf{F}_i^{int}$ is the internal force vector and $\mathbf{F}_i^{ext}$ is the external force vector. 
 
-The consistent mass matrix is given by 
+The consistent mass matrix is given by
+ 
 $$
 M_{ij} = \sum_{p=1}^{n_p} N_i(\mathbf{x}_p) N_j(\mathbf{x}_p) M_p
 $$
 
 The internal force vector computed at the grid nodes is written as
+
 $$
 \mathbf{F}_i^{int} = - \sum_{p=1}^{n_p} \nabla N_i(\mathbf{x}_p) : \pmb{\sigma}(\mathbf{x}_p,t) V_p
 $$
 
 and the external force vector is
+
 $$
 \mathbf{F}_i^{ext} = \int_{\partial \Omega_\Gamma} N_i(\mathbf{x}) \mathbf{t} (\mathbf{x},t) \hspace{3pt} dS + \sum_{p=1}^{n_p} N_i(\mathbf{x}_p) \mathbf{b}(\mathbf{x}_p,t)M_p
 $$
@@ -204,7 +207,7 @@ $$
 m_i^t \mathbf{a}_i^t = \mathbf{F}_i^{t,int} +\mathbf{F}_i^{t,ext}
 $$ 
 
-\noindent where $m_i^t$ is lumped mass at the nodes.
+ where $m_i^t$ is lumped mass at the nodes.
 
 The implicit velocity, $\mathbf{v}_i^{t+\triangle t}$ is computed as 
 
@@ -212,7 +215,7 @@ $$
 \mathbf{v}_i^{t+\triangle t} = \mathbf{v}_i^t + \triangle t \hspace{3pt} \mathbf{a}_i^t
 $$
 
-\noindent where $\triangle t$ is the time increment.
+where $\triangle t$ is the time increment.
 
 The explicit time integration is computationally convenient. However, it is a conditionally stable scheme which restricts the time step size to ensure numerical stability. Consequently, the time step must satisfy the Courant–Friedrichs–Lewy (CFL) condition. This is a necessary condition for convergence in explicit time marching numerical methods.
 
@@ -222,7 +225,7 @@ $$
 C = \dfrac{u \Delta t}{\Delta x} \leq C_{max}
 $$
 
-\noindent where $u$ is the characteristic wave speed,  $\Delta x$ is the spacing of the grid, $\Delta t$ is the time step size and $C_{max}$ is the maximum Courant number which is unity for most explicit methods. 
+ where $u$ is the characteristic wave speed,  $\Delta x$ is the spacing of the grid, $\Delta t$ is the time step size and $C_{max}$ is the maximum Courant number which is unity for most explicit methods. 
 
 In order to solve the fully discrete form and velocity update equation at the grid nodes,  mass and velocity carried by the material points must be transferred to the background grid. At the beginning of each Lagrangian time step,  particle mass is mapped to the nodes using
 
