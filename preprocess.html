@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Axial vibration of 1D bar using LearnMPM &#8212; Learn MPM</title>
+    <title>CB-Geo MPM &#8212; Learn MPM</title>
   
   
   
@@ -62,11 +62,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'learnmpm-axial-vibration1d';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'preprocess';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Running MPM on DesignSafe" href="designsafe-mpm.html" />
-    <link rel="prev" title="Coding 1D MPM" href="mpm-code.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -166,7 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="mpm.html">An introduction to the Material Point Method</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="mpm-schemes.html">MPM stress update schemes</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="usf.html">Update Stress First (USF)</a></li>
@@ -178,8 +176,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="point-axial-vibration1d.html">Axial vibration of a 1D bar with a single material point</a></li>
 <li class="toctree-l1"><a class="reference internal" href="axial-vibration1d.html">Axial vibration of a 1D bar (multiple material points)</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="mpm-code.html">Coding 1D MPM</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Axial vibration of 1D bar using LearnMPM</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="mpm-code.html">Coding 1D MPM</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="learnmpm-axial-vibration1d.html">Axial vibration of 1D bar using LearnMPM</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="designsafe-mpm.html">Running MPM on DesignSafe</a></li>
@@ -237,7 +235,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/docs/learnmpm-axial-vibration1d.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/docs/preprocess.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -285,7 +283,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Flearnmpm-axial-vibration1d.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/geoelements/learn-mpm/issues/new?title=Issue%20on%20page%20%2Fpreprocess.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -315,7 +313,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/learnmpm-axial-vibration1d.ipynb" target="_blank"
+      <li><a href="_sources/preprocess.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -384,7 +382,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -395,11 +395,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Axial vibration of 1D bar using LearnMPM</h1>
+    <h1>CB-Geo MPM</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-process">Pre-process</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -409,98 +417,83 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="axial-vibration-of-1d-bar-using-learnmpm">
-<h1>Axial vibration of 1D bar using LearnMPM<a class="headerlink" href="#axial-vibration-of-1d-bar-using-learnmpm" title="Permalink to this heading">#</a></h1>
-<p><a class="reference external" href="https://colab.research.google.com/github/geoelements/learn-mpm/blob/main/book/learnmpm-axial-vibration1d.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a>
-<a class="reference external" href="https://jupyter.designsafe-ci.org/hub/user-redirect/notebooks/CommunityData/Use%20Case%20Products/MPM/LearnMPM/learnmpm-axial-vibration1d.ipynb"><img alt="Try on DesignSafe" src="https://raw.githubusercontent.com/geoelements/LearnMPM/main/DesignSafe-Badge.svg" /></a></p>
-<p>Implementation of axial 1D bar using <code class="docutils literal notranslate"><span class="pre">LearnMPM</span></code> module.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># include the learnmpm path to the current path</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span>
-
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="kn">from</span> <span class="nn">analytical</span> <span class="kn">import</span> <span class="n">axial_vibration_bar1d</span> <span class="k">as</span> <span class="n">avb</span>
-
-<span class="kn">from</span> <span class="nn">LearnMPM</span> <span class="kn">import</span> <span class="n">mesh</span>
-<span class="kn">from</span> <span class="nn">LearnMPM</span> <span class="kn">import</span> <span class="n">material</span>
-<span class="kn">from</span> <span class="nn">LearnMPM</span> <span class="kn">import</span> <span class="n">params</span> <span class="k">as</span> <span class="n">prms</span>
-<span class="kn">from</span> <span class="nn">LearnMPM</span> <span class="kn">import</span> <span class="n">solver</span>
-
-<span class="c1"># bar length</span>
-<span class="n">Length</span> <span class="o">=</span> <span class="mi">25</span>
-
-<span class="c1"># number of elements</span>
-<span class="n">nelements</span> <span class="o">=</span> <span class="mi">15</span>
-
-<span class="c1"># create an 1D mesh</span>
-<span class="n">msh</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">Mesh1D</span><span class="p">(</span><span class="n">domain_size</span><span class="o">=</span><span class="n">Length</span><span class="p">,</span> <span class="n">nelements</span><span class="o">=</span><span class="n">nelements</span><span class="p">)</span>
-
-<span class="c1"># define a linear material </span>
-<span class="n">elastic</span> <span class="o">=</span> <span class="n">material</span><span class="o">.</span><span class="n">LinearElastic1D</span><span class="p">(</span><span class="n">E</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># generate particles in mesh elements and set the material</span>
-<span class="n">msh</span><span class="o">.</span><span class="n">generate_particles_uniform</span><span class="p">(</span><span class="n">ppc</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">material</span> <span class="o">=</span> <span class="n">elastic</span><span class="p">)</span>
-<span class="c1"># msh.generate_particles_gauss(ppc = 2,material = elastic)</span>
-
-<span class="c1"># setup the model</span>
-<span class="n">params</span> <span class="o">=</span> <span class="n">prms</span><span class="o">.</span><span class="n">Params</span><span class="p">()</span>
-<span class="n">params</span><span class="o">.</span><span class="n">mpm_scheme</span> <span class="o">=</span> <span class="s1">&#39;USF&#39;</span>
-<span class="n">params</span><span class="o">.</span><span class="n">nsteps</span> <span class="o">=</span> <span class="mi">600</span>
-<span class="n">params</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">params</span><span class="o">.</span><span class="n">results_particle</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">params</span><span class="o">.</span><span class="n">results_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">,</span> <span class="s1">&#39;position&#39;</span><span class="p">]</span>
-<span class="n">params</span><span class="o">.</span><span class="n">damping</span> <span class="o">=</span> <span class="mf">0.0</span>
-
-<span class="c1"># verify time step</span>
-<span class="n">dt_critical</span><span class="o">=</span><span class="n">msh</span><span class="o">.</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">elastic</span><span class="o">.</span><span class="n">E</span><span class="o">/</span><span class="n">elastic</span><span class="o">.</span><span class="n">density</span><span class="p">)</span>
-<span class="n">params</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">dt</span> <span class="k">if</span> <span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">dt</span> <span class="o">&lt;</span> <span class="n">dt_critical</span><span class="p">)</span> <span class="k">else</span> <span class="n">dt_critical</span>
-
-<span class="c1"># impose initial condition in particles</span>
-<span class="n">vo</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">b1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">2.0</span><span class="o">/</span><span class="n">Length</span>
-<span class="k">for</span> <span class="n">prtcl</span> <span class="ow">in</span> <span class="n">msh</span><span class="o">.</span><span class="n">particles</span><span class="p">:</span>
-  <span class="n">prtcl</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">vo</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">b1</span> <span class="o">*</span> <span class="n">prtcl</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-
-<span class="c1"># Apply boundary conditions</span>
-<span class="n">msh</span><span class="o">.</span><span class="n">boundary_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="c1"># solve the problem in time</span>
-<span class="n">solver</span><span class="o">.</span><span class="n">explicit_solution</span><span class="p">(</span><span class="n">msh</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="cb-geo-mpm">
+<h1>CB-Geo MPM<a class="headerlink" href="#cb-geo-mpm" title="Permalink to this heading">#</a></h1>
 <blockquote>
-<div><p>Plot velocity results of the last particle</p>
+<div><p>Krishna Kumar, UT Austin</p>
 </div></blockquote>
+<section id="pre-process">
+<h2>Pre-process<a class="headerlink" href="#pre-process" title="Permalink to this heading">#</a></h2>
+<p>This example shows how to generate input files for CB-Geo MPM.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get analytical solution</span>
-<span class="p">[</span><span class="n">anal_xt</span><span class="p">,</span><span class="n">anal_vt</span><span class="p">,</span> <span class="n">anal_t</span><span class="p">]</span> <span class="o">=</span> <span class="n">avb</span><span class="o">.</span><span class="n">axial_vibration_bar1d</span><span class="p">(</span><span class="n">Length</span><span class="p">,</span> <span class="n">elastic</span><span class="o">.</span><span class="n">E</span><span class="p">,</span> <span class="n">elastic</span><span class="o">.</span><span class="n">density</span><span class="p">,</span> 
-                              <span class="n">params</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="n">params</span><span class="o">.</span><span class="n">nsteps</span><span class="p">,</span> <span class="n">params</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="n">vo</span><span class="p">,</span> <span class="n">msh</span><span class="o">.</span><span class="n">particles</span><span class="p">[</span><span class="n">params</span><span class="o">.</span><span class="n">results_particle</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
-    
-<span class="c1"># plot mpm solution</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">params</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;velocity&#39;</span><span class="p">],</span> <span class="s1">&#39;ob&#39;</span><span class="p">,</span> <span class="n">markersize</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;mpm&#39;</span><span class="p">)</span>
-
-<span class="c1"># plot the analytical solution</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">anal_t</span><span class="p">,</span><span class="n">anal_vt</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;analytical&#39;</span><span class="p">)</span>
-
-<span class="c1"># configure axis, legends and show plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;velocity (m/s)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libglu1-mesa
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4b9d95d187db0050b88d5ab0361fea3cded4c0e05b58050e30586d5e8d1d07f1.png" src="_images/4b9d95d187db0050b88d5ab0361fea3cded4c0e05b58050e30586d5e8d1d07f1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+libglu1-mesa is already the newest version (9.0.2-1).
+0 upgraded, 0 newly installed, 0 to remove and 18 not upgraded.
+</pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pycbg<span class="w"> </span>--quiet
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycbg.preprocessing</span> <span class="k">as</span> <span class="nn">utl</span>
+
+<span class="c1"># The usual start of a PyCBG script:</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">utl</span><span class="o">.</span><span class="n">Simulation</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Two_materials_column&quot;</span><span class="p">)</span>
+
+<span class="c1"># Creating the mesh:</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">create_mesh</span><span class="p">(</span><span class="n">dimensions</span><span class="o">=</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">10.</span><span class="p">),</span> <span class="n">ncells</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Creating Material Points, could have been done by filling an array manually:</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">create_particles</span><span class="p">(</span><span class="n">npart_perdim_percell</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Creating entity sets (the 2 materials), using lambda functions:</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">init_entity_sets</span><span class="p">()</span>
+<span class="n">lower_particles</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">entity_sets</span><span class="o">.</span><span class="n">create_set</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">:</span> <span class="n">z</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;particle&quot;</span><span class="p">)</span>
+<span class="n">upper_particles</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">entity_sets</span><span class="o">.</span><span class="n">create_set</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">:</span> <span class="n">z</span><span class="o">&gt;=</span><span class="mi">5</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;particle&quot;</span><span class="p">)</span>
+
+<span class="c1"># The materials properties:</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">create_MohrCoulomb3D</span><span class="p">(</span><span class="n">pset_id</span><span class="o">=</span><span class="n">lower_particles</span><span class="p">)</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">materials</span><span class="o">.</span><span class="n">create_Newtonian3D</span><span class="p">(</span><span class="n">pset_id</span><span class="o">=</span><span class="n">upper_particles</span><span class="p">)</span>
+
+<span class="c1"># Boundary conditions on nodes entity sets (blocked displacements):</span>
+<span class="n">walls</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">walls</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">sim</span><span class="o">.</span><span class="n">entity_sets</span><span class="o">.</span><span class="n">create_set</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">:</span> <span class="n">x</span><span class="o">==</span><span class="n">lim</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;node&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">lim</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">l0</span><span class="p">]])</span>
+<span class="n">walls</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">sim</span><span class="o">.</span><span class="n">entity_sets</span><span class="o">.</span><span class="n">create_set</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">:</span> <span class="n">y</span><span class="o">==</span><span class="n">lim</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;node&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">lim</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">l1</span><span class="p">]])</span>
+<span class="n">walls</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">sim</span><span class="o">.</span><span class="n">entity_sets</span><span class="o">.</span><span class="n">create_set</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">:</span> <span class="n">z</span><span class="o">==</span><span class="n">lim</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="s2">&quot;node&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">lim</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">sim</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">l2</span><span class="p">]])</span>
+<span class="k">for</span> <span class="n">direction</span><span class="p">,</span> <span class="n">sets</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">walls</span><span class="p">):</span> <span class="n">_</span> <span class="o">=</span> <span class="p">[</span><span class="n">sim</span><span class="o">.</span><span class="n">add_velocity_condition</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">es</span><span class="p">)</span> <span class="k">for</span> <span class="n">es</span> <span class="ow">in</span> <span class="n">sets</span><span class="p">]</span>
+
+<span class="c1"># Other simulation parameters (gravity, number of iterations, time step, ..):</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">set_gravity</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">9.81</span><span class="p">])</span>
+<span class="n">nsteps</span> <span class="o">=</span> <span class="mf">1.5e5</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">set_analysis_parameters</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">nsteps</span><span class="o">=</span><span class="n">nsteps</span><span class="p">,</span> <span class="n">output_step_interval</span><span class="o">=</span><span class="n">nsteps</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Save user defined parameters to be reused at the postprocessing stage:</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">add_custom_parameters</span><span class="p">({</span><span class="s2">&quot;lower_particles&quot;</span><span class="p">:</span> <span class="n">lower_particles</span><span class="p">,</span>
+                           <span class="s2">&quot;upper_particles&quot;</span><span class="p">:</span> <span class="n">upper_particles</span><span class="p">,</span>
+                           <span class="s2">&quot;walls&quot;</span><span class="p">:</span> <span class="n">walls</span><span class="p">})</span>
+
+<span class="c1"># Final generation of input files:</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">write_input_file</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -533,30 +526,26 @@ document.write(`
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="mpm-code.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Coding 1D MPM</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="designsafe-mpm.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Running MPM on DesignSafe</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-process">Pre-process</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
