@@ -6,6 +6,12 @@ Preprocessing: [![Open In Colab](https://colab.research.google.com/assets/colab-
 
 Run MPM and Post-process: [![Try on DesignSafe](https://raw.githubusercontent.com/geoelements/LearnMPM/main/DesignSafe-Badge.svg)](https://jupyter.designsafe-ci.org/hub/user-redirect/lab/tree/CommunityData/Use%20Case%20Products/MPM/run-mpm.ipynb)
 
+## CB-Geo MPM Code
+
+Visit [GitHub](https://github.com/cb-geo/mpm) for the CB-Geo MPM codebase.
+
+[Documentation for CB-Geo MPM](https://mpm.cb-geo.com)
+
 ## Clone MPM Benchmarks
 
 To clone MPM benchmarks file: `git clone https://github.com/cb-geo/mpm-benchmarks.git`
