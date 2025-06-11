@@ -13,6 +13,8 @@ chapters:
         - file: update
 - file: point-axial-vibration1d
 - file: axial-vibration1d
+- file: mpm2d-column-collapse
+- file: mpm2d-elastic-ball
 - file: mpm-code
   sections:
     - file: learnmpm-axial-vibration1d
