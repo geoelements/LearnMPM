@@ -1,4 +1,4 @@
 Pygments
-jupyter-book
+jupyter-book<2  # this book uses the legacy _config.yml/_toc.yml setup, which jupyter-book 2.x (mystmd) cannot build
 matplotlib
 numpy
